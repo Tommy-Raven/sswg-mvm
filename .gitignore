@@ -7,8 +7,6 @@ __pycache__/
 .venv
 env/
 venv/
-# VSCode
-.vscode/
 # OS Files
 .DS_Store
 Thumbs.db
