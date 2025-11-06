@@ -5,7 +5,6 @@ from ai_monitoring.cli_dashboard import CLIDashboard
 from ai_monitoring.telemetry import TelemetryLogger
 from generator.utils import log
 
-
 class Orchestrator:
     def __init__(self):
         # Initialize memory and CLI dashboard
@@ -63,3 +62,4 @@ class Orchestrator:
 
         log("Workflow orchestration complete.")
         return wf
+
