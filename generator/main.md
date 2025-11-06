@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """
 generator/main.py — codename 'Grimoire' Version 4.5  (Merged/Unified)
 
@@ -171,3 +172,4 @@ def main(argv: Optional[list] = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
