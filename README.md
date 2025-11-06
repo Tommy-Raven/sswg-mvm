@@ -1,3 +1,4 @@
+
 # AI Instructional Workflow Generator
 
 ![Project Status: Experimental](https://img.shields.io/badge/status-experimental-orange)
@@ -173,5 +174,3 @@ TBD – currently proprietary, under active development.
 For questions, collaboration, or feature requests:
 **Tommy-Raven / Raven Recordings**
 
-
-Do you want me to do that next?
