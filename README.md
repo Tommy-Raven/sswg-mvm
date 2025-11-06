@@ -1,176 +1,194 @@
-
-# AI Instructional Workflow Generator
+# Grimoire v4.5 — AI Instructional Workflow Generator
 
 ![Project Status: Experimental](https://img.shields.io/badge/status-experimental-orange)
 ![Python](https://img.shields.io/badge/language-Python-blue)
-![License: TBD](https://img.shields.io/badge/license-TBD-lightgrey)
+![Codename: Grimoire](https://img.shields.io/badge/codename-Grimoire-purple)
+![License: Proprietary](https://img.shields.io/badge/license-Proprietary-lightgrey)
+
+---
 
 ## Table of Contents
-
 1. [Overview](#overview)
-2. [Key Features](#key-features)
-3. [How It Works](#how-it-works)
-4. [Example Workflow Diagram](#example-workflow-diagram)
-5. [Intended Users](#intended-users)
-6. [Technology Stack](#technology-stack)
-7. [Getting Started](#getting-started)
-8. [Example Usage](#example-usage)
-9. [Future Enhancements](#future-enhancements)
-10. [Contributing](#contributing)
-11. [License](#license)
-12. [Contact](#contact)
+2. [Design Philosophy](#design-philosophy)
+3. [System Architecture](#system-architecture)
+4. [Core Features](#core-features)
+5. [How It Works](#how-it-works)
+6. [Example Templates](#example-templates)
+7. [Operational Workflow](#operational-workflow)
+8. [Intended Users](#intended-users)
+9. [Technology Stack](#technology-stack)
+10. [Setup & Usage](#setup--usage)
+11. [Future Enhancements](#future-enhancements)
+12. [Contributing](#contributing)
+13. [License](#license)
+14. [Contact](#contact)
 
 ---
 
-## Overview
+# Overview
 
-The **AI Instructional Workflow Generator** is a **meta-educational AI system** that creates, evaluates, and evolves instructional workflows automatically.
+**Grimoire v4.5** is a **meta-educational AI system** designed to automatically create, evaluate, and evolve **instructional workflows**.  
+It acts as both a *teacher* and a *scribe*, transforming user-defined purposes into self-contained learning frameworks that humans or AI systems can follow.
 
-Its core purpose is to **convert user-defined goals into actionable, human-readable guides and machine-readable templates**, enabling both humans and AI systems to:
-
-* Generate structured workflows dynamically
-* Reuse modular instructional units
-* Self-assess and evolve for efficiency and clarity
-
-This project functions as a **recursive AI educator**, producing workflows that can themselves generate new instructional frameworks.
+Each workflow functions as a **spell of knowledge**—a structured incantation of tasks, dependencies, and logic sequences—capable of recursively generating new forms of instruction.
 
 ---
 
-## Key Features
+# Design Philosophy
 
-* **Recursive Workflow Generation**: Each workflow can produce derivative workflows, forming a continuous improvement loop.
-* **Dual Readability**: Markdown for humans, JSON for AI systems.
-* **Modular Architecture**: Reusable atomic modules with clearly defined dependencies and metadata.
-* **Objective Refinement**: Converts abstract or creative goals into measurable, actionable steps.
-* **Evaluation & Quality Assurance**: Self-diagnoses clarity, completeness, and AI interpretability.
-* **Version Control & Regeneration**: Tracks workflow iterations for iterative improvement.
-* **Hotkey Commands**: Quick generation of modular API schemas and full workflow outputs.
+> “Each workflow teaches the next workflow how to teach.”
+
+Drawing inspiration from **grimoires**—ancient books of magic containing rituals, invocations, and correspondences—this system encodes **instructional intelligence** into structured templates.  
+Every generated workflow carries the potential to reproduce itself through recursive synthesis, forming a lineage of evolving pedagogical entities.
 
 ---
 
-## How It Works
+# System Architecture
 
-The workflow generator operates in **five phases**:
-
-1. **Initialization & Variable Acquisition**
-
-   * Prompts users for objectives, audience, delivery mode, and constraints.
-   * Converts abstract goals into measurable milestones.
-
-2. **Human-Readable “How-To” Generation**
-
-   * Creates step-by-step instructional guides that humans can follow.
-   * Structures each stage with nested steps and substeps.
-
-3. **Modular Expansion & Reusability**
-
-   * Splits workflows into reusable atomic modules.
-   * Defines module dependencies and allows dynamic recombination.
-
-4. **Evaluation & Quality Assurance**
-
-   * Self-assesses workflows for clarity, coverage, expandability, and AI-readability.
-   * Generates structured evaluation reports for iterative refinement.
-
-5. **Regeneration & Evolution**
-
-   * Integrates user feedback and evaluation data to optimize workflow iterations.
-   * Maintains version history and triggers derivative workflow generation when new use-cases arise.
+| Component | Purpose | Description |
+|------------|----------|-------------|
+| **generator/** | Workflow synthesis engine | Converts abstract user intent into structured guides and templates |
+| **ai_core/** | Orchestration nucleus | Controls recursive flow, dependencies, and regeneration |
+| **ai_memory/** | Knowledge archive | Stores and retrieves generated workflows |
+| **ai_validation/** | Schema guardian | Ensures structural integrity and completeness |
+| **ai_evaluation/** | Reflective analysis | Grades clarity and internal coherence |
+| **ai_visualization/** | Manifestation tools | Converts dependency data into graphs and diagrams |
+| **ai_monitoring/** | Conscious oversight | Logs workflow generation and evolution events |
+| **data/templates/** | Archetypal blueprints | Predefined structures for instructional genres |
+| **docs/** | Meta documentation | Contains architectural and theoretical references |
 
 ---
 
-## Example Workflow Diagram
+# Core Features
 
+* **Recursive Workflow Generation** — Each output can seed future workflows.
+* **Bimodal Representation** — Produces Markdown (for humans) and JSON (for machines).
+* **Schema-Driven Validation** — Ensures logical consistency across modules.
+* **Persistent Memory System** — Archives and versions all outputs.
+* **Self-Evaluative Feedback Loop** — Measures clarity and completeness.
+* **Visual Export** — Renders dependency networks as Graphviz diagrams.
+* **Structured Logging** — Tracks every generation event in `logs/workflow.log`.
+
+---
+
+# How It Works
+
+1. **Invocation** — User defines the purpose, audience, and delivery mode.  
+2. **Generation** — `generator/main.py` synthesizes the workflow structure.  
+3. **Validation** — Schema verification ensures completeness and logic.  
+4. **Evaluation** — Quality metrics measure clarity and instructional depth.  
+5. **Reflection** — System logs and stores results for recursive evolution.  
+
+This recursive design ensures every workflow is both *an artifact* and *an algorithm*—a blueprint for self-replicating knowledge.
+
+---
+
+# Example Templates
+
+Grimoire v4.5 ships with archetypal templates stored in `data/templates/`:
+
+| Template | Focus | Primary Use |
+|-----------|--------|-------------|
+| `training_curriculum_template.json` | Education | Build structured learning programs |
+| `technical_procedure_template.json` | Engineering | Standardize technical or scientific procedures |
+| `creative_writing_template.json` | Arts | Generate literary, poetic, or narrative workflows |
+| `meta_reflection_template.json` | Metacognition | Evaluate and evolve cognitive frameworks |
+
+Each template can be invoked and customized using CLI or direct module calls.
+
+---
+
+# Operational Workflow
+
+```mermaid
+flowchart TD
+    A[User Input] --> B[Generator]
+    B --> C[Schema Validator]
+    C --> D[Memory Store]
+    D --> E[Evaluation Engine]
+    E --> F[Visualization Exporter]
+    F --> G[Logger]
+    G --> H[Recursive Regeneration]
 ```
-[Phase 1] --> [Phase 2] --> [Phase 3] --> [Phase 4] --> [Phase 5]
-    |             |             |             |             |
-    |             |             |             |             |
-    |         [ObjectiveRefinement]   [DependencyResolver]  [FeedbackIntegrator]
-    |______________________________↘︎____________________________↘︎____________|
-                                [Self-Improvement Loop]
-```
+# Intended Users
+### AI Developers — 
+To experiment with meta-educational systems.
 
-*This diagram represents the recursive flow, modular dependencies, and feedback loops in the system.*
+### Educators & Trainers — 
+To auto-generate curriculum structures.
 
----
+### Writers & Designers — 
+To design recursive creative frameworks.
 
-## Intended Users
+### Research Institutions — 
+To explore AI-guided pedagogical recursion.
 
-* **AI Engineers & Developers**: Automate instructional workflow creation.
-* **Educators & Trainers**: Generate structured teaching guides.
-* **Advanced AI Systems**: Consume machine-readable instructional templates.
-* **Human Learners**: Follow step-by-step guidance for complex tasks.
+# Technology Stack
 
----
+### Python 3.10+
 
-## Technology Stack
+### JSON + Markdown Hybrid Architecture
 
-* **Python**: Core logic and workflow execution
-* **JSON**: Machine-readable workflow templates
-* **Markdown**: Human-readable instructional outputs
-* **LLM / AI Reasoning Modules**: Recursive evaluation and expansion logic
-* **Optional API Integration**: For modular extension and external data inputs
+### Graphviz (optional) for visualization
 
----
+### pytest for validation testing
 
-## Getting Started
+### Custom AI Reasoning Modules (future)
 
-1. Clone the repository
-2. Install Python and necessary dependencies (TBD)
-3. Run the workflow generator script
-4. Provide input parameters such as:
+# Setup & Usage
 
-   * Purpose
-   * Audience
-   * Delivery Mode (text, code, interactive, etc.)
-   * Expansion Mode (recursive, modular)
-   * Evaluation Method
-   * Style/Voice
-5. Export workflows as **Markdown** or **JSON**
+### Clone the repository:
 
----
+> git clone https://github.com/Tommy-Raven/AI_instructions_workflow.git
 
-## Example Usage
+> cd AI_instructions_workflow
 
-```
-create_instructional_workflow({
-  "purpose": "AI Workflow Generator",
-  "target_audience": "Advanced Developers",
-  "delivery_mode": ["text", "code"],
-  "expansion_mode": ["recursive"],
-  "evaluation_method": "self-refinement",
-  "style": "technical"
-})
-```
+### Install dependencies:
 
-This generates a fully scaffolded instructional AI capable of designing new teaching frameworks autonomously, complete with modular subroutines, evaluation loops, and recursive expansion logic.
+> pip install -r requirements.txt
 
----
+### Run the CLI:
+
+> python cli.py --purpose "Design an AI ethics curriculum"
+
+### View results
+
+**Generated JSON** → *data/workflows/*
+
+**Logs** → *logs/workflow.log*
+
+***Optional*** **.dot graph** → *build/workflow_graph.dot*
 
 ## Future Enhancements
 
-* Visual interface with branding (logo/banner)
-* Expand API schema for external module integration
-* Persistent storage for module reuse and evaluation logs
-* Advanced evaluation metrics and reporting
-* Support for additional output formats
+Adaptive self-learning loop using semantic embeddings
 
----
+Domain-specific plugin grimoires (medical, mechanical, creative)
+
+Multi-agent recursive co-generation
+
+Interactive visual dashboard
+
+Integration with open LLMs for semantic workflow synthesis
 
 ## Contributing
 
-Contributions are welcome! Improve AI logic, add modules, or refine evaluation processes by opening an issue or submitting a pull request.
+Contributions are welcome—especially around recursive orchestration, AI memory optimization, and multi-domain schema integration.
 
----
+Open an issue or pull request via GitHub.
 
 ## License
+Proprietary — In Research Phase. 
+*see: LICENSE*
 
-TBD – currently proprietary, under active development.
-
----
+All rights reserved © 2025 Tommy Raven / Raven Recordings
 
 ## Contact
 
-For questions, collaboration, or feature requests:
-**Tommy-Raven / Raven Recordings**
+Author: Tommy Raven
 
+Email: [GitHub Issues Preferred]
+
+Project Codename: Grimoire v4.5
+
+Repository: github.com/Tommy-Raven/AI_instructions_workflow
