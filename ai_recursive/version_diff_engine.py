@@ -102,20 +102,39 @@ def compute_diff_summary(wf_old: dict, wf_new: dict) -> dict:
 
 
 def regenerate_if_needed(wf_old: dict, wf_new: dict, threshold: int = 2) -> dict:
-    """Trigger workflow regeneration if the diff exceeds threshold."""
+    """
+    Trigger workflow regeneration if the diff exceeds threshold.
+    Also logs feedback and evaluation metrics after each comparison cycle.
+    """
+    from ai_memory.feedback_integrator import FeedbackIntegrator
+    from ai_evaluation.quality_metrics import evaluate_clarity
+
     logger = get_logger()
     diff_summary = compute_diff_summary(wf_old, wf_new)
     log_event(logger, "diff_analysis", diff_summary)
 
+    # Initialize feedback memory
+    feedback = FeedbackIntegrator()
+
     if diff_summary["diff_size"] >= threshold:
         log_event(logger, "regeneration_triggered", {"reason": "diff_threshold_exceeded"})
         orch = Orchestrator()
-        print(" Significant divergence from threshold detected. Regenerating workflow...")
+        print("🔁 Significant divergence detected. Regenerating workflow...")
+
         regenerated = orch.run(wf_new.get("metadata", {}))
+        eval_metrics = evaluate_clarity(regenerated)
+        feedback.record_cycle(diff_summary, eval_metrics, regenerated=True)
+
+        print(f"🧠 Feedback integrated. New clarity score: {eval_metrics['clarity_score']:.2f}")
         return regenerated
 
-    print("Changes below threshold — no regen required. Re-configure threshold for finer asdjustments. default = 2 ")
+    # No regeneration occurred, still record passive feedback
+    eval_metrics = evaluate_clarity(wf_new)
+    feedback.record_cycle(diff_summary, eval_metrics, regenerated=False)
+
+    print(f"✅ Changes below threshold — no regeneration required (Clarity {eval_metrics['clarity_score']:.2f})")
     return wf_new
+
 
 
 def compare_workflows(old_path: str, new_path: str, auto_regen: bool = True) -> dict:
