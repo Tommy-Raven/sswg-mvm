@@ -7,3 +7,9 @@ pytest>=8.1.0
 colorama>=0.4.6
 rich>=13.6.0
 tqdm>=4.66.0
+pytest==8.0.0
+flake8==7.1.0
+black==24.3.0
+pandas>=2.2.0
+
+# Add required packages here if/when you extend

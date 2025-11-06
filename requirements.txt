@@ -1,6 +1,0 @@
-# Add required packages here if/when you extend
-pytest==8.0.0
-flake8==7.1.0
-black==24.3.0
-pandas>=2.2.0
-numpy>=1.26.0
