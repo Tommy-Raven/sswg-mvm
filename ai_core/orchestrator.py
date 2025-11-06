@@ -3,7 +3,7 @@ from ai_memory.memory_store import MemoryStore
 from ai_validation.schema_validator import validate_workflow
 from ai_monitoring.cli_dashboard import CLIDashboard
 from ai_monitoring.telemetry import TelemetryLogger
-from utils import log
+from generator.utils import log
 
 
 class Orchestrator:
