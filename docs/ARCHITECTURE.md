@@ -1,49 +1,81 @@
-%% Recursive AI Instructional Workflow Generator Repo Map
-%% Repository Structure Diagram
+%%==========================================================
+%% AI Instructional Workflow Generator - System Architecture
+%%==========================================================
 
-%%----------------------------------------
-%%  Recursive AI Instructional Workflow Generator
-%%  Repository Structure Diagram
-%%  Color Legend:
-%%    🔵 Blue   = Root
-%%    🟩 Green  = Package / Directory
-%%    🟧 Orange = Module (.py)
-%%    🟨 Yellow = Config / Metadata
-%%    🟪 Purple = Tests
-%%    🟥 Red    = Documentation / Diagrams
-%%    🟦 Cyan   = CLI / Interface Layer
-%%----------------------------------------
+flowchart TB
 
-graph TD
     %% ROOT
-    R[🔵 /AI_instructions_workflow]:::root
+    ROOT[🔵 ai-instructional-workflow-generator]:::root
 
-    %% PRIMARY DIRECTORIES
-    R --> C1[🟩 ai_core/]:::package
-    R --> C2[🟩 tests/]:::package
-    R --> C3[🟩 docs/]:::package
-    R --> F1[🟨 setup.py]:::config
-    R --> F2[🟨 requirements.txt]:::config
-    R --> F3[🟨 .gitignore]:::config
-    R --> F4[🟦 cli.py]:::cli
+    %% LEGACY / INTERFACE
+    ROOT --> G[🟦 generator/]:::cli
+    G --> Gm[🟧 main.py]:::module
+    G --> Gw[🟧 workflow.py]:::module
+    G --> Ge[🟧 evaluation.py]:::module
+    G --> Gr[🟧 recursive_expansion.py]:::module
+    G --> Gx[🟧 exporters.py]:::module
+    G --> Gu[🟧 utils.py]:::module
 
-    %% AI_CORE MODULES
-    C1 --> M1[🟧 workflow_engine.py]:::module
-    C1 --> M2[🟧 recursion_manager.py]:::module
-    C1 --> M3[🟧 graph_engine.py]:::module
-    C1 --> M4[🟧 evaluation_engine.py]:::module
-    C1 --> M5[🟧 io_manager.py]:::module
-    C1 --> M6[🟧 visualizer.py]:::module
+    %% CORE LOGIC
+    ROOT --> C[🟩 ai_core/]:::package
+    C --> CW[🟧 workflow.py]:::module
+    C --> CP[🟩 phases/]:::package
+    CP --> CP1[🟧 initialization.py]:::module
+    CP --> CP2[🟧 refinement.py]:::module
+    CP --> CP3[🟧 modularization.py]:::module
+    CP --> CP4[🟧 human_readable.py]:::module
+    CP --> CP5[🟧 evaluation.py]:::module
+    CP --> CP6[🟧 regeneration.py]:::module
+    C --> CR[🟧 registry.py]:::module
+
+    %% RECURSIVE ENGINE
+    ROOT --> R[🟩 ai_recursive/]:::package
+    R --> RE[🟧 expansion.py]:::module
+    R --> RM[🟧 merging.py]:::module
+    R --> RR[🟧 registry.py]:::module
+    R --> RV[🟧 evaluator.py]:::module
+    R --> RL[🟧 memory.py]:::module
+
+    %% MEMORY SYSTEM
+    ROOT --> M[🟩 ai_memory/]:::package
+    M --> MS[🟧 store.py]:::module
+    M --> ML[🟧 lineage.py]:::module
+    M --> MM[🟧 metrics.py]:::module
+    M --> MA[🟧 analytics.py]:::module
+
+    %% EVALUATION
+    ROOT --> E[🟩 ai_evaluation/]:::package
+    E --> EB[🟧 base.py]:::module
+    E --> EC[🟧 clarity.py]:::module
+    E --> EE[🟧 expandability.py]:::module
+    E --> ET[🟧 translatability.py]:::module
+    E --> ER[🟧 registry.py]:::module
+
+    %% SUPPORTING DATA + SCHEMAS
+    ROOT --> D[🟩 data/]:::package
+    D --> DT[🟩 templates/]:::package
+    D --> DO[🟩 outputs/]:::package
+
+    ROOT --> S[🟩 schemas/]:::package
+    S --> SW[🟨 workflow_schema.json]:::config
+    S --> SM[🟨 module_schema.json]:::config
+    S --> SE[🟨 evaluation_schema.json]:::config
 
     %% TESTS
-    C2 --> T1[🟪 test_workflow_engine.py]:::test
-    C2 --> T2[🟪 test_graph_engine.py]:::test
-    C2 --> T3[🟪 conftest.py]:::test
+    ROOT --> T[🟩 tests/]:::package
+    T --> TA[🟪 test_ai_core.py]:::test
+    T --> TR[🟪 test_recursive.py]:::test
+    T --> TM[🟪 test_memory.py]:::test
+    T --> TE[🟪 test_evaluation.py]:::test
+    T --> TX[🟪 test_exporters.py]:::test
 
     %% DOCS
-    C3 --> D1[🟥 architecture.md]:::docs
-    C3 --> D2[🟥 diagrams/]:::docs
-    C3 --> D3[🟥 usage_guide.md]:::docs
+    ROOT --> DOC[🟥 docs/]:::docs
+    DOC --> DA[🟥 ARCHITECTURE.md]:::docs
+    DOC --> DR[🟥 AI_RECURSION.md]:::docs
+    DOC --> DM[🟥 METRICS_SYSTEM.md]:::docs
+    DOC --> DE[🟥 EVOLUTION_LOGGING.md]:::docs
+    DOC --> DG[🟥 CONTRIBUTOR_GUIDE.md]:::docs
 
     %% STYLING
     classDef root fill:#0096FF,stroke:#003366,color:white;
@@ -53,111 +85,3 @@ graph TD
     classDef test fill:#A020F0,stroke:#5D007A,color:white;
     classDef docs fill:#FF6B6B,stroke:#B22222,color:white;
     classDef cli fill:#00CED1,stroke:#007C80,color:black;
-
-ai-instructional-workflow-generator/
-│
-├── generator/                      # Legacy interface layer (CLI entry point)
-│   ├── main.py
-│   ├── exporters.py
-│   ├── workflow.py             # Workflow class; manages phases 1–5
-│   ├── modules.py              # Modular AI subroutines (ObjectiveRefinement, StageWriter, etc.)
-│   ├── evaluation.py           # Evaluates clarity, expandability, and AI readability
-│   ├── recursive_expansion.py  # Variant generation + recursive merging logic
-│   └── utils.py                # UUID, timestamps, and logging tools
-│
-├── data/
-│   ├── templates/              # (optional) Prebuilt workflow blueprints for reference
-│   └── outputs/                # Export destination for .json / .md workflows
-│
-├── README.md                   # Project documentation and usage guide
-└── requirements.txt             # Python dependencies (if any)
-|
-├── ai_core/                        # Core workflow execution logic
-│   ├── __init__.py
-│   ├── workflow.py                 # Orchestrator for phases
-│   ├── phases/
-│   │   ├── __init__.py
-│   │   ├── initialization.py
-│   │   ├── refinement.py
-│   │   ├── human_readable.py
-│   │   ├── modularization.py
-│   │   ├── evaluation.py
-│   │   └── regeneration.py
-│   └── registry.py                 # Dynamically discovers and runs phases
-│
-├── ai_recursive/                   # Self-evolving recursion engine
-│   ├── __init__.py
-│   ├── expansion.py
-│   ├── merging.py
-│   ├── evaluator.py
-│   ├── registry.py
-│   └── memory.py
-│
-├── ai_memory/                      # Long-term storage of evolution logs
-│   ├── __init__.py
-│   ├── store.py
-│   ├── lineage.py
-│   ├── metrics.py
-│   └── analytics.py
-│
-├── ai_evaluation/                  # Metric-based evaluation engine
-│   ├── __init__.py
-│   ├── base.py
-│   ├── clarity.py
-│   ├── expandability.py
-│   ├── translatability.py
-│   └── registry.py
-│
-├── data/
-│   ├── templates/
-│   └── outputs/
-│
-├── schemas/                        # JSON Schemas for validation
-│   ├── workflow_schema.json
-│   ├── module_schema.json
-│   └── evaluation_schema.json
-│
-├── tests/
-│   ├── test_ai_core.py
-│   ├── test_recursive.py
-│   ├── test_memory.py
-│   ├── test_exporters.py
-│   └── test_evaluation.py
-│
-└── docs/
-    ├── ARCHITECTURE.md
-    ├── API_REFERENCE.md
-    ├── AI_RECURSION.md
-    ├── METRICS_SYSTEM.md
-    ├── EVOLUTION_LOGGING.md
-    └── CONTRIBUTOR_GUIDE.md
-
-
-## Data Flow Between Core Modules
-%%----------------------------------------
-%%  Core Module Data Flow (ai_core package)
-%%  Color Legend:
-%%    🟧 Orange = Core Module
-%%    🟩 Green  = Supporting Package Folder
-%%    🟦 Cyan   = Input/Output Interface
-%%----------------------------------------
-
-flowchart LR
-    %% INPUT AND OUTPUT
-    U[🟦 User Input / CLI]:::cli --> WF[🟧 workflow_engine.py]:::module
-    WF --> GE[🟧 graph_engine.py]:::module
-    GE --> RM[🟧 recursion_manager.py]:::module
-    RM --> EE[🟧 evaluation_engine.py]:::module
-    EE --> VF[🟧 visualizer.py]:::module
-    VF --> IO[🟧 io_manager.py]:::module
-    IO --> UO[🟦 User Output (Markdown / JSON / Graphviz)]:::cli
-
-    %% BACKFLOW (Evaluation Feedback Loop)
-    EE -. feedback .-> WF
-    RM -. recursion_control .-> WF
-
-    %% STYLING
-    classDef module fill:#FFB347,stroke:#CC7000,color:black;
-    classDef cli fill:#00CED1,stroke:#007C80,color:black;
-
-
