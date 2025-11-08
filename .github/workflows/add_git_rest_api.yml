@@ -10,10 +10,6 @@ print(f"✅ Created or updated {out_path}")
 if name == "main":
 main()
 
-
----
-
-## ⚙️ File 2: `.github/workflows/add_git_REST_API.yml`
 **Purpose:**  
 This GitHub Action automatically runs the above Python script, commits any updates,  
 and opens a pull request if changes are detected.
@@ -23,7 +19,6 @@ and opens a pull request if changes are detected.
 
 **Full contents:**
 
-```yaml
 name: 🧩 Generate git_REST_API.md
 
 on:
