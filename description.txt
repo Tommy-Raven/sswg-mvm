@@ -1,0 +1,14 @@
+Grimoire – WorkflowAI
+Recursive AI Workflow Generator and Orchestration Framework
+
+Grimoire is an intelligent workflow generator that evolves its own processes.
+It integrates semantic evaluation, graph-based dependency management, and recursive feedback loops to continuously refine workflow structures.
+
+Core objectives:
+- Automate AI-driven workflow creation and testing
+- Enable recursive improvement through feedback and memory
+- Visualize dependency and recursion maps via Graphviz and Mermaid
+- Track performance, evolution, and quality metrics across milestones
+
+This project is managed through the GitHub Project Dashboard:
+https://github.com/users/Tommy-Raven/projects/1
