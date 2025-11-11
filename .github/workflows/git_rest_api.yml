@@ -1,0 +1,76 @@
+name: Build & Test Git REST API
+
+on:
+  push:
+    paths:
+      - "API/**"
+      - "generator/**"
+      - ".github/workflows/get-api.yml"
+    branches: [ "main", "dev" ]
+  pull_request:
+    paths:
+      - "API/**"
+      - "generator/**"
+    branches: [ "main", "dev" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  build_api:
+    name: 🧩 Build & Lint API
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🧾 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r build/REQUIREMENTS.txt
+          pip install flake8 pytest
+
+      - name: 🔍 Lint API and Generator
+        run: |
+          echo "Running flake8 linting..."
+          flake8 API generator --max-line-length=120 --statistics
+
+  test_api:
+    name: 🧪 Run API Unit Tests
+    needs: build_api
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: 📦 Install dependencies
+        run: pip install -r build/REQUIREMENTS.txt pytest
+      - name: 🧪 Run tests
+        run: |
+          pytest -q API/tests generator/tests --maxfail=1 --disable-warnings --tb=short
+
+      - name: 📊 Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-results
+          path: ./tests/
+
+  notify_results:
+    name: 🔔 Notify on Success
+    needs: test_api
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - name: 💬 Post summary
+        run: |
+          echo "✅ API build and test pipeline completed successfully."
