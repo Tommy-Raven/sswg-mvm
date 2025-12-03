@@ -1,180 +1,121 @@
 #!/usr/bin/env python3
 """
-generator/history.py — Workflow Evolution History for SSWG
+generator/history.py — Workflow lineage and change history.
 
-Tracks parent/child workflow relationships, modifications, and score deltas.
-
-Example logical record:
-{
-  "timestamp": "...",
-  "parent_workflow": "workflow_001",
-  "child_workflow": "workflow_001_v2",
-  "modifications": ["Added stage", "Improved clarity"],
-  "score_delta": +12
-}
-
-This module formalizes that idea as a dataclass + append-only history log.
+Stores parent/child workflow relationships and score deltas in a simple
+JSON file, for later analysis or visualization.
 """
 
 from __future__ import annotations
 
 import json
-import time
-from dataclasses import dataclass, asdict
+from dataclasses import asdict, dataclass
+from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional
-
-from ai_monitoring.structured_logger import log_event
-
-HISTORY_DIR = Path(__file__).resolve().parent.parent / "data" / "outputs"
-HISTORY_FILE = HISTORY_DIR / "history.jsonl"
+from typing import List
 
 
 @dataclass
 class HistoryRecord:
     """
-    Represents a single evolution step between two workflows.
+    Represents a single transition between two workflows.
     """
-    timestamp: float
+    timestamp: str
     parent_workflow: str
     child_workflow: str
     modifications: List[str]
     score_delta: float
-    metadata: Dict[str, Any]
-
-    @classmethod
-    def create(
-        cls,
-        parent_workflow: str,
-        child_workflow: str,
-        modifications: Iterable[str],
-        score_delta: float,
-        metadata: Optional[Dict[str, Any]] = None,
-    ) -> "HistoryRecord":
-        return cls(
-            timestamp=time.time(),
-            parent_workflow=parent_workflow,
-            child_workflow=child_workflow,
-            modifications=list(modifications),
-            score_delta=score_delta,
-            metadata=metadata or {},
-        )
 
 
 class HistoryManager:
     """
-    Handles persistence and retrieval of HistoryRecord objects for SSWG.
+    Manage storage and retrieval of workflow history records.
 
-    Storage format:
-    - JSON Lines file at data/outputs/history.jsonl
-    - One JSON object per line, schema compatible with HistoryRecord.asdict()
+    Records are persisted as a JSON list of HistoryRecord dictionaries.
     """
 
-    def __init__(self, history_file: Path = HISTORY_FILE) -> None:
-        self.history_file = history_file
-        self.history_file.parent.mkdir(parents=True, exist_ok=True)
+    def __init__(self, storage_path: Path | str = Path("./data/history.json")) -> None:
+        self.storage_path = Path(storage_path)
+        self._records: List[HistoryRecord] = []
+        self._load()
 
-    # ------------------------------------------------------------------ #
-    # Write Operations
-    # ------------------------------------------------------------------ #
+    def _load(self) -> None:
+        """Load existing history data from disk, if present."""
+        if not self.storage_path.exists():
+            return
+
+        try:
+            text = self.storage_path.read_text(encoding="utf-8")
+            raw_records = json.loads(text)
+        except (OSError, json.JSONDecodeError):
+            self._records = []
+            return
+
+        for item in raw_records:
+            self._records.append(
+                HistoryRecord(
+                    timestamp=item.get("timestamp", ""),
+                    parent_workflow=item.get("parent_workflow", ""),
+                    child_workflow=item.get("child_workflow", ""),
+                    modifications=list(item.get("modifications", [])),
+                    score_delta=float(item.get("score_delta", 0)),
+                )
+            )
+
+    def _save(self) -> None:
+        """Persist the current records to disk."""
+        self.storage_path.parent.mkdir(parents=True, exist_ok=True)
+        raw = [asdict(record) for record in self._records]
+        self.storage_path.write_text(
+            json.dumps(raw, indent=2),
+            encoding="utf-8",
+        )
+
     def record_transition(
         self,
-        parent_workflow: str,
-        child_workflow: str,
-        modifications: Iterable[str],
+        parent_workflow_id: str,
+        child_workflow_id: str,
         score_delta: float,
-        metadata: Optional[Dict[str, Any]] = None,
+        modifications: List[str] | None = None,
     ) -> HistoryRecord:
         """
-        Create and append a new history record to the log.
-        """
-        record = HistoryRecord.create(
-            parent_workflow=parent_workflow,
-            child_workflow=child_workflow,
-            modifications=modifications,
-            score_delta=score_delta,
-            metadata=metadata,
-        )
+        Append a new history record and persist it.
 
-        self._append_record(record)
+        Args:
+            parent_workflow_id:
+                Identifier of the source workflow.
+            child_workflow_id:
+                Identifier of the derived workflow.
+            score_delta:
+                Change in some evaluation score between parent and child.
+            modifications:
+                Optional list of human-readable modification summaries.
+
+        Returns:
+            The created HistoryRecord.
+        """
+        record = HistoryRecord(
+            timestamp=datetime.utcnow().isoformat() + "Z",
+            parent_workflow=parent_workflow_id,
+            child_workflow=child_workflow_id,
+            modifications=modifications or [],
+            score_delta=score_delta,
+        )
+        self._records.append(record)
+        self._save()
         return record
 
-    def _append_record(self, record: HistoryRecord) -> None:
+    def find_relations(self, workflow_id: str) -> List[HistoryRecord]:
         """
-        Append a single record to the history file.
-        """
-        payload = asdict(record)
-        self.history_file.parent.mkdir(parents=True, exist_ok=True)
-        with self.history_file.open("a", encoding="utf-8") as f:
-            f.write(json.dumps(payload) + "\n")
-
-        log_event(
-            "history.record.appended",
-            {
-                "parent": record.parent_workflow,
-                "child": record.child_workflow,
-                "score_delta": record.score_delta,
-            },
-        )
-
-    # ------------------------------------------------------------------ #
-    # Read / Query Operations
-    # ------------------------------------------------------------------ #
-    def load_all(self) -> List[HistoryRecord]:
-        """
-        Load all history records from the log.
-        """
-        if not self.history_file.exists():
-            return []
-
-        records: List[HistoryRecord] = []
-        with self.history_file.open("r", encoding="utf-8") as f:
-            for line in f:
-                line = line.strip()
-                if not line:
-                    continue
-                try:
-                    obj = json.loads(line)
-                    records.append(
-                        HistoryRecord(
-                            timestamp=obj.get("timestamp", 0.0),
-                            parent_workflow=obj.get("parent_workflow", ""),
-                            child_workflow=obj.get("child_workflow", ""),
-                            modifications=obj.get("modifications", []),
-                            score_delta=obj.get("score_delta", 0.0),
-                            metadata=obj.get("metadata", {}),
-                        )
-                    )
-                except Exception:
-                    # skip malformed lines but continue
-                    continue
-
-        return records
-
-    def get_lineage(self, workflow_id: str) -> List[HistoryRecord]:
-        """
-        Return all records where the given workflow appears as parent or child.
+        Find all history records where the given workflow appears as
+        either parent or child.
         """
         return [
-            r
-            for r in self.load_all()
-            if r.parent_workflow == workflow_id or r.child_workflow == workflow_id
+            record
+            for record in self._records
+            if workflow_id in (record.parent_workflow, record.child_workflow)
         ]
 
-    def latest_child(self, parent_workflow: str) -> Optional[HistoryRecord]:
-        """
-        Return the most recent child of a given parent workflow, if any.
-        """
-        candidates = [
-            r for r in self.load_all() if r.parent_workflow == parent_workflow
-        ]
-        if not candidates:
-            return None
-        return max(candidates, key=lambda r: r.timestamp)
-
-
-def get_component() -> HistoryManager:
-    """
-    Factory used by orchestrator / dependency injection frameworks.
-    """
-    return HistoryManager()
+    def all_records(self) -> List[HistoryRecord]:
+        """Return a copy of all stored history records."""
+        return list(self._records)
