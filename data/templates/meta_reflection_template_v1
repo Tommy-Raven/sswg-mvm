@@ -1,0 +1,222 @@
+{
+  "workflow_id": "meta_reflection_template_v1",
+  "version": "1.0.1-mvm",
+  "metadata": {
+    "category": "Metacognition",
+    "subcategory": "Self-Assessment and Continuous Improvement",
+    "author": "Tommy Raven, Raven Recordings, LLC",
+    "owner": "SSWG",
+    "version": "1.0.1-mvm",
+    "title": "Meta_Reflection_Workflow",
+    "template_id": "meta_reflection",
+    "description": "A structured, recursive meta-reflection workflow for analyzing how a system learns, where it fails, and how its frameworks should evolve.",
+    "purpose": "Enable disciplined self-assessment of AI or human-in-the-loop learning frameworks by collecting evidence, diagnosing patterns, and regenerating improved designs.",
+    "audience": "AI system designers, educators, instructional architects, meta-analysts",
+    "tags": [
+      "meta_reflection",
+      "self_assessment",
+      "recursive_evaluation",
+      "continuous_improvement",
+      "sswg_template"
+    ],
+    "language": "en-US",
+    "jurisdiction": {
+      "country": "USA",
+      "state": "CA"
+    },
+    "lifecycle": {
+      "status": "experimental",
+      "created_at": "2025-12-03T00:00:00Z",
+      "last_updated": "2025-12-03T00:00:00Z"
+    },
+    "mvm_profile": {
+      "schema": "workflow_schema_v1",
+      "compatible_generators": [
+        "sswg_mvm_0_1_0"
+      ],
+      "intended_modes": [
+        "analysis_only",
+        "analysis_plus_regeneration"
+      ]
+    }
+  },
+  "phases": [
+    {
+      "id": "P1",
+      "title": "Awareness and Observation",
+      "description": "Surface what is actually happening in the system: outputs, behaviors, and recurring patterns.",
+      "objectives": [
+        "Establish an evidence base for reflection.",
+        "Reveal repeated strengths and failure modes.",
+        "Make hidden biases and blind spots observable."
+      ],
+      "tasks": [
+        {
+          "id": "P1_T1",
+          "label": "Collect artifacts",
+          "description": "Collect representative system outputs or learner artifacts across different scenarios and difficulty levels.",
+          "inputs": [
+            "raw_model_outputs",
+            "learner_submissions",
+            "interaction_logs"
+          ],
+          "outputs": [
+            "curated_artifact_set"
+          ],
+          "success_criteria": "Artifacts span multiple tasks, difficulty bands, and include both successes and failures.",
+          "notes": "Avoid cherry-picking only best or worst cases; aim for a realistic slice of behavior."
+        },
+        {
+          "id": "P1_T2",
+          "label": "Pattern detection",
+          "description": "Identify recurring patterns of success, confusion, or outright failure across the artifact set.",
+          "inputs": [
+            "curated_artifact_set"
+          ],
+          "outputs": [
+            "pattern_map",
+            "example_index"
+          ],
+          "success_criteria": "Each major pattern is supported by at least 2–3 concrete examples.",
+          "notes": "Tag patterns by domain (content), process (how the task was solved), and style (tone, verbosity)."
+        },
+        {
+          "id": "P1_T3",
+          "label": "Bias surfacing",
+          "description": "Document areas of cognitive, procedural, or dataset bias that show up in the patterns.",
+          "inputs": [
+            "pattern_map",
+            "example_index"
+          ],
+          "outputs": [
+            "bias_register"
+          ],
+          "success_criteria": "Biases are stated specifically (who/what is disadvantaged, in which contexts, and how).",
+          "notes": "Include both overuse patterns (e.g., safe generic answers) and underrepresented behaviors (e.g., rare creative leaps)."
+        }
+      ]
+    },
+    {
+      "id": "P2",
+      "title": "Interpretation and Reconciliation",
+      "description": "Explain why the patterns exist and reconcile them with the system’s intended design and goals.",
+      "objectives": [
+        "Connect observed behavior to underlying causes.",
+        "Compare reality against design intent and principles.",
+        "Identify conceptual overlap, fragmentation, or drift."
+      ],
+      "tasks": [
+        {
+          "id": "P2_T1",
+          "label": "Causal mapping",
+          "description": "Map observed patterns to hypothesized causes in data, prompts, workflows, or user instructions.",
+          "inputs": [
+            "pattern_map",
+            "bias_register",
+            "current_system_design_docs"
+          ],
+          "outputs": [
+            "cause_effect_hypotheses"
+          ],
+          "success_criteria": "Each major pattern is linked to at least one plausible causal factor and one uncertainty.",
+          "notes": "Explicitly mark which causal links are speculative and need further testing."
+        },
+        {
+          "id": "P2_T2",
+          "label": "Goal alignment check",
+          "description": "Cross-compare current behavioral trends with stated goals, values, and constraints of the system or curriculum.",
+          "inputs": [
+            "cause_effect_hypotheses",
+            "design_goals",
+            "policy_constraints"
+          ],
+          "outputs": [
+            "alignment_matrix"
+          ],
+          "success_criteria": "For each goal, there is a rating of alignment (e.g., strong/partial/misaligned) with supporting evidence.",
+          "notes": "Pay attention to trade-offs (e.g., safety vs. creativity, speed vs. depth)."
+        },
+        {
+          "id": "P2_T3",
+          "label": "Conceptual consolidation",
+          "description": "Redefine, merge, or re-scope overlapping conceptual structures (rubrics, modules, phases) to reduce confusion.",
+          "inputs": [
+            "alignment_matrix",
+            "current_system_design_docs"
+          ],
+          "outputs": [
+            "revised_concept_map",
+            "deprecation_candidates"
+          ],
+          "success_criteria": "Each concept or phase has a clear role, minimal redundancy, and explicit relationships to others.",
+          "notes": "Flag obsolete or redundant components but do not delete them yet; they may inform historical tracking."
+        }
+      ]
+    },
+    {
+      "id": "P3",
+      "title": "Evolution and Reconfiguration",
+      "description": "Evolve the framework, regenerate improved variants, and validate that the changes actually help.",
+      "objectives": [
+        "Generate improved frameworks grounded in observed evidence.",
+        "Retain institutional memory of what used to exist and why it changed.",
+        "Establish a repeatable validation loop for future iterations."
+      ],
+      "tasks": [
+        {
+          "id": "P3_T1",
+          "label": "Recursive regeneration",
+          "description": "Regenerate improved workflows or curricula using the revised concept map and alignment findings.",
+          "inputs": [
+            "revised_concept_map",
+            "alignment_matrix",
+            "cause_effect_hypotheses"
+          ],
+          "outputs": [
+            "candidate_frameworks"
+          ],
+          "success_criteria": "New frameworks explicitly address at least one high-impact failure mode identified in P1–P2.",
+          "notes": "If multiple candidates are generated, label them by optimization focus (e.g., clarity-first, creativity-first)."
+        },
+        {
+          "id": "P3_T2",
+          "label": "Archival with commentary",
+          "description": "Archive obsolete frameworks along with clear notes about why they were replaced and what was learned.",
+          "inputs": [
+            "previous_frameworks",
+            "candidate_frameworks"
+          ],
+          "outputs": [
+            "annotated_framework_archive"
+          ],
+          "success_criteria": "Every retired framework has: (a) reason for retirement, (b) known strengths, (c) known weaknesses.",
+          "notes": "This archive feeds future meta-reflection cycles and prevents repeatedly revisiting dead-ends."
+        },
+        {
+          "id": "P3_T3",
+          "label": "Validation loop setup",
+          "description": "Define validation tasks, metrics, and schedules for testing the new frameworks against real usage.",
+          "inputs": [
+            "candidate_frameworks",
+            "annotated_framework_archive"
+          ],
+          "outputs": [
+            "validation_plan",
+            "baseline_metrics"
+          ],
+          "success_criteria": "Validation includes both quantitative metrics (e.g., error rate, time-to-completion) and qualitative feedback.",
+          "notes": "Plan at least one future meta-reflection checkpoint where this workflow is run again on the new system state."
+        }
+      ]
+    }
+  ],
+  "modules": [],
+  "evaluation": {
+    "composite_score": 0.0,
+    "notes": [
+      "Template-level workflow; scores are expected to be populated after real runs.",
+      "Intended to pair with diff-based regeneration and feedback integrator modules."
+    ]
+  }
+}
+```0
