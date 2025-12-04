@@ -35,4 +35,38 @@ Tasks:
 
 ---
 
-##
+## **P2 — Interpretation & Reconciliation**
+Make meaning from observed patterns.
+
+Tasks:
+- Map trends to underlying causes  
+- Compare actual outcomes to intended goals  
+- Redefine/merge conceptual frameworks  
+
+---
+
+## **P3 — Evolution & Reconfiguration**
+Improve or regenerate the entire cognitive structure.
+
+Tasks:
+- Recursive synthesis  
+- Archive obsolete models  
+- Validate new models via feedback or peer test  
+
+---
+
+# 🧬 Domain Logic
+
+Ideal for:
+
+- reflection loops  
+- recursive training cycles  
+- meta-analytic models  
+- evaluation engines  
+
+The refinement pass amplifies detail around:
+
+- self-correction  
+- model lineage  
+- bias inspection  
+- conceptual realignment
