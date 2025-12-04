@@ -1,0 +1,69 @@
+name: SSWG-MVM CI
+
+on:
+  push:
+    branches: ["main", "canonical", "dev", "mvm"]
+  pull_request:
+    branches: ["main", "canonical"]
+
+jobs:
+  build-test-lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz
+
+      - name: Install project dependencies
+        run: |
+          python3 -m pip install --upgrade pip wheel setuptools
+          python3 -m pip install -e ".[dev]"
+
+      # ————————————————————————————————
+      #       STATIC ANALYSIS
+      # ————————————————————————————————
+      - name: Run Ruff
+        run: ruff check .
+
+      - name: Run Black (check only)
+        run: black --check .
+
+      - name: Run isort (check only)
+        run: isort . --check-only
+
+      - name: Run MyPy
+        run: mypy .
+
+      - name: Run Pylint
+        run: |
+          find . -name "*.py" -print0 \
+            | xargs -0 pylint --score=no
+
+      # ————————————————————————————————
+      #           TEST SUITE
+      # ————————————————————————————————
+      - name: Run PyTest
+        run: pytest -q
+
+      # ————————————————————————————————
+      #          PACKAGE BUILD
+      # ————————————————————————————————
+      - name: Build distribution
+        run: python3 -m build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sswg-mvm-dist
+          path: dist/
