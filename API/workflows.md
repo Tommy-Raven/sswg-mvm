@@ -41,4 +41,20 @@ Refines an existing workflow.
 Validates a workflow against SSWG schema.
 
 ### `GET /api/workflows/export/{id}`
-Exports
+Exports workflow artifacts.
+
+---
+
+## 🗂 Workflow Structure
+
+A valid SSWG–MVM workflow contains:
+
+```json
+{
+  "workflow_id": "wf_001",
+  "version": "v0.9.mvm.25",
+  "metadata": { ... },
+  "phases": [ ... ],
+  "dependency_graph": { ... },
+  "evaluation": { ... }
+}
