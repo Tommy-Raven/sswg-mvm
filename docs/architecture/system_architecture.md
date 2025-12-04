@@ -1,0 +1,127 @@
+# 🏛 System Architecture  
+### SSWG-MVM — Synthetic Synthesist of Workflow Generation
+
+SSWG-MVM organizes itself as a **layered modular architecture**, balancing strict schema-driven control with dynamic recursive refinement.
+
+---
+
+# 🧩 High-Level Architecture
+
+```
+           ┌────────────────────────────────────────┐
+           │              CLI / API Layer            │
+           └────────────────────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────────┐
+│                    Generator Engine (MVM)                │
+│  - main pipeline                                         │
+│  - refinement (RecursionManager)                         │
+│  - dependency autocorrect                                │
+└──────────────────────────────────────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────────┐
+│                     Validation Layer                      │
+│  - jsonschema                                             │
+│  - metadata + phase requirements                          │
+│  - DAG structural checks                                   │
+└──────────────────────────────────────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────────┐
+│                     Evaluation Layer                      │
+│  - Clarity metrics                                        │
+│  - semantic scoring (future)                              │
+│  - phase/task density                                     │
+└──────────────────────────────────────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────────┐
+│                Memory & Versioning Subsystem             │
+│  - feedback integrator                                    │
+│  - lineage tracking                                        │
+│  - regeneration triggers                                   │
+└──────────────────────────────────────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────────┐
+│                   Visualization Layer                     │
+│  - Mermaid (Markdown diagrams)                             │
+│  - Graphviz planned                                        │
+└──────────────────────────────────────────────────────────┘
+```
+
+---
+
+# ⚙ Design Principles
+
+### **1. Deterministic core**
+Valid workflows must always meet schema guarantees:  
+- metadata correctness  
+- phase order  
+- dependency graph validity  
+
+### **2. Recursive refinement**
+The MVM includes a *minimal recursion engine* designed to:
+
+- detect weak phases  
+- restructure task order  
+- annotate missing metadata  
+- apply consistent formatting  
+
+### **3. Schema supremacy**
+All templates and generated workflows respect:
+
+```
+schemas/workflow_schema.json
+```
+
+This enables:
+
+- automated testing  
+- validation guarantees  
+- version bump automation in CI  
+
+### **4. Minimal external dependencies**  
+Only standard Python + jsonschema + optional Graphviz.
+
+---
+
+# 🧠 Component Map
+
+| Subsystem | Directory | Purpose |
+|-----------|-----------|---------|
+| Core | `ai_core` | Orchestration, pipeline glue |
+| Recursive | `ai_recursive` | Diff engine, refinement |
+| Validation | `ai_validation` | Workflow schema, consistency checks |
+| Evaluation | `ai_evaluation` | Scores, metrics |
+| Memory | `ai_memory` | Long-term feedback + lineage |
+| Visualization | `ai_visualization` | Graphs + Mermaid |
+| Generator | `generator` | Main execution engine |
+
+---
+
+# 📦 How Components Communicate
+
+```
+User → CLI → MVM Pipeline
+MVM → Validator → Graph → Evaluator → Recursive Refinement
+Refined Workflow → Exporters → Memory/History
+```
+
+Each workflow run produces:
+
+- JSON artifact  
+- Markdown artifact  
+- optional Mermaid DAG  
+- lineage entry  
+
+---
+
+# 🔮 Future Architecture Extensions
+
+- Multi-agent workflow analysis  
+- Parallel recursive branches  
+- Metaphorical “grimoire pages” (plugin-based expansions)  
+- GraphQL API layer
