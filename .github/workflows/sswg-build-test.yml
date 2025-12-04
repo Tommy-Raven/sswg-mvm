@@ -1,0 +1,123 @@
+name: SSWG–MVM: Build & Test Core System
+
+# ───────────────────────────────────────────────
+# EVENT TRIGGERS
+# ───────────────────────────────────────────────
+on:
+  push:
+    branches: ["main", "dev"]
+    paths:
+      - "generator/**"
+      - "ai_core/**"
+      - "ai_recursive/**"
+      - "ai_validation/**"
+      - "ai_graph/**"
+      - "ai_monitoring/**"
+      - "ai_memory/**"
+      - "ai_visualization/**"
+      - "API/**"
+      - ".github/workflows/sswg-build-test.yml"
+  pull_request:
+    branches: ["main", "dev"]
+    paths:
+      - "generator/**"
+      - "ai_core/**"
+      - "ai_recursive/**"
+      - "ai_validation/**"
+      - "ai_graph/**"
+      - "ai_monitoring/**"
+      - "ai_memory/**"
+      - "ai_visualization/**"
+      - "API/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+# ───────────────────────────────────────────────
+# JOB 1 — BUILD & LINT
+# ───────────────────────────────────────────────
+jobs:
+  build_and_lint:
+    name: 🧩 Build & Lint (SSWG–MVM Core)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧾 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 📦 Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          # Use reproducibility lock file if available
+          if [ -f reproducibility/requirements.txt ]; then
+            pip install -r reproducibility/requirements.txt
+          elif [ -f REQUIREMENTS.txt ]; then
+            pip install -r REQUIREMENTS.txt
+          fi
+          pip install flake8 pytest
+
+      - name: 🔍 Lint SSWG Core Modules
+        run: |
+          echo "Running flake8 linting..."
+          flake8 generator ai_core ai_recursive ai_validation ai_graph ai_monitoring ai_memory ai_visualization API --max-line-length=120 --statistics
+
+  # ───────────────────────────────────────────────
+  # JOB 2 — UNIT TEST SUITE
+  # ───────────────────────────────────────────────
+  run_tests:
+    name: 🧪 Run Unit Tests
+    needs: build_and_lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧾 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 📦 Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          if [ -f reproducibility/requirements.txt ]; then
+            pip install -r reproducibility/requirements.txt
+          elif [ -f REQUIREMENTS.txt ]; then
+            pip install -r REQUIREMENTS.txt
+          fi
+          pip install pytest
+
+      - name: 🧪 Execute full test suite
+        run: |
+          pytest -q tests API/tests generator/tests --disable-warnings --maxfail=1 --tb=short
+
+      - name: 📊 Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sswg-mvm-test-results
+          path: ./tests/
+
+  # ───────────────────────────────────────────────
+  # JOB 3 — SUCCESS NOTIFICATION
+  # ───────────────────────────────────────────────
+  notify:
+    name: 🔔 Notify Success
+    needs: run_tests
+    runs-on: ubuntu-latest
+    if: success()
+
+    steps:
+      - name: 💬 Post summary
+        run: |
+          echo "✅ SSWG–MVM CI Pipeline completed successfully."
+
