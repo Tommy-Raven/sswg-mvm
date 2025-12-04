@@ -1,0 +1,38 @@
+{
+  "manifest_version": "0.9mvm",
+  "default_template": "training_curriculum",
+  "templates": [
+    {
+      "slug": "creative_writing",
+      "filename": "creative_writing_template.json",
+      "category": "Literary Arts",
+      "description": "Instructional workflow for generating structured creative content.",
+      "tags": ["creative", "writing", "narrative"],
+      "recommended_profile": "sswg_mvm_creative"
+    },
+    {
+      "slug": "meta_reflection",
+      "filename": "meta_reflection_unified_superframework.yaml",
+      "category": "Metacognition",
+      "description": "High-depth meta-learning and recursive self-evaluation workflow.",
+      "tags": ["reflection", "recursion", "meta"],
+      "recommended_profile": "sswg_mvm_reflection_superframework"
+    },
+    {
+      "slug": "technical_procedure",
+      "filename": "technical_procedure_template.json",
+      "category": "Engineering",
+      "description": "Procedural engineering workflow for documentation, validation, and reproducibility.",
+      "tags": ["engineering", "technical", "procedure"],
+      "recommended_profile": "sswg_mvm_technical"
+    },
+    {
+      "slug": "training_curriculum",
+      "filename": "training_curriculum_template.json",
+      "category": "Education",
+      "description": "Workflow for instructional design, training objectives, and curriculum mapping.",
+      "tags": ["education", "curriculum", "training"],
+      "recommended_profile": "sswg_mvm_training"
+    }
+  ]
+}
