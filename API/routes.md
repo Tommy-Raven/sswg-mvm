@@ -18,20 +18,20 @@ Production-style deployments typically mount under the same `/api` root.
 # 🚀 Workflow Lifecycle Endpoints
 
 ## **POST /api/workflows/generate**
-Generate a complete workflow from user-provided intent.
+> Generate a complete workflow from user-provided intent.
 
-**Request Body**
-```json
-{
+### **Request Body**
+
+> {
   "purpose": "Design a robotics training curriculum",
   "audience": "Engineering students",
   "style": "Technical-formal",
   "language": "en-US"
 }
 
-Response
+### Response
 
-{
+> {
   "workflow_id": "wf_rob_001",
   "version": "v0.9.mvm.25",
   "metadata": { ... },
@@ -42,48 +42,46 @@ Response
 
 ---
 
-POST /api/workflows/refine
+## POST /api/workflows/refine
 
-Apply recursive refinement via the Recursion Manager.
+-Apply recursive refinement via the Recursion Manager.
 
-Request Body
+### Request Body
 
-{
+> {
   "workflow": { ... },
   "depth": 2
 }
 
-Response
+### Response
 
-{
+> {
   "workflow_id": "wf_rob_001_r2",
   "refinement_depth": 2,
   "phases": [ ...updated... ]
 }
 
 
----
+## POST /api/workflows/validate
 
-POST /api/workflows/validate
+—Validate any workflow dict against the official SSWG–MVM schema.
 
-Validate any workflow dict against the official SSWG–MVM schema.
+### Request Body
 
-Request Body
-
-{
+> {
   "workflow": { ... }
 }
 
-Response
+### Response
 
-{
+> {
   "valid": true,
   "errors": []
 }
 
-If invalid:
+—If invalid:
 
-{
+> {
   "valid": false,
   "errors": [
     "metadata.purpose: required field missing",
@@ -92,39 +90,37 @@ If invalid:
 }
 
 
----
+## GET /api/workflows/export/{workflow_id}
 
-GET /api/workflows/export/{workflow_id}
+—Export workflow artifacts produced by the generator.
 
-Export workflow artifacts produced by the generator.
+### Returns a mapping of artifact types:
 
-Returns a mapping of artifact types:
-
-{
+> {
   "workflow_id": "wf_example",
   "json": "data/outputs/wf_example.json",
   "markdown": "data/outputs/wf_example.md",
   "mermaid": "data/outputs/wf_example.mmd"
 }
 
-If the workflow ID is unknown:
+—If the workflow ID is unknown:
 
-{
+> {
   "error": "Workflow not found: wf_example"
 }
 
 
 ---
 
-📚 Schema Endpoints
+# 📚 Schema Endpoints
 
-GET /api/schemas
+## GET /api/schemas
 
-List all available schema files.
+—List all available schema files.
 
-Response
+### Response
 
-{
+> {
   "schemas": [
     "workflow_schema.json",
     "phase_schema.json",
@@ -136,47 +132,42 @@ Response
 
 ---
 
-GET /api/schemas/{name}
+## GET /api/schemas/{name}
 
-Return a specific schema as JSON.
+—Return a specific schema as JSON.
 
-Example
+> Example:
 
-GET /api/schemas/workflow_schema.json
+> GET /api/schemas/workflow_schema.json
 
-Response
+### Response
 
-{
+> {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": { ... }
 }
 
 
----
+# ⚙️ Utility Endpoints
 
-⚙️ Utility Endpoints
+## GET /api/status
 
-GET /api/status
+—Quick health check of the engine.
 
-Quick health check of the engine.
+### Response
 
-Response
-
-{
+> {
   "status": "ok",
   "engine": "SSWG–MVM",
   "version": "v0.9.mvm.25"
 }
 
+## GET /api/version
 
----
+— Returns MVM version + recursion profile.
 
-GET /api/version
-
-Returns MVM version + recursion profile.
-
-{
+> {
   "version": "v0.9.mvm.25",
   "profile": "sswg_mvm_v0_1"
 }
@@ -184,39 +175,39 @@ Returns MVM version + recursion profile.
 
 ---
 
-🧪 Testing Endpoints (Optional / Dev Mode Only)
+# 🧪 Testing Endpoints (Optional / Dev Mode Only)
 
-POST /api/debug/evaluate
+## POST /api/debug/evaluate
 
-Run evaluation metrics directly.
+—Run evaluation metrics directly.
 
-{
+> {
   "workflow": { ... }
 }
 
-Response
+### Response
 
-{
+> {
   "clarity_score": 0.87,
   "structure_score": 0.92,
   "coverage_score": 0.78
 }
 
-Dev-mode routes are controlled via environment variables.
+*Dev-mode routes are controlled via environment variables.*
 
 
 ---
 
-🧭 Summary Table
+# 🧭 Summary Table
 
-Method	Route	Purpose
+>Method	## Route	### Purpose
 
-POST	/api/workflows/generate	Create new workflow
-POST	/api/workflows/refine	Recursive refinement
-POST	/api/workflows/validate	Schema validation
-GET	/api/workflows/export/{id}	Export artifacts
-GET	/api/schemas	List schemas
-GET	/api/schemas/{name}	Retrieve specific schema
-GET	/api/status	Health check
-GET	/api/version	Engine version info
-POST	/api/debug/evaluate	Metric evaluation (dev only)
+>POST	## /api/workflows/generate	### Create new workflow
+>POST	## /api/workflows/refine	### Recursive refinement
+>POST	## /api/workflows/validate	### Schema validation
+>GET	## /api/workflows/export/{id}	### Export artifacts
+>GET	## /api/schemas	### List schemas
+>GET	## /api/schemas/{name}	### Retrieve specific schema
+>GET	## /api/status	### Health check
+>GET	## /api/version	### Engine version info
+>POST	## /api/debug/evaluate	### Metric evaluation (dev only)
