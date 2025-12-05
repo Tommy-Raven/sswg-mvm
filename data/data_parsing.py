@@ -115,8 +115,7 @@ def _normalize_template_structure(raw: Dict[str, Any], slug: str) -> Dict[str, A
     # Ensure purpose / audience required by schema
     metadata.setdefault(
         "purpose",
-        metadata.get("description")
-        or f"Workflow derived from '{slug}' template.",
+        metadata.get("description") or f"Workflow derived from '{slug}' template.",
     )
     metadata.setdefault("audience", "general")
 
