@@ -1,7 +1,6 @@
-
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.com/schemas/prompt_schema.json",
+  "$id": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/prompt_schemas.json",
   "title": "Instructional Workflow Prompt Schema",
   "description": "Validates user input before generating a workflow.",
   "type": "object",
@@ -18,12 +17,18 @@
     },
     "delivery_mode": {
       "type": "array",
-      "items": { "type": "string", "enum": ["text", "code", "visual", "interactive"] },
+      "items": {
+        "type": "string",
+        "enum": ["text", "code", "visual", "interactive"]
+      },
       "description": "Preferred modes of delivery."
     },
     "expansion_mode": {
       "type": "array",
-      "items": { "type": "string", "enum": ["recursive", "modular", "adaptive"] },
+      "items": {
+        "type": "string",
+        "enum": ["recursive", "modular", "adaptive"]
+      },
       "description": "How the workflow expands or refines itself."
     },
     "evaluation_method": {

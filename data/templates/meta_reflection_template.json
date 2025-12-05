@@ -1,4 +1,6 @@
 {
+  "$schema": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/template_schema.json",
+  "$id": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/data/templates/meta_reflection_template.json",
   "template_id": "meta_reflection",
   "title": "Meta-Reflection Workflow",
   "description": "A recursive self-assessment process for AI systems or educators to evaluate their own learning frameworks.",

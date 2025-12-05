@@ -18,18 +18,18 @@
     "tasks": {
       "type": "array",
       "items": {
-        "$ref": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/task_schema.json"
+        "$ref": "task_schema.json"
       },
       "minItems": 1
     },
     "subphases": {
       "type": "array",
       "items": {
-        "$ref": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/phase_schema.json"
+        "$ref": "phase_schema.json"
       }
     },
     "evaluation_schema": {
-      "$ref": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/evaluation_schema.json"
+      "$ref": "evaluation_schema.json"
     }
   },
   "additionalProperties": false

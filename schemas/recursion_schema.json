@@ -1,20 +1,35 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/recursion_schema.json",
   "title": "Recursion Schema",
   "description": "Defines recursive regeneration and self-evolution parameters for workflows.",
   "type": "object",
   "required": ["depth_limit", "trigger_condition"],
   "properties": {
-    "depth_limit": { "type": "integer", "minimum": 1 },
-    "trigger_condition": { "type": "string" },
-    "regeneration_threshold": { "type": "number", "minimum": 0, "maximum": 1 },
-    "feedback_source": { "type": "string" },
-    "evaluation_schema": { "$ref": "evaluation_schema.json" },
+    "depth_limit": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "trigger_condition": {
+      "type": "string"
+    },
+    "regeneration_threshold": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "feedback_source": {
+      "type": "string"
+    },
+    "evaluation_schema": {
+      "$ref": "evaluation_schema.json"
+    },
     "history_log": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     }
   },
   "additionalProperties": false
 }
-

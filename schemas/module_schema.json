@@ -1,27 +1,42 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/module_schema.json",
   "title": "Module Schema",
   "description": "Defines a modular instructional unit that can be reused across workflows.",
   "type": "object",
   "required": ["module_id", "title", "tasks"],
   "properties": {
-    "module_id": { "type": "string", "pattern": "^[a-zA-Z0-9_-]+$" },
-    "title": { "type": "string" },
-    "description": { "type": "string" },
+    "module_id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]+$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
     "tasks": {
       "type": "array",
-      "items": { "$ref": "task_schema.json" }
+      "items": {
+        "$ref": "task_schema.json"
+      }
     },
     "dependencies": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
     "linked_phases": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
-    "metadata": { "$ref": "metadata_schema.json" }
+    "metadata": {
+      "$ref": "metadata_schema.json"
+    }
   },
   "additionalProperties": false
 }
-

@@ -1,4 +1,6 @@
 {
+  "$schema": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/workflow_schema.json",
+  "$id": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/data/templates/meta_reflection_template_v1",
   "workflow_id": "meta_reflection_template_v1",
   "version": "1.0.1-mvm",
   "metadata": {
@@ -219,4 +221,3 @@
     ]
   }
 }
-```0

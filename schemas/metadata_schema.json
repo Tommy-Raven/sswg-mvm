@@ -1,18 +1,30 @@
-
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/metadata_schema.json",
   "title": "Metadata Schema",
   "description": "Defines metadata for a Grimoire workflow, used to contextualize generation and evaluation.",
   "type": "object",
   "required": ["purpose", "audience"],
   "properties": {
-    "purpose": { "type": "string", "minLength": 3 },
-    "audience": { "type": "string" },
-    "author": { "type": "string" },
-    "created": { "type": "string", "format": "date-time" },
+    "purpose": {
+      "type": "string",
+      "minLength": 3
+    },
+    "audience": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
     "tags": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
     "context_level": {
       "type": "string",

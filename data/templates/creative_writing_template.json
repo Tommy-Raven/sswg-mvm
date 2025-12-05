@@ -1,4 +1,6 @@
 {
+  "$schema": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/workflow_schema.json",
+  "$id": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/data/templates/creative_writing_template.json",
   "workflow_id": "creative_template_20251203XXXXXX",
   "version": "1.0.0mvm",
   "metadata": {
@@ -16,27 +18,54 @@
       "id": "P1",
       "title": "Concept Invocation",
       "tasks": [
-        { "id": "P1_T1", "description": "Identify the story's core emotion or theme" },
-        { "id": "P1_T2", "description": "Invoke symbolic archetypes or mythic parallels" },
-        { "id": "P1_T3", "description": "Define tone, setting, and voice consistency" }
+        {
+          "id": "P1_T1",
+          "description": "Identify the story's core emotion or theme"
+        },
+        {
+          "id": "P1_T2",
+          "description": "Invoke symbolic archetypes or mythic parallels"
+        },
+        {
+          "id": "P1_T3",
+          "description": "Define tone, setting, and voice consistency"
+        }
       ]
     },
     {
       "id": "P2",
       "title": "Composition and Expansion",
       "tasks": [
-        { "id": "P2_T1", "description": "Generate an outline with narrative beats or poetic structure" },
-        { "id": "P2_T2", "description": "Expand through sensory and emotional detail" },
-        { "id": "P2_T3", "description": "Iterate with character or motif-based recursion" }
+        {
+          "id": "P2_T1",
+          "description": "Generate an outline with narrative beats or poetic structure"
+        },
+        {
+          "id": "P2_T2",
+          "description": "Expand through sensory and emotional detail"
+        },
+        {
+          "id": "P2_T3",
+          "description": "Iterate with character or motif-based recursion"
+        }
       ]
     },
     {
       "id": "P3",
       "title": "Refinement and Reflection",
       "tasks": [
-        { "id": "P3_T1", "description": "Perform linguistic rhythm analysis and tonal balance" },
-        { "id": "P3_T2", "description": "Integrate metaphorical and literal coherence" },
-        { "id": "P3_T3", "description": "Evaluate narrative integrity and thematic fulfillment" }
+        {
+          "id": "P3_T1",
+          "description": "Perform linguistic rhythm analysis and tonal balance"
+        },
+        {
+          "id": "P3_T2",
+          "description": "Integrate metaphorical and literal coherence"
+        },
+        {
+          "id": "P3_T3",
+          "description": "Evaluate narrative integrity and thematic fulfillment"
+        }
       ]
     }
   ],

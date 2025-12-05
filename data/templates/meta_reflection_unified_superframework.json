@@ -1,4 +1,6 @@
 {
+  "$schema": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/workflow_schema.json",
+  "$id": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/data/templates/meta_reflection_unified_superframework.json",
   "workflow_id": "meta_reflection_unified_superframework",
   "version": "0.3.0mvm",
   "metadata": {
@@ -286,4 +288,4 @@
     "rubric": {},
     "notes": []
   }
-        }
+}

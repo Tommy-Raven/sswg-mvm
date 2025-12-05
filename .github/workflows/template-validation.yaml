@@ -1,0 +1,40 @@
+name: Template Schema Validation
+
+on:
+  push:
+    paths:
+      - "data/templates/**"
+      - "schemas/**"
+      - "ai_validation/**"
+      - ".github/workflows/template-validations.yaml"
+  pull_request:
+    paths:
+      - "data/templates/**"
+      - "schemas/**"
+      - "ai_validation/**"
+      - ".github/workflows/template-validations.yaml"
+
+jobs:
+  template-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"  # or keep in sync with your main CI python
+
+      - name: Install dependencies
+        run: |
+          pip install -r reproducibility/requirements.txt
+
+      - name: List template files
+        run: |
+          ls -R data/templates || echo "no templates dir"
+
+      - name: Run template regression tests
+        run: |
+          python -m ai_validation.template_regression_tests

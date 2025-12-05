@@ -4,7 +4,14 @@ ai_validation/schema_validator.py — JSON Schema validation utilities for SSWG 
 
 Provides:
 - validate_workflow: validate a workflow dict against workflow_schema.json
+- validate_template: validate a lightweight template dict against template_schema.json
 - validate_json: generic JSON validation helper (optional schema)
+
+Conventions:
+- Schemas live under the sibling `schemas/` directory.
+- Schemas declare `$schema` as JSON Schema Draft 2020-12.
+- `$ref` values are relative filenames (e.g. "metadata_schema.json"),
+  which are resolved against the local SCHEMAS_DIR.
 """
 
 from __future__ import annotations
@@ -12,9 +19,9 @@ from __future__ import annotations
 import json
 import logging
 from pathlib import Path
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple, List
 
-from jsonschema import Draft7Validator, RefResolver, ValidationError
+from jsonschema import Draft202012Validator, RefResolver, ValidationError
 
 logger = logging.getLogger("ai_validation.schema_validator")
 logger.setLevel(logging.INFO)
@@ -27,35 +34,57 @@ SCHEMAS_DIR = Path(__file__).resolve().parent.parent / "schemas"
 
 
 def _load_schema(path: Path) -> Dict[str, Any]:
+    """
+    Load a JSON Schema file from disk into a Python dict.
+
+    Args:
+        path: Path to the schema file.
+
+    Raises:
+        FileNotFoundError: If the schema file does not exist.
+        json.JSONDecodeError: If the schema file is not valid JSON.
+    """
     if not path.exists():
         raise FileNotFoundError(f"Schema file not found: {path}")
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def _get_validator(schema_name: str) -> Draft7Validator:
+def _get_validator(schema_name: str) -> Draft202012Validator:
+    """
+    Construct a Draft 2020-12 validator for the given schema file.
+
+    - Resolves the schema from SCHEMAS_DIR / schema_name.
+    - Uses a RefResolver with a file:// base URI so that relative $ref
+      values (e.g. "metadata_schema.json") resolve to sibling files.
+    """
     schema_path = SCHEMAS_DIR / schema_name
     schema = _load_schema(schema_path)
-    resolver = RefResolver(base_uri=f"file://{SCHEMAS_DIR}/", referrer=schema)
-    return Draft7Validator(schema, resolver=resolver)
+
+    # Base URI for resolving relative $ref values, e.g. "metadata_schema.json"
+    base_uri = SCHEMAS_DIR.as_uri().rstrip("/") + "/"
+    resolver = RefResolver(base_uri=base_uri, referrer=schema)
+
+    return Draft202012Validator(schema, resolver=resolver)
 
 
 def validate_workflow(
     workflow_obj: Dict[str, Any],
     schema_name: str = "workflow_schema.json",
-) -> Tuple[bool, Optional[list]]:
+) -> Tuple[bool, Optional[List[ValidationError]]]:
     """
     Validate a workflow dict against the workflow schema.
 
     Returns:
         (ok, errors)
-        ok: bool — True if validation passed (no errors)
-        errors: list[ValidationError] or None
+        ok: bool — True if validation passed (no errors, or schema missing)
+        errors: list[ValidationError] or None if no schema / no errors
     """
     try:
         validator = _get_validator(schema_name)
     except FileNotFoundError as e:
         logger.warning("Workflow schema not found: %s", e)
-        return True, None  # do not hard-fail if schema file missing in MVM
+        # At MVM stage, treat missing schema as non-fatal and accept the object.
+        return True, None
 
     errors = sorted(validator.iter_errors(workflow_obj), key=lambda e: e.path)
     if errors:
@@ -63,7 +92,46 @@ def validate_workflow(
             logger.warning("Schema validation error: %s at %s", e.message, list(e.path))
         return False, errors
 
-    logger.info("Schema validation passed for workflow_id=%s", workflow_obj.get("workflow_id"))
+    logger.info(
+        "Schema validation passed for workflow_id=%s",
+        workflow_obj.get("workflow_id"),
+    )
+    return True, None
+
+
+def validate_template(
+    template_obj: Dict[str, Any],
+    schema_name: str = "template_schema.json",
+) -> Tuple[bool, Optional[List[ValidationError]]]:
+    """
+    Validate a lightweight workflow template dict against the template schema.
+
+    Returns:
+        (ok, errors)
+        ok: bool — True if validation passed (no errors, or schema missing)
+        errors: list[ValidationError] or None
+    """
+    try:
+        validator = _get_validator(schema_name)
+    except FileNotFoundError as e:
+        logger.warning("Template schema not found: %s", e)
+        # At MVM stage, treat missing schema as non-fatal and accept the object.
+        return True, None
+
+    errors = sorted(validator.iter_errors(template_obj), key=lambda e: e.path)
+    if errors:
+        for e in errors:
+            logger.warning(
+                "Template schema validation error: %s at %s",
+                e.message,
+                list(e.path),
+            )
+        return False, errors
+
+    logger.info(
+        "Template schema validation passed for template_id=%s",
+        template_obj.get("template_id"),
+    )
     return True, None
 
 
@@ -78,11 +146,13 @@ def validate_json(
     forcing every JSON blob to have a schema during the MVM stage.
 
     Args:
-        obj: Any JSON-serializable object.
-        schema_name: Optional schema filename in schemas/ directory.
+        obj:
+            Any JSON-serializable object.
+        schema_name:
+            Optional schema filename in the schemas/ directory.
 
     Returns:
-        bool: True if valid or no schema provided, False if invalid.
+        bool: True if valid or no schema provided / missing, False if invalid.
     """
     if schema_name is None:
         # No schema provided → treat as valid in MVM
@@ -92,12 +162,18 @@ def validate_json(
         validator = _get_validator(schema_name)
     except FileNotFoundError as e:
         logger.warning("Schema %s not found: %s", schema_name, e)
+        # Soft-fail on missing schema at MVM stage
         return True
 
     errors = list(validator.iter_errors(obj))
     if errors:
         for e in errors:
-            logger.warning("JSON validation error (%s): %s at %s", schema_name, e.message, list(e.path))
+            logger.warning(
+                "JSON validation error (%s): %s at %s",
+                schema_name,
+                e.message,
+                list(e.path),
+            )
         return False
 
     return True
@@ -116,4 +192,4 @@ if __name__ == "__main__":
     if ok:
         print("Workflow is valid.")
     else:
-        print(f"Workflow has {len(errs)} schema issues; see logs.")
+        print(f"Workflow has {len(errs or [])} schema issue(s); see logs.")

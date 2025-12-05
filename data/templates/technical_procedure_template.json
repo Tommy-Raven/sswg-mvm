@@ -1,5 +1,6 @@
-
 {
+  "$schema": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/template_schema.json",
+  "$id": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/data/templates/technical_procedure_template.json",
   "template_id": "technical_procedure",
   "title": "Technical Procedure Workflow Blueprint",
   "description": "Outlines a process for designing, verifying, and documenting a reproducible technical operation or engineering process.",

@@ -1,7 +1,6 @@
-
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.com/schemas/ontology_schema.json",
+  "$id": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/ontology_schema.json",
   "title": "Instructional Workflow Ontology",
   "description": "Defines semantic relationships among workflow components.",
   "type": "object",
@@ -24,13 +23,33 @@
       "items": {
         "type": "object",
         "properties": {
-          "id": { "type": "string" },
-          "title": { "type": "string" },
-          "input": { "type": "array", "items": { "type": "string" } },
-          "output": { "type": "array", "items": { "type": "string" } },
-          "submodules": { "type": "array" },
-          "ai_task_logic": { "type": "string" },
-          "human_actionable": { "type": "string" }
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "input": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "output": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "submodules": {
+            "type": "array"
+          },
+          "ai_task_logic": {
+            "type": "string"
+          },
+          "human_actionable": {
+            "type": "string"
+          }
         },
         "required": ["id", "title", "input", "output"]
       }
@@ -38,17 +57,31 @@
     "dependency_graph": {
       "type": "object",
       "properties": {
-        "nodes": { "type": "array", "items": { "type": "string" } },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "edges": {
           "type": "array",
-          "items": { "type": "array", "items": { "type": "string" }, "minItems": 2, "maxItems": 2 }
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
         }
       },
       "required": ["nodes", "edges"]
     },
     "evaluation_metrics": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "List of quality metrics used during workflow evaluation."
     }
   },

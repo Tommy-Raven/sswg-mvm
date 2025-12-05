@@ -1,5 +1,7 @@
 {
-  "workflow_id": "wf_campfire_001",
+  "$schema": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/workflow_schema.json",
+  "$id": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/data/templates/campfire_workflow.json",
+  "workflow_id": "campfire_workflow",
   "version": "0.1.0",
   "schema_version": "1.0.0",
   "metadata": {

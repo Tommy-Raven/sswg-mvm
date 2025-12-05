@@ -1,4 +1,6 @@
 {
+  "$schema": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/schemas/template_schema.json",
+  "$id": "https://github.com/Tommy-Raven/SSWG-mvm1.0/tree/main/data/templates/training_curriculum_template.json",
   "template_id": "training_curriculum",
   "title": "AI Training Curriculum Blueprint",
   "description": "Defines a structure for creating educational or training workflows.",
