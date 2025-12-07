@@ -46,10 +46,10 @@ See: `LICENSE.md` and `TERMS_OF_USE.md`.
 
 ## 🧠 Overview
 
-**SSWG–MVM** is the Minimum Viable Model of *sswg — Synthetic Synthesist of Workflow Generation*:  
+**sswg–MVM** is the Minimum Viable Model of *sswg — Synthetic Synthesist of Workflow Generation*:  
 a recursive, schema-aligned AI engine that creates deterministic, multi-phase instructional workflows.
 
-Instead of producing isolated responses, SSWG synthesizes structured systems:
+Instead of producing isolated responses, **sswg** synthesizes structured systems:
 
 - Multi-phase workflow specifications  
 - Dependency graphs (DAG-based)  
@@ -218,6 +218,6 @@ or derivative works are **not allowed**. See full terms in `LICENSE.md`.
 - **vXX.xx.yy[tag][+tag]**  
   - **XX** = major system architecture revision
   - **xx** = minor system architecture revision  
-  - **+tag** = specific os/development series. Model Versions appended first, no '+' symbol, OS versioning is non-hierarchal, and opened with an '+' symbol, i.e., minimum viable model: 'mvm', Debian: '+deb', ChromeOS: '+cros', Transitive Semantic Version: 'ts', Deterministic Version: 'dtr', etc
+  - **+tag** = specific os/development series. *Model Versions appended first, no '+' symbol, OS versioning is non-hierarchal, and appended with an '+' symbol, i.e., > minimum viable model: 'mvm', Debian: '+deb', ChromeOS: '+cros', Transitive Semantic Version: 'ts', Deterministic Version: 'dtr', etc*
   - **yy** = iterative refinement/patch release  
 - **Pre-release** (like `v0.0.9mvm`) = additional licensing restrictions apply.
