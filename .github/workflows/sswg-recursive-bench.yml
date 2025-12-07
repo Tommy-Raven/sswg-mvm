@@ -42,24 +42,20 @@ jobs:
         id: id_gen
         run: |
           uuid=$(uuidgen)
-          echo "bench_id=$uuid" >> $GITHUB_OUTPUT
-          echo "Benchmark ID: $uuid"
-
-      - name: 🐍 Setup Python
-        uses: actions/setup-python@82c7e631bb3cfad61ab9166887a6c1b1d5ef5c2
-        with:
-          python-version: "3.11"
+            echo "bench_id=$uuid" >> $GITHUB_OUTPUT
+            echo "Benchmark ID: $uuid"
 
       - name: 📦 Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          if [ -f reproducibility/requirements.txt ]; then
-            pip install -r reproducibility/requirements.txt
-          else
-            pip install -r REQUIREMENTS.txt
+          if [ -f reproducibility/requirements.txt ]; 
+            then
+              pip install -r reproducibility/requirements.txt
+          elif [ -f REQUIREMENTS.txt ]; 
+            then
+              pip install -r REQUIREMENTS.txt
           fi
-          pip install pytest rich
-
+          pip install fastapi uvicorn flake8 pytest httpx pytest rich black json
 # ───────────────────────────────────────────────
 # JOB 2 — RUN RECURSIVE BENCHMARK (Deep Cycles)
 # ───────────────────────────────────────────────
@@ -72,22 +68,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
-
-      - name: 🐍 Setup Python
-        uses: actions/setup-python@82c7e631bb3cfad61ab9166887a6c1b1d5ef5c2
-        with:
-          python-version: "3.11"
-
-      - name: 📦 Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          if [ -f reproducibility/requirements.txt ]; then
-            pip install -r reproducibility/requirements.txt
-          else
-            pip install -r REQUIREMENTS.txt
-          fi
-          pip install pytest rich
-
       - name: 🚀 Run 10-cycle recursive benchmark
         run: |
           echo "Running recursive benchmark for BENCH_ID=$BENCH_ID"
@@ -100,10 +80,21 @@ jobs:
               print(f"🔁 Cycle {i+1}/10...")
               out = run_recursive_cycle({"purpose": f"Benchmark cycle {i}", "mode": "recursive"})
               results.append(out)
-
           with open("benchmark_results.json", "w") as f:
               json.dump(results, f, indent=2)
-          EOF
+          EOF     
+              
+      - name: 📦 Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          if [ -f reproducibility/requirements.txt ]; 
+            then
+              pip install -r reproducibility/requirements.txt
+          elif [ -f REQUIREMENTS.txt ]; 
+            then
+              pip install -r REQUIREMENTS.txt
+          fi
+          pip install fastapi uvicorn flake8 pytest httpx pytest rich black json
 
       - name: 📊 Upload benchmark results
         uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b
@@ -154,7 +145,6 @@ jobs:
           echo "- Automated detection triggered PR" >> anomaly.md
 
       - name: 📝 Open Pull Request
-        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "⚠️ SSWG–MVM Benchmark Anomaly Detected"
