@@ -53,7 +53,7 @@ jobs:
       # Checkout
       # ---------------------------
       - name: 🧾 Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332v4
         with:
           fetch-depth: 0
 
@@ -61,7 +61,7 @@ jobs:
       # Python setup
       # ---------------------------
       - name: 🐍 Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@82c7e631bb3cfad61ab9166887a6c1b1d5ef5c2
         with:
           python-version: "3.11"
           cache: "pip"
@@ -97,10 +97,10 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332v4
 
       - name: 🐍 Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@82c7e631bb3cfad61ab9166887a6c1b1d5ef5c2
         with:
           python-version: "3.11"
           cache: "pip"
@@ -128,7 +128,7 @@ jobs:
       # ---------------------------
       - name: 📊 Upload Test Results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b
         with:
           name: api-test-results
           path: .
