@@ -37,7 +37,6 @@ jobs:
     steps:
       - name: 🧾 Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
-
       - name: 🆔 Generate benchmark run ID
         id: id_gen
         run: |
@@ -144,20 +143,18 @@ jobs:
           echo "- Timestamp: $(date -u)" >> anomaly.md
           echo "- Automated detection triggered PR" >> anomaly.md
 
-      - name: 📝 Open Pull Request
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          title: "⚠️ SSWG–MVM Benchmark Anomaly Detected"
-          body: |
-            Automated anomaly detection triggered during:
-            - **Recursive Deep Benchmark**
-            - **Memory Coherence Validation**
+    
+         # title: "⚠️ SSWG–MVM Benchmark Anomaly Detected"
+          #body: |
+            #Automated anomaly detection triggered during:
+          #  - **Recursive Deep Benchmark**
+        #    - **Memory Coherence Validation**
 
-            See attached benchmark artifacts + anomaly report.
-          branch: sswg-anomaly-$(date +'%Y%m%d%H%M')
-          base: dev
-          commit-message: "SSWG–MVM auto-detected anomaly (v0.9.mvm.25)"
-
+       #     See attached benchmark artifacts + anomaly report.
+        #  branch: sswg-anomaly-$(date +'%Y%m%d%H%M')
+     #     base: dev
+    #      commit-message: "SSWG–MVM auto-detected anomaly (v0.9.mvm.25)"
+#
 # ───────────────────────────────────────────────
 # JOB 5 — SUCCESS NOTIFICATION  
 # ───────────────────────────────────────────────
