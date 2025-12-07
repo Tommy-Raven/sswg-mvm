@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: 🧾 Checkout
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
       - name: 🆔 Generate benchmark run ID
         id: id_gen
@@ -71,7 +71,7 @@ jobs:
       BENCH_ID: ${{ needs.setup.outputs.benchmark-id }}
 
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332v4
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
       - name: 🐍 Setup Python
         uses: actions/setup-python@82c7e631bb3cfad61ab9166887a6c1b1d5ef5c2
@@ -120,7 +120,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332v4
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
       - name: 🧠 Validate memory coherence
         run: |
@@ -144,7 +144,7 @@ jobs:
     if: failure()
 
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332v4
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
       - name: 🚨 Create anomaly report
         run: |
