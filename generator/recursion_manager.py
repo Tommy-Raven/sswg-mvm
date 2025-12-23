@@ -17,8 +17,6 @@ from typing import Any, Callable, Dict, Optional
 
 from modules.llm_adapter import RefinementContract, generate_refinement
 import logging
-import logging
-import logging
 from copy import deepcopy
 from dataclasses import dataclass
 from pathlib import Path
@@ -100,6 +98,7 @@ class SemanticDeltaCalculator:
 class RecursionManager:
     """Decide whether to recurse and generate refined workflow variants."""
 
+<<<<<<< HEAD
 """    At MVM stage, refinement is non-destructive and only annotates metadata.
     """
 
@@ -126,6 +125,13 @@ class RecursionManager:
             "score_delta": 0.0,
         }
         return json.dumps(default_response)
+    def __init__(
+        self,
+        policy: Optional[RecursionPolicy] = None,
+        *,
+        output_dir: Path = Path("data/outputs"),
+    ) -> None:
+        self.policy = policy or RecursionPolicy()
     def __init__(
         self,
         policy: Optional[RecursionPolicy] = None,
@@ -375,6 +381,11 @@ def simple_refiner(workflow: Dict[str, Any]) -> Dict[str, Any]:
         score_delta = (
             candidate_report["quality"]["overall_score"]
             - baseline_report["quality"]["overall_score"]
+    def run_cycle(self, workflow_data: Dict[str, Any], depth: int = 0) -> RecursionOutcome:
+        baseline_report = self._evaluate(workflow_data)
+        candidate = self._propose_regeneration(workflow_data, baseline_report, depth)
+        candidate_report = self._evaluate(candidate)
+
     def run_cycle(self, workflow_data: Dict[str, Any], depth: int = 0) -> RecursionOutcome:
         baseline_report = self._evaluate(workflow_data)
         candidate = self._propose_regeneration(workflow_data, baseline_report, depth)
