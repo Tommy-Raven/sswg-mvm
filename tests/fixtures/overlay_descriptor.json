@@ -4,18 +4,19 @@
   "overlay_version": "1.0.0",
   "operations": [
     {
-      "op": "add",
-      "path": "/phases/0/description",
-      "value": "Updated description."
+      "op": "override",
+      "path": "/phases/3/constraints/deterministic_required",
+      "value": true
     }
   ],
   "precedence": {
     "scope": "pdl",
     "rules": "Explicit overlay precedence for PDL phase descriptions.",
     "order": 10,
-    "notes": "Overlay applies only to PDL phase descriptions."
+    "notes": "Explicit ordering for overlay application."
   },
   "compatibility": {
-    "status": "backward"
+    "compatibility": "backward",
+    "supported_base_versions": ["1.0.0"]
   }
 }

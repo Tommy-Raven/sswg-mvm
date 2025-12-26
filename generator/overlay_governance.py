@@ -81,15 +81,14 @@ def validate_overlay_descriptor(
         )
 
     compatibility = overlay.get("compatibility", {})
-    if compatibility.get("status") == "breaking":
-        migration_plan = compatibility.get("migration_plan")
-        rollback_plan = compatibility.get("rollback_plan")
-        migration_steps = compatibility.get("migration_steps")
+    if compatibility.get("compatibility") == "breaking":
+        migration_plan = compatibility.get("migration_plan_ref")
+        rollback_plan = compatibility.get("rollback_plan_ref")
         if not migration_plan:
             results.append(
                 {
                     "message": "Breaking overlays require a migration plan artifact path.",
-                    "path": ["compatibility", "migration_plan"],
+                    "path": ["compatibility", "migration_plan_ref"],
                     "schema_path": [],
                     "overlay_path": str(overlay_path) if overlay_path else None,
                 }
@@ -98,16 +97,7 @@ def validate_overlay_descriptor(
             results.append(
                 {
                     "message": "Breaking overlays require a rollback plan artifact path.",
-                    "path": ["compatibility", "rollback_plan"],
-                    "schema_path": [],
-                    "overlay_path": str(overlay_path) if overlay_path else None,
-                }
-            )
-        if not migration_steps:
-            results.append(
-                {
-                    "message": "Breaking overlays require migration steps.",
-                    "path": ["compatibility", "migration_steps"],
+                    "path": ["compatibility", "rollback_plan_ref"],
                     "schema_path": [],
                     "overlay_path": str(overlay_path) if overlay_path else None,
                 }
@@ -116,7 +106,7 @@ def validate_overlay_descriptor(
             results.append(
                 {
                     "message": "Migration plan artifact path does not exist.",
-                    "path": ["compatibility", "migration_plan"],
+                    "path": ["compatibility", "migration_plan_ref"],
                     "schema_path": [],
                     "overlay_path": str(overlay_path) if overlay_path else None,
                 }
@@ -125,7 +115,7 @@ def validate_overlay_descriptor(
             results.append(
                 {
                     "message": "Rollback plan artifact path does not exist.",
-                    "path": ["compatibility", "rollback_plan"],
+                    "path": ["compatibility", "rollback_plan_ref"],
                     "schema_path": [],
                     "overlay_path": str(overlay_path) if overlay_path else None,
                 }
@@ -186,16 +176,16 @@ def build_overlay_promotion_report(
     for overlay in overlays:
         overlay_id = overlay.get("overlay_id", "unknown")
         compatibility = overlay.get("compatibility", {})
-        migration_present = compatibility.get("status") != "breaking" or all(
+        migration_present = compatibility.get("compatibility") != "breaking" or all(
             compatibility.get(key)
-            for key in ("migration_plan", "migration_steps", "rollback_plan")
+            for key in ("migration_plan_ref", "rollback_plan_ref")
         )
         overlay_reports.append(
             {
                 "overlay_id": overlay_id,
                 "overlay_version": overlay.get("overlay_version", ""),
                 "scope": overlay.get("precedence", {}).get("scope", ""),
-                "compat": compatibility.get("status", ""),
+                "compat": compatibility.get("compatibility", ""),
                 "migration_present": migration_present,
                 "lint_pass": not lint_errors.get(overlay_id, []),
                 "ambiguity_pass": not ambiguity_map.get(overlay_id, []),
