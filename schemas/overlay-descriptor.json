@@ -45,38 +45,7 @@
       }
     },
     "compatibility": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["status"],
-      "properties": {
-        "status": {
-          "type": "string",
-          "enum": ["backward", "forward", "breaking"]
-        },
-        "migration_plan": { "type": "string" },
-        "migration_steps": {
-          "type": "array",
-          "minItems": 1,
-          "items": { "type": "string" }
-        },
-        "rollback_plan": { "type": "string" }
-      }
+      "$ref": "compatibility-contract.json#"
     }
-  },
-  "allOf": [
-    {
-      "if": {
-        "properties": {
-          "compatibility": {
-            "properties": { "status": { "const": "breaking" } }
-          }
-        }
-      },
-      "then": {
-        "properties": {
-          "compatibility": { "required": ["migration_plan", "migration_steps", "rollback_plan"] }
-        }
-      }
-    }
-  ]
+  }
 }

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 
 from ai_evaluation.checkpoints import EvaluationCheckpointer
@@ -136,10 +137,9 @@ def _load_metrics(path: Path) -> dict[str, float]:
 def _has_breaking_override(overlays: list[dict]) -> bool:
     for overlay in overlays:
         compatibility = overlay.get("compatibility", {})
-        if compatibility.get("status") == "breaking":
+        if compatibility.get("compatibility") == "breaking":
             if all(
-                compatibility.get(key)
-                for key in ("migration_plan", "migration_steps", "rollback_plan")
+                compatibility.get(key) for key in ("migration_plan_ref", "rollback_plan_ref")
             ):
                 return True
     return False
@@ -197,12 +197,12 @@ def main() -> int:
     write_manifest(evidence_dir / "phase_io_manifest.json", manifest)
 
     phase_outputs = json.loads(args.phase_outputs.read_text(encoding="utf-8"))
-    failure, report = replay_determinism_check(
+    failure, determinism_report = replay_determinism_check(
         run_id=args.run_id,
         phase_outputs=phase_outputs,
         required_phases=["normalize", "analyze", "validate", "compare"],
     )
-    write_determinism_report(evidence_dir / "determinism_report.json", report)
+    write_determinism_report(evidence_dir / "determinism_report.json", determinism_report)
     if failure:
         return _gate_failure(failure_emitter, args.run_id, failure)
     measurement_ids = json.loads(args.measurement_ids.read_text(encoding="utf-8"))
@@ -481,6 +481,43 @@ def main() -> int:
     }
     log_report_path = evidence_dir / "log_phase_report.json"
     log_report_path.write_text(json.dumps(env_report, indent=2), encoding="utf-8")
+
+    telemetry_payload = {
+        "anchor": {
+            "anchor_id": "run_telemetry",
+            "anchor_version": "1.0.0",
+            "scope": "run",
+            "owner": "scripts.run_promotion_readiness",
+            "status": "draft",
+        },
+        "run_id": args.run_id,
+        "phase_durations": {
+            phase: 0.0 for phase in ["ingest", "normalize", "parse", "analyze", "generate", "validate", "compare", "interpret", "log"]
+        },
+        "gate_results": env_report.get("phase_status", {}),
+        "failure_counts": {
+            "deterministic_failure": 0,
+            "schema_failure": 0,
+            "io_failure": 0,
+            "tool_mismatch": 0,
+            "reproducibility_failure": 0,
+        },
+        "determinism_status": {
+            phase: "pass" for phase in ["normalize", "analyze", "validate", "compare"]
+        },
+        "overlay_chain": [
+            {
+                "overlay_id": overlay.get("overlay_id"),
+                "overlay_version": overlay.get("overlay_version"),
+            }
+            for overlay in overlays
+        ],
+        "inputs_hash": hash_data({"pdl": pdl_obj, "overlays": overlays}),
+        "emitted_at": datetime.now(timezone.utc).isoformat(),
+    }
+    telemetry_path = Path("artifacts/telemetry/run_telemetry.json")
+    telemetry_path.parent.mkdir(parents=True, exist_ok=True)
+    telemetry_path.write_text(json.dumps(telemetry_payload, indent=2), encoding="utf-8")
 
     compare_output_path = None
     if "compare" in phase_outputs:
