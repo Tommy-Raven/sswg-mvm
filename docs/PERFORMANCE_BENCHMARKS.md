@@ -1,6 +1,31 @@
 # Performance Benchmarks
 
+anchor_id: performance_benchmarks
+anchor_version: v1
+scope: docs
+owner: metrics-team
+status: draft
+
 This document tracks memory usage, recursion time, module reuse, and throughput efficiency across workflow generations. Benchmarks are used to guide optimization, ensure deterministic execution, and evaluate system evolution.
+
+## Calibration Benchmarks
+
+These calibration benchmarks establish expected metric ranges for quality scoring. They are tracked in `ai_memory/benchmark_tracker.py` as named records and should be reviewed whenever metric logic changes.
+
+### Benchmark datasets
+
+| Benchmark name | Dataset description | Metric | Expected range | Acceptance criteria |
+| --- | --- | --- | --- | --- |
+| `calibration.clarity.core_v1` | 50 curated workflow prompts spanning ingest→log, balanced across new and existing module patterns. | Clarity | 0.82–0.94 | Median ≥ 0.86 and p10 ≥ 0.80. |
+| `calibration.expandability.core_v1` | 30 modularization exercises covering adapter swaps, schema overlays, and phase extension patterns. | Expandability | 0.74–0.90 | Median ≥ 0.78 and p10 ≥ 0.70. |
+| `calibration.translatability.core_v1` | 24 workflows rendered across Markdown/JSON/API forms, verifying fidelity of conversion. | Translatability | 0.80–0.95 | Median ≥ 0.85 and p10 ≥ 0.78. |
+| `calibration.recursive_alignment.core_v1` | 20 multi-iteration recursion runs with lineage checkpoints and phase-boundary compliance. | Recursive alignment | 0.75–0.92 | Median ≥ 0.80 and p10 ≥ 0.72. |
+
+### Acceptance criteria notes
+
+- Evaluate distributions, not just point estimates. Use median and p10 to reduce sensitivity to outliers.
+- Any benchmark falling below the acceptance criteria requires investigation before promotion.
+- Expected ranges are guardrails, not deterministic requirements; they help detect metric drift.
 
 ## 🧠 Benchmark Metrics
 
