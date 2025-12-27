@@ -76,7 +76,11 @@ This repository exists to:
 
 2. Explore the folder structure and documentation under docs/.
 
-3. Run or inspect the demo pipeline described in:
+3. Follow the canonical run guide:
+
+   docs/RUNBOOK.md
+
+4. Run or inspect the demo pipeline described in:
 
    docs/ARCHITECTURE.md  
    docs/QUICKSTART.md

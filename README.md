@@ -212,6 +212,8 @@ snapshot without regenerating.
 6. Record lineage snapshot
 7. Auto-bump version if core modules changed
 
+**Canonical run guide:** [docs/RUNBOOK.md](docs/RUNBOOK.md)
+
 ### Reproducible demo
 
 Run the complete recursive pipeline (validation → evaluation → recursion → exports)
@@ -241,6 +243,8 @@ Outputs land in `data/outputs/demo_run` and include:
 ---
 
 ## 🛠 Setup & Usage
+
+**Canonical run guide:** [docs/RUNBOOK.md](docs/RUNBOOK.md)
 
 ### Clone the Repository
 
