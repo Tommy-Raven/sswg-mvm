@@ -1,5 +1,7 @@
 # Running SSWG-MVM
 
+**Canonical runbook (how to run + expected outputs):** This document is the canonical reference. Other docs are secondary/overview and should defer to the instructions here to avoid drift.
+
 ## Generate a Workflow (default template)
 
 ```bash

@@ -62,6 +62,15 @@ Author: **Tommy Raven (Thomas Byers)**
 
 ---
 
+## ▶️ Canonical Runbook
+
+**Primary entrypoint (how to run + expected outputs):**  
+docs/getting_started/run_mvm.md
+
+Other docs are secondary/overview and should defer to the canonical runbook above.
+
+---
+
 ## 🧩 System Design Philosophy
 
 **“Teach the workflow how to teach itself.”**
