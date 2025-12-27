@@ -14,6 +14,8 @@ from __future__ import annotations
 from .variant_generator import generate_variants
 from .merge_engine import merge_variants
 from .recursion_manager import (
+    ProofStep,
+    RecursionProof,
     RecursionBudgetError,
     RecursionCheckpointError,
     RecursionLimitError,
@@ -32,6 +34,8 @@ __all__ = [
     "merge_variants",
     "RecursionManager",
     "RecursionSnapshot",
+    "RecursionProof",
+    "ProofStep",
     "RecursionLimitError",
     "RecursionBudgetError",
     "RecursionCheckpointError",

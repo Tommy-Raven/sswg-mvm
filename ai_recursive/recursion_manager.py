@@ -38,6 +38,20 @@ class RecursionTerminationError(RuntimeError):
 
 
 @dataclass(frozen=True)
+class ProofStep:
+    statement: str
+    ok: bool
+    evidence: str
+
+
+@dataclass(frozen=True)
+class RecursionProof:
+    root_id: str
+    overall_ok: bool
+    steps: List[ProofStep]
+
+
+@dataclass(frozen=True)
 class RecursionSnapshot:
     root_id: str
     parent_id: Optional[str]
@@ -192,3 +206,104 @@ class RecursionManager:
         """Return the audit trail for a recursion root."""
         return list(self._state.get(root_id, _RecursionState()).audit_log)
 
+    def prove_correctness(self, root_id: str) -> RecursionProof:
+        """
+        Calculate a formal proof of correctness for recorded recursion data.
+
+        The proof verifies invariants derived from the guardrails:
+        - Depth never exceeds max_depth.
+        - Child counts are strictly sequential and capped at max_children.
+        - Cost spent is monotonic and within cost_budget.
+        - Termination conditions are present for every call.
+        - Budget remaining matches cost_spent.
+        """
+        state = self._state.get(root_id)
+        if not state or not state.audit_log:
+            steps = [
+                ProofStep(
+                    statement="Audit log exists for root_id",
+                    ok=False,
+                    evidence=f"No audit log recorded for root_id={root_id}.",
+                )
+            ]
+            return RecursionProof(root_id=root_id, overall_ok=False, steps=steps)
+
+        snapshots = state.audit_log
+        max_depth_seen = max(snapshot.depth for snapshot in snapshots)
+        min_depth_seen = min(snapshot.depth for snapshot in snapshots)
+        depth_ok = all(
+            0 <= snapshot.depth <= self.max_depth for snapshot in snapshots
+        )
+        depth_step = ProofStep(
+            statement="Depth is bounded by max_depth",
+            ok=depth_ok,
+            evidence=(
+                f"min_depth={min_depth_seen}, max_depth_seen={max_depth_seen}, "
+                f"max_depth={self.max_depth}."
+            ),
+        )
+
+        expected_children = list(range(1, len(snapshots) + 1))
+        observed_children = [snapshot.children_generated for snapshot in snapshots]
+        child_sequence_ok = observed_children == expected_children
+        child_limit_ok = observed_children[-1] <= self.max_children
+        child_step = ProofStep(
+            statement="Children are sequential and within max_children",
+            ok=child_sequence_ok and child_limit_ok,
+            evidence=(
+                f"observed_children={observed_children}, "
+                f"max_children={self.max_children}."
+            ),
+        )
+
+        costs = [snapshot.cost_spent for snapshot in snapshots]
+        cost_monotonic = all(
+            later >= earlier for earlier, later in zip(costs, costs[1:])
+        )
+        cost_budget_ok = costs[-1] <= self.cost_budget
+        cost_step = ProofStep(
+            statement="Cost is monotonic and within cost_budget",
+            ok=cost_monotonic and cost_budget_ok,
+            evidence=(
+                f"costs={costs}, cost_budget={self.cost_budget:.2f}."
+            ),
+        )
+
+        termination_ok = all(
+            snapshot.termination_condition.strip() for snapshot in snapshots
+        )
+        termination_step = ProofStep(
+            statement="Termination condition exists for each call",
+            ok=termination_ok,
+            evidence=(
+                f"termination_conditions="
+                f"{[snapshot.termination_condition for snapshot in snapshots]}."
+            ),
+        )
+
+        budget_remaining_ok = all(
+            abs(
+                snapshot.budget_remaining
+                - max(0.0, self.cost_budget - snapshot.cost_spent)
+            )
+            < 1e-9
+            for snapshot in snapshots
+        )
+        budget_step = ProofStep(
+            statement="Budget remaining matches cost_spent",
+            ok=budget_remaining_ok,
+            evidence=(
+                "budget_remaining="
+                f"{[snapshot.budget_remaining for snapshot in snapshots]}."
+            ),
+        )
+
+        steps = [
+            depth_step,
+            child_step,
+            cost_step,
+            termination_step,
+            budget_step,
+        ]
+        overall_ok = all(step.ok for step in steps)
+        return RecursionProof(root_id=root_id, overall_ok=overall_ok, steps=steps)
