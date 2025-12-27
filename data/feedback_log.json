@@ -9,11 +9,99 @@
       "added_phases": 0,
       "removed_phases": 0,
       "modified_phases": 0
+    },
+    {
+      "timestamp": "2025-12-27T14:24:49Z",
+      "diff_size": 0,
+      "regeneration_triggered": false,
+      "clarity_score": 0.0,
+      "changed_fields": 0,
+      "added_phases": 0,
+      "removed_phases": 0,
+      "modified_phases": 0
+    },
+    {
+      "timestamp": "2025-12-27T14:24:49Z",
+      "diff_size": 1,
+      "regeneration_triggered": true,
+      "clarity_score": 0.0,
+      "changed_fields": 1,
+      "added_phases": 0,
+      "removed_phases": 0,
+      "modified_phases": 0
+    },
+    {
+      "timestamp": "2025-12-27T14:42:15Z",
+      "diff_size": 0,
+      "regeneration_triggered": false,
+      "clarity_score": 0.0,
+      "changed_fields": 0,
+      "added_phases": 0,
+      "removed_phases": 0,
+      "modified_phases": 0
+    },
+    {
+      "timestamp": "2025-12-27T14:42:15Z",
+      "diff_size": 3,
+      "regeneration_triggered": true,
+      "clarity_score": 0.0,
+      "changed_fields": 3,
+      "added_phases": 0,
+      "removed_phases": 0,
+      "modified_phases": 0
+    },
+    {
+      "timestamp": "2025-12-27T14:42:35Z",
+      "diff_size": 0,
+      "regeneration_triggered": false,
+      "clarity_score": 0.0,
+      "changed_fields": 0,
+      "added_phases": 0,
+      "removed_phases": 0,
+      "modified_phases": 0
+    },
+    {
+      "timestamp": "2025-12-27T14:42:35Z",
+      "diff_size": 3,
+      "regeneration_triggered": true,
+      "clarity_score": 0.0,
+      "changed_fields": 3,
+      "added_phases": 0,
+      "removed_phases": 0,
+      "modified_phases": 0
+    },
+    {
+      "timestamp": "2025-12-27T20:51:47Z",
+      "diff_size": 0,
+      "regeneration_triggered": false,
+      "clarity_score": 0.0,
+      "changed_fields": 0,
+      "added_phases": 0,
+      "removed_phases": 0,
+      "modified_phases": 0
+    },
+    {
+      "timestamp": "2025-12-27T20:51:47Z",
+      "diff_size": 3,
+      "regeneration_triggered": true,
+      "clarity_score": 0.0,
+      "changed_fields": 3,
+      "added_phases": 0,
+      "removed_phases": 0,
+      "modified_phases": 0
     }
   ],
-  "regeneration_threshold": 2,
+  "regeneration_threshold": 1,
   "clarity_scores": [
-    0.75
+    0.75,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
   ],
-  "average_clarity": 0.75
+  "average_clarity": 0.083
 }
