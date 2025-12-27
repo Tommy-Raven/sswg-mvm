@@ -26,8 +26,11 @@ where `workflow` is an ai_core.Workflow instance.
 
 from __future__ import annotations
 
+import json
 import logging
-from typing import Iterable, List, Optional
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 from ai_monitoring.structured_logger import log_event
 from ai_validation import (
@@ -80,6 +83,22 @@ except Exception:  # pragma: no cover - defensive stub
             pass
 
 
+@dataclass(frozen=True)
+class RunContext:
+    workflow_source: Union[Workflow, Dict[str, Any], Path]
+    phases: Optional[Iterable[str]] = None
+    validate_after: bool = True
+    runner: Optional[Callable[..., Any]] = None
+    runner_kwargs: Dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class RunResult:
+    workflow: Workflow
+    workflow_data: Optional[Dict[str, Any]]
+    phase_status: Dict[str, Dict[str, object]]
+
+
 class Orchestrator:
     """
     High-level conductor for multi-phase workflow execution.
@@ -108,6 +127,55 @@ class Orchestrator:
         self.memory = MemoryStore()
         self.dashboard = CLIDashboard()
         self.telemetry = TelemetryLogger()
+        self.last_phase_status: Dict[str, Dict[str, object]] = {}
+
+    def _load_workflow_source(
+        self,
+        workflow_source: Union[Workflow, Dict[str, Any], Path],
+    ) -> Workflow:
+        if isinstance(workflow_source, Workflow):
+            return workflow_source
+        if isinstance(workflow_source, Path):
+            if not workflow_source.exists():
+                raise FileNotFoundError(
+                    f"Workflow JSON not found: {workflow_source}"
+                )
+            data = json.loads(workflow_source.read_text(encoding="utf-8"))
+            return Workflow(data)
+        return Workflow(workflow_source)
+
+    def run_mvm(self, context: RunContext) -> RunResult:
+        if context.runner is not None:
+            result = context.runner(
+                context.workflow_source, **context.runner_kwargs
+            )
+            if isinstance(result, Workflow):
+                workflow_obj = result
+                workflow_data = result.to_dict()
+            elif isinstance(result, dict):
+                workflow_data = result
+                workflow_obj = Workflow(result)
+            else:
+                workflow_data = None
+                workflow_obj = self._load_workflow_source(context.workflow_source)
+            return RunResult(
+                workflow=workflow_obj,
+                workflow_data=workflow_data,
+                phase_status=dict(self.last_phase_status),
+            )
+
+        workflow = self._load_workflow_source(context.workflow_source)
+        workflow = self.run(
+            workflow,
+            phases=context.phases,
+            validate_after=context.validate_after,
+        )
+        workflow_data = workflow.to_dict()
+        return RunResult(
+            workflow=workflow,
+            workflow_data=workflow_data,
+            phase_status=dict(self.last_phase_status),
+        )
 
     # ------------------------------------------------------------------ #
     # Public API
@@ -267,6 +335,8 @@ class Orchestrator:
             "workflow_complete",
             {"workflow_id": wf_id, "phases": phases_to_run},
         )
+
+        self.last_phase_status = dict(phase_status)
 
         logger.info("Workflow orchestration complete for %s", wf_id)
         return workflow

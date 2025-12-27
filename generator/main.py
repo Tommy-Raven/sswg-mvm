@@ -36,7 +36,7 @@ from ai_visualization.mermaid_generator import mermaid_from_workflow
 from ai_visualization.export_manager import export_graphviz
 from ai_visualization.export_manager import export_json as viz_export_json
 from ai_visualization.export_manager import export_markdown as viz_export_markdown
-from ai_core.orchestrator import Orchestrator
+from ai_core.orchestrator import Orchestrator, RunContext
 from ai_core.workflow import Workflow
 from ai_evaluation.checkpoints import EvaluationCheckpointer
 from ai_evaluation.evaluation_engine import evaluate_workflow_quality
@@ -1000,13 +1000,19 @@ def main(argv: Optional[list] = None) -> int:
         workflow_source = args.workflow_json
 
     try:
-        refined = run_mvm(
-            workflow_source,
-            out_dir=out_dir,
-            enable_refinement=not args.no_refine,
-            enable_history=not args.no_history,
-            preview=args.preview,
+        orchestrator = Orchestrator()
+        context = RunContext(
+            workflow_source=workflow_source,
+            runner=run_mvm,
+            runner_kwargs={
+                "out_dir": out_dir,
+                "enable_refinement": not args.no_refine,
+                "enable_history": not args.no_history,
+                "preview": args.preview,
+            },
         )
+        result = orchestrator.run_mvm(context)
+        refined = result.workflow_data or result.workflow.to_dict()
         logger.info(
             "MVM run completed for workflow_id=%s",
             refined.get("workflow_id", "<unknown>"),
