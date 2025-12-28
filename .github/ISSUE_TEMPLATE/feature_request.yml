@@ -1,68 +1,99 @@
-name: Feature Request
-description: Suggest a new feature or improvement for Grimoire – WorkflowAI
-title: "[Feature]: "
-labels: ["enhancement", "discussion"]
-assignees: ["Tommy-Raven"]
+name: Feature request
+description: Propose an improvement aligned with sswg/mvm principles
+title: ""
+labels: []
+assignees: []
 
 body:
   - type: markdown
     attributes:
       value: |
-        ##  New Idea or Improvement
-        Use this form to describe your feature idea clearly.
+        ## Feature request
+        Share a clear proposal that aligns with the repository's 9-phase pipeline and validation gates.
 
-  - type: input
-    id: summary
+  - type: textarea
+    id: describe
     attributes:
-      label: Summary
-      description: Provide a concise title or one-sentence description.
-      placeholder: "Example: Add dependency visualization dashboard"
+      label: Describe the feature
+      description: A clear and concise description of the feature or improvement you want.
     validations:
       required: true
 
   - type: textarea
     id: motivation
     attributes:
-      label: Motivation
-      description: Why is this feature valuable or necessary?
-      placeholder: "This would help track evolving workflows visually..."
+      label: Problem or motivation
+      description: Explain the problem this solves or why it matters.
     validations:
       required: true
 
   - type: textarea
-    id: proposal
+    id: approach
     attributes:
-      label: Proposed solution
-      description: Describe how you think this feature could be implemented.
-      placeholder: "We could extend graphviz_adapter.py to support interactive nodes."
+      label: Proposed approach
+      description: Describe how you think this could be implemented.
     validations:
       required: true
-
-  - type: textarea
-    id: alternatives
-    attributes:
-      label: Alternatives considered
-      description: List any alternative approaches or existing workarounds.
-      placeholder: "Manually rendering dependency graphs via external tools."
 
   - type: dropdown
-    id: priority
+    id: layer
     attributes:
-      label: Suggested priority
+      label: Affected layer (optional)
+      description: Select the most relevant repository area.
       options:
-        - Low
-        - Medium
-        - High
-        - Critical
-      description: How important is this feature to your work?
-    validations:
-      required: true
+        - schemas/
+        - pdl/
+        - generator/
+        - cli/
+        - reproducibility/
+        - modules/
+        - docs/
+        - Other
 
   - type: checkboxes
-    id: final_check
+    id: phases
     attributes:
-      label: Confirmation
+      label: Affected phase(s) (optional)
+      description: Choose any pipeline phases impacted.
       options:
-        - label: I’ve checked for duplicate requests
-          required: true
-        - label: I’m willing to help with implementation or testing
+        - label: ingest
+        - label: normalize
+        - label: parse
+        - label: analyze
+        - label: generate
+        - label: validate
+        - label: compare
+        - label: interpret
+        - label: log
+
+  - type: textarea
+    id: determinism
+    attributes:
+      label: Determinism and validation considerations (optional)
+      description: Note any expected impacts on deterministic phases or schema validation.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other context or screenshots about the feature request here.
+
+  - type: markdown
+    attributes:
+      value: |
+        **Optional additional items**
+
+  - type: input
+    id: issue_default_title
+    attributes:
+      label: Issue default title
+
+  - type: input
+    id: assignees
+    attributes:
+      label: Assignees
+
+  - type: input
+    id: labels
+    attributes:
+      label: Labels

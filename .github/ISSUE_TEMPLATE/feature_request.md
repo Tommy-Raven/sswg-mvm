@@ -1,20 +1,31 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
-
+about: Propose an improvement aligned with sswg/mvm principles
+title: ""
+labels: ""
+assignees: ""
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Describe the feature**
+A clear and concise description of the feature or improvement you want.
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Problem or motivation**
+Explain the problem this solves or why it matters.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**Proposed approach**
+Describe how you think this could be implemented.
+
+**Affected area (optional)**
+- Layer: [e.g. schemas/, pdl/, generator/, cli/, reproducibility/, modules/, docs/]
+- Phase(s): [ingest, normalize, parse, analyze, generate, validate, compare, interpret, log]
+
+**Determinism and validation considerations (optional)**
+Note any expected impacts on deterministic phases or schema validation.
 
 **Additional context**
 Add any other context or screenshots about the feature request here.
+
+**Optional additional items**
+- Issue default title:
+- Assignees:
+- Labels:
