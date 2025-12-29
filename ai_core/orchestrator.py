@@ -32,6 +32,11 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
+from ai_monitoring.health_card import (
+    build_health_card,
+    render_health_card,
+    write_health_card,
+)
 from ai_monitoring.structured_logger import log_event
 from ai_validation import (
     apply_incident_metadata,
@@ -326,9 +331,37 @@ class Orchestrator:
                 {"workflow_id": wf_id},
             )
 
+                # MVM decision: raise, but this could be downgraded later.
+                raise ValueError(f"Invalid workflow schema for {wf_id}")
+
+            log_event(
+                "orchestrator.validation_passed",
+                {"workflow_id": wf_id},
+            )
+            self.telemetry.record(
+                "validation_passed",
+                {"workflow_id": wf_id},
+            )
+
         # Save to memory and render dashboard
         self.memory.save(workflow.to_dict())
         self.dashboard.render()
+
+        health_card = build_health_card(
+            workflow=workflow.to_dict(),
+            phase_status=dict(phase_status),
+            validation_passed=validate_after,
+            run_id=wf_id,
+        )
+        health_card_path = write_health_card(
+            health_card,
+            Path("artifacts") / "health_cards" / f"{wf_id}.json",
+        )
+        render_health_card(health_card)
+        log_event(
+            "orchestrator.health_card",
+            {"workflow_id": wf_id, "path": str(health_card_path)},
+        )
 
         log_event(
             "orchestrator.run.completed",
