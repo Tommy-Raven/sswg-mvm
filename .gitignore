@@ -15,6 +15,11 @@ env/
 # Test / tooling artifacts
 # -------------------------
 .pytest_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+.tox/
 
 # -------------------------
 # OS / editor cruft
@@ -61,3 +66,4 @@ data/outputs/*
 !data/outputs/workflow_001.md
 data/
 build/
+dist/

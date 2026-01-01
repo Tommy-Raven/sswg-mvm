@@ -59,6 +59,15 @@ jobs:
               pip install -r build/REQUIREMENTS.txt
           pip install fastapi uvicorn flake8 pytest httpx pytest rich black json
 
+      - name: 🧩 Compile Python sources
+        run: |
+          python -m compileall .
+
+      - name: 🧪 Validate PDL defaults
+        run: |
+          python -m generator.pdl_validator pdl/default-pdf.yaml --resolve-handlers
+          python -m generator.pdl_validator pdl/example_full_9_phase.yaml --resolve-handlers
+          python scripts/validate_pdl_defaults.py
 
       - name: 🧪 Execute tests
         run: |

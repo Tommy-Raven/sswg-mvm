@@ -9,18 +9,7 @@ from typing import Any, Dict, Iterable, List
 import yaml
 
 from generator.failure_emitter import ALLOWED_FAILURE_TYPES
-
-CANONICAL_PHASES = {
-    "ingest",
-    "normalize",
-    "parse",
-    "analyze",
-    "generate",
-    "validate",
-    "compare",
-    "interpret",
-    "log",
-}
+from pdl.constants import CANONICAL_PHASES
 
 
 def load_invariants_yaml(path: Path) -> List[Dict[str, Any]]:
@@ -78,7 +67,11 @@ def validate_registry(payload: Dict[str, Any]) -> List[str]:
             errors.append(f"invariant[{index}] missing applies_to_phases")
         else:
             invalid_phases = sorted(
-                {phase for phase in applies_to_phases if phase not in CANONICAL_PHASES}
+                {
+                    phase
+                    for phase in applies_to_phases
+                    if phase not in set(CANONICAL_PHASES)
+                }
             )
             if invalid_phases:
                 errors.append(
