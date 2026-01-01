@@ -1,13 +1,13 @@
 [anchor]
 anchor_id = "project-toml"
-anchor_version = "0.0.9mvm"
+anchor_version = "1.2.0mvm"
 scope = "repo"
 owner = "Raven Recordings"
 status = "draft"
 
 [project]
 name = "sswg-mvm"
-version = "0.0.9mvm"
+version = "1.2.0mvm"
 status = "active"
 release_stage = "pre-release"
 description = "sswg mvm is the minimum viable model for the sswg workflow generation system."
