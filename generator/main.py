@@ -49,6 +49,7 @@ from data.data_parsing import load_template
 from generator.exporters import export_json, export_markdown
 from generator.history import HistoryManager
 from generator.recursion_manager import RecursionManager
+from generator.pdl_executor import execute_pdl_run
 
 # ─── Logging Setup ────────────────────────────────────────────────
 
@@ -672,6 +673,11 @@ def parse_args(argv: Optional[list] = None) -> argparse.Namespace:
         action="store_true",
         help="Run the canonical demo pipeline end-to-end using the campfire template.",
     )
+    parser.add_argument(
+        "--pdl",
+        type=Path,
+        help="Run the PDL runtime executor against the provided PDL YAML file.",
+    )
 
     return parser.parse_args(argv)
 
@@ -1024,6 +1030,24 @@ def main(argv: Optional[list] = None) -> int:
             return 1
     else:
         workflow_source = args.workflow_json
+
+    if args.pdl:
+        pdl_path = args.pdl
+        try:
+            result = execute_pdl_run(
+                pdl_path=pdl_path,
+                report_dir=out_dir / "pdl_runs",
+                run_id="demo-run" if args.demo else "local-run",
+            )
+            logger.info(
+                "PDL run completed for %s (report: %s)",
+                pdl_path,
+                result.report_path,
+            )
+            return 0
+        except Exception:  # pylint: disable=broad-exception-caught
+            logger.exception("PDL run failed")
+            return 1
 
     try:
         orchestrator = Orchestrator()

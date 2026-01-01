@@ -98,7 +98,7 @@ def _validate_handler_paths(phases: list[dict[str, Any]]) -> None:
         if not handler_path:
             raise PDLValidationError(
                 PDLFailureLabel(
-                    Type="tool_mismatch",
+                    Type="schema_failure",
                     message="Missing handler declaration in PDL phase",
                     evidence={"phase": phase_name},
                 )
@@ -107,7 +107,7 @@ def _validate_handler_paths(phases: list[dict[str, Any]]) -> None:
         if not module_path or not attribute:
             raise PDLValidationError(
                 PDLFailureLabel(
-                    Type="tool_mismatch",
+                    Type="schema_failure",
                     message="Invalid handler path format",
                     evidence={"phase": phase_name, "handler": handler_path},
                 )
@@ -115,7 +115,7 @@ def _validate_handler_paths(phases: list[dict[str, Any]]) -> None:
         if find_spec(module_path) is None:
             raise PDLValidationError(
                 PDLFailureLabel(
-                    Type="tool_mismatch",
+                    Type="schema_failure",
                     message="Handler module not found",
                     evidence={"phase": phase_name, "handler": handler_path},
                 )
@@ -125,7 +125,7 @@ def _validate_handler_paths(phases: list[dict[str, Any]]) -> None:
         if handler is None or not callable(handler):
             raise PDLValidationError(
                 PDLFailureLabel(
-                    Type="tool_mismatch",
+                    Type="schema_failure",
                     message="Handler not callable",
                     evidence={"phase": phase_name, "handler": handler_path},
                 )
@@ -137,6 +137,7 @@ def validate_pdl_object(
     *,
     schema_dir: Path = SCHEMAS_DIR,
     schema_name: str = "pdl.json",
+    resolve_handlers: bool = True,
 ) -> None:
     """Validate a PDL object against the schema."""
     try:
@@ -168,7 +169,7 @@ def validate_pdl_object(
             )
         )
     phases = pdl_obj.get("phases", [])
-    if isinstance(phases, list):
+    if resolve_handlers and isinstance(phases, list):
         _validate_handler_paths(phases)
 
 
@@ -177,6 +178,7 @@ def validate_pdl_file(
     *,
     schema_dir: Path = SCHEMAS_DIR,
     schema_name: str = "pdl.json",
+    resolve_handlers: bool = True,
 ) -> None:
     """Validate a PDL YAML file against the schema."""
     try:
@@ -190,7 +192,12 @@ def validate_pdl_file(
             )
         ) from exc
 
-    validate_pdl_object(pdl_obj, schema_dir=schema_dir, schema_name=schema_name)
+    validate_pdl_object(
+        pdl_obj,
+        schema_dir=schema_dir,
+        schema_name=schema_name,
+        resolve_handlers=resolve_handlers,
+    )
 
 
 def validate_pdl_file_with_report(
@@ -199,11 +206,16 @@ def validate_pdl_file_with_report(
     schema_dir: Path = SCHEMAS_DIR,
     report_dir: Path,
     run_id: str,
+    resolve_handlers: bool = True,
 ) -> None:
     """Validate a PDL file and emit a validation report."""
     schema_path = schema_dir / "pdl.json"
     try:
-        validate_pdl_file(pdl_path, schema_dir=schema_dir)
+        validate_pdl_file(
+            pdl_path,
+            schema_dir=schema_dir,
+            resolve_handlers=resolve_handlers,
+        )
     except PDLValidationError as exc:
         label = FailureLabel(
             Type=exc.label.Type,
@@ -291,6 +303,19 @@ def _parse_args() -> argparse.Namespace:
         default="local-run",
         help="Run identifier for report and failure log output.",
     )
+    parser.add_argument(
+        "--resolve-handlers",
+        dest="resolve_handlers",
+        action="store_true",
+        default=True,
+        help="Resolve handler paths after schema validation (default: enabled).",
+    )
+    parser.add_argument(
+        "--no-resolve-handlers",
+        dest="resolve_handlers",
+        action="store_false",
+        help="Disable handler resolution checks.",
+    )
     args = parser.parse_args()
     return args
 
@@ -303,7 +328,11 @@ def _main() -> int:
     run_id = args.run_id
     schema_path = schema_dir / "pdl.json"
     try:
-        validate_pdl_file(pdl_path, schema_dir=schema_dir)
+        validate_pdl_file(
+            pdl_path,
+            schema_dir=schema_dir,
+            resolve_handlers=args.resolve_handlers,
+        )
     except PDLValidationError as exc:
         label = FailureLabel(
             Type=exc.label.Type,

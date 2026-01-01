@@ -14,19 +14,11 @@ from importlib.util import find_spec
 from pathlib import Path
 from typing import Any, Callable, Dict, Optional
 
+from pdl.constants import CANONICAL_PHASES
+
 
 _DEFAULT_JSON_PATH = Path(__file__).with_name("default-pdf.json")
-_DEFAULT_PHASE_ORDER = [
-    "ingest",
-    "normalize",
-    "parse",
-    "analyze",
-    "generate",
-    "validate",
-    "compare",
-    "interpret",
-    "log",
-]
+_DEFAULT_PHASE_ORDER = list(CANONICAL_PHASES)
 _DEFAULT_PHASE_TYPES = {
     "ingest": "data",
     "normalize": "normalize",
@@ -235,7 +227,7 @@ def execute_phase(
     handler_path = phase_definitions[phase_name]["handler"]
     handler = _resolve_handler(handler_path)
     inputs = context.get("inputs") or context.get("last_output") or {}
-    phase_output = handler(inputs, context=context)
+    phase_output = handler(inputs)
     context["last_output"] = phase_output
 
     context_keys = ", ".join(sorted(context.keys()))

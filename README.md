@@ -88,10 +88,18 @@ Other docs are secondary/overview and should defer to the canonical runbook abov
 
 ---
 
-## ⚡ Quick Start (Bounded Cognition)
+## ⚡ Quick Start (Canonical PDL Run)
+
+Run the runtime-driven PDL flow with the canonical 9-phase definition:
 
 ```bash
-python -m generator.recursion_manager --bounded
+python3 generator/main.py --pdl pdl/default-pdf.yaml --demo
+```
+
+Expected outputs (including the PDL run report) land in:
+
+```
+data/outputs/demo_run/
 ```
 
 See [CHANGELOG.md](CHANGELOG.md) for the v1.2.0 release notes.
@@ -254,20 +262,16 @@ sswg-mvm enforces the canonical phase order:
 
 **Canonical run guide:** [docs/RUNBOOK.md](docs/RUNBOOK.md)
 
-### Reproducible demo
+### Reproducible demo (PDL runtime)
 
-Run the complete recursive pipeline (validation → evaluation → recursion → exports)
-from the repo root with a single command:
+Run the PDL-driven runtime pipeline from the repo root:
 
 ```bash
-python3 generator/main.py --demo --preview
+python3 generator/main.py --pdl pdl/default-pdf.yaml --demo
 ```
 
 Outputs land in `data/outputs/demo_run` and include:
-- Refined workflow JSON + Markdown
-- Mermaid + Graphviz diagrams
-- Before/after metric plot (`metrics_before_after.svg`)
-- Evaluation deltas and history snapshots
+- PDL run report (`pdl_runs/*.json`)
 
 ---
 
@@ -303,18 +307,18 @@ Outputs land in `data/outputs/demo_run` and include:
 
 ### Run the Generator (exact entry path)
 
-    python3 generator/main.py --template creative --preview
+    python3 generator/main.py --pdl pdl/default-pdf.yaml --demo
 
 Artifacts will be created under:
 
-    data/outputs/
+    data/outputs/demo_run/
 
 
 ## 🧪 Testing
 
 Run the full test suite:
 
-    pytest -v
+    pytest -q tests
 
 Test coverage includes:
 

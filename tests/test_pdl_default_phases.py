@@ -1,35 +1,25 @@
 from __future__ import annotations
 
-import json
 from pathlib import Path
 
+import yaml
+
+from generator.pdl_validator import validate_pdl_file
+from pdl.constants import CANONICAL_PHASES
 from pdl.default_pdl import load_default_phases
 
 
-def _phase_name_from_schema(schema_path: Path) -> str:
-    schema = json.loads(schema_path.read_text(encoding="utf-8"))
-    phase_def = schema["$defs"]["phase"]
-    for entry in phase_def.get("allOf", []):
-        properties = entry.get("properties")
-        if properties and "name" in properties:
-            return properties["name"]["const"]
-    raise AssertionError(f"No phase name const found in {schema_path}")
+def test_default_pdf_validates_against_schema() -> None:
+    validate_pdl_file(Path("pdl/default-pdf.yaml"))
 
 
-def test_default_phases_match_phase_set_schema() -> None:
-    repo_root = Path(__file__).resolve().parents[1]
-    schema_dir = repo_root / "schemas"
-    phase_set_schema = json.loads(
-        (schema_dir / "pdl-phase-set.json").read_text(encoding="utf-8")
-    )
-    prefix_items = phase_set_schema["properties"]["phases"]["prefixItems"]
-    expected_phase_names = []
-    for item in prefix_items:
-        ref_path = item["$ref"].split("#")[0]
-        expected_phase_names.append(
-            _phase_name_from_schema(schema_dir / ref_path)
-        )
+def test_default_pdf_phase_order_matches_canonical() -> None:
+    payload = yaml.safe_load(Path("pdl/default-pdf.yaml").read_text(encoding="utf-8"))
+    phases = payload.get("phases", [])
+    phase_names = [phase.get("name") for phase in phases]
+    assert phase_names == CANONICAL_PHASES
 
-    default_phase_names = list(load_default_phases().keys())
 
-    assert default_phase_names == expected_phase_names
+def test_load_default_phases_matches_canonical_order() -> None:
+    phases = load_default_phases()
+    assert list(phases.keys()) == CANONICAL_PHASES

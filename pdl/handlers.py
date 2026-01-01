@@ -10,52 +10,52 @@ from __future__ import annotations
 from typing import Any, Dict
 
 
-def ingest(inputs: Dict[str, Any], *, context: Dict[str, Any] | None = None) -> Dict[str, Any]:
+def ingest(context: Dict[str, Any]) -> Dict[str, Any]:
     """Collect and register raw inputs without interpretation."""
-    raw_payload = inputs.get("raw_payload")
+    raw_payload = context.get("raw_payload")
     return {"ingested_payload": raw_payload}
 
 
-def normalize(inputs: Dict[str, Any], *, context: Dict[str, Any] | None = None) -> Dict[str, Any]:
+def normalize(context: Dict[str, Any]) -> Dict[str, Any]:
     """Normalize inputs into canonical forms."""
-    ingested_payload = inputs.get("ingested_payload")
+    ingested_payload = context.get("ingested_payload")
     return {"normalized_payload": ingested_payload}
 
 
-def parse(inputs: Dict[str, Any], *, context: Dict[str, Any] | None = None) -> Dict[str, Any]:
+def parse(context: Dict[str, Any]) -> Dict[str, Any]:
     """Bind normalized payloads to schema-aware structures."""
-    normalized_payload = inputs.get("normalized_payload")
+    normalized_payload = context.get("normalized_payload")
     return {"parsed_payload": normalized_payload}
 
 
-def analyze(inputs: Dict[str, Any], *, context: Dict[str, Any] | None = None) -> Dict[str, Any]:
+def analyze(context: Dict[str, Any]) -> Dict[str, Any]:
     """Compute deterministic measurements from parsed artifacts."""
-    parsed_payload = inputs.get("parsed_payload")
+    parsed_payload = context.get("parsed_payload")
     metrics = {"source": parsed_payload, "metrics": {}}
     return {"analysis_metrics": metrics}
 
 
-def generate(inputs: Dict[str, Any], *, context: Dict[str, Any] | None = None) -> Dict[str, Any]:
+def generate(context: Dict[str, Any]) -> Dict[str, Any]:
     """Generate declarative outputs derived from analysis."""
-    analysis_metrics = inputs.get("analysis_metrics")
+    analysis_metrics = context.get("analysis_metrics")
     return {"draft_output": {"metrics": analysis_metrics, "artifact": {}}}
 
 
-def validate(inputs: Dict[str, Any], *, context: Dict[str, Any] | None = None) -> Dict[str, Any]:
+def validate(context: Dict[str, Any]) -> Dict[str, Any]:
     """Validate schemas and invariants on generated artifacts."""
-    draft_output = inputs.get("draft_output")
+    draft_output = context.get("draft_output")
     return {"validated_output": draft_output}
 
 
-def compare(inputs: Dict[str, Any], *, context: Dict[str, Any] | None = None) -> Dict[str, Any]:
+def compare(context: Dict[str, Any]) -> Dict[str, Any]:
     """Compare outputs against baselines deterministically."""
-    validated_output = inputs.get("validated_output")
+    validated_output = context.get("validated_output")
     return {"comparison_report": {"baseline": None, "candidate": validated_output}}
 
 
-def interpret(inputs: Dict[str, Any], *, context: Dict[str, Any] | None = None) -> Dict[str, Any]:
+def interpret(context: Dict[str, Any]) -> Dict[str, Any]:
     """Interpret measured artifacts with labeled nondeterminism."""
-    comparison_report = inputs.get("comparison_report")
+    comparison_report = context.get("comparison_report")
     return {
         "interpretation_summary": {
             "report": comparison_report,
@@ -64,11 +64,11 @@ def interpret(inputs: Dict[str, Any], *, context: Dict[str, Any] | None = None) 
     }
 
 
-def log(inputs: Dict[str, Any], *, context: Dict[str, Any] | None = None) -> Dict[str, Any]:
+def log(context: Dict[str, Any]) -> Dict[str, Any]:
     """Record run metadata, hashes, and phase status."""
-    interpretation_summary = inputs.get("interpretation_summary")
-    run_id = None if context is None else context.get("run_id")
-    artifacts = None if context is None else context.get("artifacts")
+    interpretation_summary = context.get("interpretation_summary")
+    run_id = context.get("run_id")
+    artifacts = context.get("artifacts")
     return {
         "audit_log": {
             "run_id": run_id,

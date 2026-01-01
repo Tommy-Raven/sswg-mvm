@@ -33,18 +33,16 @@ For fully reproducible environments, see:
 
 ---
 
-### 3. Run the Main Generator
+### 3. Run the Canonical PDL Entry Point
 
 ```bash
-python3 generator/main.py
+python3 generator/main.py --pdl pdl/default-pdf.yaml --demo
 ```
 
-This executes the default MVM pipeline:
-- schema validation
-- dependency resolution
-- workflow generation
-- evaluation and scoring
-- export of artifacts
+This executes the runtime-driven PDL pipeline:
+- PDL schema validation + handler resolution
+- canonical 9-phase execution
+- PDL run report emission
 
 ---
 
@@ -82,7 +80,7 @@ The system produces:
 All generated outputs, diagrams, metrics, and history snapshots are written to:
 
 ```
-data/outputs/
+data/outputs/demo_run/
 ```
 
 Artifacts are additive-only and versioned for traceability.
@@ -141,6 +139,16 @@ The MVM pipeline follows the canonical 9-phase flow:
 9. log
 
 Exact execution order and responsibilities are defined in `docs/ARCHITECTURE.md`.
+
+---
+
+## 🧪 Tests
+
+Run the test suite:
+
+```bash
+pytest -q tests
+```
 
 ---
 
