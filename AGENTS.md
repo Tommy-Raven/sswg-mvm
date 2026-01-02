@@ -1,6 +1,10 @@
 # AGENTS.md — sswg / mvm Compliance Operations Manual (v0.0.9mvm)
 
-This document defines **mandatory** behaviors for all contributors, automation agents, CI runners, and tooling that touch this repository. Language is intentionally normative (**MUST / SHALL / SHOULD**) to function as an enforceable production standard.
+This document defines **mandatory** behaviors for all contributors, automation agents, CI runners, and tooling that touch this repository.
+
+Language is intentionally normative (**MUST / SHALL / SHOULD**) to function as an enforceable production standard.
+
+> **Terminology notice:** Terms are used per `TERMINOLOGY.md`, which is authoritative. Where this document uses legacy repo terms (e.g., “artifact”), those are interpreted as defined in the glossary.
 
 ---
 
@@ -13,7 +17,7 @@ This document defines **mandatory** behaviors for all contributors, automation a
 - Final responses **MUST** be concise, **MUST** include citations where relevant, and **MUST** prefix any test/check commands with emojis:
   - ✅ pass
   - ⚠️ warning/limitation
-  - ❌ fail.
+  - ❌ fail
 - For frontend visual changes, agents **MUST** capture screenshots via the browser tool and **MUST** cite the artifact.
 - Agents **MUST** honor instruction precedence: system > developer > user > AGENTS, with deeper `AGENTS.md` overriding parent scopes.
 - If any placeholders or TODOs remain in the final diff, agents **MUST** include a **Notes** section after **Testing**; agents **MUST** omit the section otherwise.
@@ -215,7 +219,7 @@ The canonical PDL enforcement is:
 - Each phase **MUST** include:
   - `name`, `type`, `enabled`, `description`, `inputs`, `outputs`, `handler`
 - Each `inputs[]` / `outputs[]` entry **MUST** conform to `_common.json#/$defs/io_item`.
-- `id` fields **MUST** match: `^[a-z][a-z0-9_\-]*$`
+- `id` fields **MUST** match: `^[a-z][a-z0-9_\\-]*$`
 - Phase schema constraints are authoritative. If a phase schema requires a constraint field, it **MUST** be present and correct.
 
 ### 7.4 Phase-specific constraint invariants (enforced by schema)
@@ -412,295 +416,269 @@ Any missing file in the minimum set **MUST** stop execution and **MUST** emit:
 - `Type: io_failure` (missing/unreadable path),
 with `phase_id: validate` when discovered during validation.
 
----
 
-End of AGENTS.md.- explicit field-level operations: `add` / `override` / `deprecate`
-- precedence rules (overlay wins **only** within declared scope)
-- compatibility statement: `backward` / `forward` / `breaking`
+19) Nested Scope Rules (Hierarchical Enforcement & Override Semantics)
 
-Promotion **MUST** be blocked if:
-- an overlay introduces ambiguous interpretation, OR
-- an overlay breaks declared compatibility without a migration plan.
+## 19) Nested Scope Rules (Hierarchical Enforcement & Override Semantics)
 
----
+This section defines how **nested AGENTS scopes** operate across the repository and how conflicts are resolved.
 
-## 5) Canonical Schema Contracts (PDL)
-
-### 5.1 Required schemas
-The canonical PDL enforcement is:
-
-- `schemas/pdl.json` (wrapper)
-  - delegates to `schemas/pdl-phase-set.json`
-  - which enforces the 9-phase ordered prefixItems set
-- `schemas/pdl-phase-set.json`
-- `schemas/pdl-phases/_common.json`
-- `schemas/pdl-phases/{ingest,normalize,parse,analyze,generate,validate,compare,interpret,log}.json`
-
-### 5.2 PDL validity requirement
-- Any PDL document claiming `pipeline_profile: full_9_phase` **MUST** validate against `schemas/pdl.json`.
-- A PDL document **MUST** contain exactly 9 phases in correct order (`prefixItems` enforcement).
-- `items: false` is authoritative: additional phases or reordering **MUST** fail validation.
-
-### 5.3 Handler + IO requirements (PDL contract)
-- Each phase **MUST** include:
-  - `name`, `type`, `enabled`, `description`, `inputs`, `outputs`, `handler`
-- Each `inputs[]` / `outputs[]` entry **MUST** conform to `_common.json#/$defs/io_item`.
-- `id` fields **MUST** match: `^[a-z][a-z0-9_\-]*$`
-- Phase schema constraints are authoritative. If a phase schema requires a constraint field, it **MUST** be present and correct.
-
-### 5.4 Phase-specific constraint invariants (enforced by schema)
-Agents **MUST** ensure the following per-phase constraints remain satisfied:
-
-- `ingest`: `no_interpretation: true`, `no_mutation_of_canonical: true`
-- `normalize`: `deterministic_required: true`, `alignment_rules_required: true`
-- `parse`: `schema_binding_required: true`, `no_generation: true`
-- `analyze`: `deterministic_required: true`, `no_generative_tools_for_measurement: true` (bijective IDs when applicable)
-- `generate`: `outputs_must_be_declarative: true`, `no_measurement_keys_generated_stochastically: true`
-- `validate`: `schema_validation_required: true`, `invariants_required: true` (bijectivity checks when applicable)
-- `compare`: `deterministic_required: true`, `overlap_metrics_allowed ⊆ {iou, jaccard}`
-- `interpret`: `must_reference_measured_artifacts: true`, `output_must_be_labeled_nondeterministic: true`
-- `log`: `run_id_required: true`, `inputs_hash_required: true`, `phase_status_required: true`
+Nested scope rules are **mandatory** and **enforceable**.
 
 ---
 
-## 6) Repository Layer Policy (Immutable vs Additive)
+## 19.1 Scope Hierarchy (Authoritative Order)
 
-### 6.1 Canonical layers (immutable)
-The following directories are canonical layers and **MUST** be treated as immutable in production:
+Instruction precedence within this repository is strictly ordered as follows:
 
-- `generator/`
-- `cli/`
-- `pdl/`
-- `reproducibility/`
+1. **System instructions** (platform / execution environment)
+2. **Developer instructions** (repo-wide, out-of-band controls)
+3. **User instructions** (task-level intent)
+4. **AGENTS.md (root)** — this document
+5. **Nested AGENTS.md** (directory-scoped)
+6. **Inline scope directives** (explicit, file-local)
 
-Changes to these layers **SHOULD** be minimized and **MUST** pass all required validation gates before promotion.
+Lower-numbered scopes **always override** higher-numbered scopes.
 
-### 6.2 Generated layers (additive-only)
-The following directories are generated layers and **MUST** be additive-only:
-
-- `artifacts/`
-- `data/`
-- `docs/`
-
-No destructive edits (delete/overwrite) are permitted in these layers unless a formally approved archival policy exists and is invoked explicitly.
+No scope may weaken or bypass constraints imposed by a higher-precedence scope.
 
 ---
 
-## 7) Validation Gates (Promotion Blocking, Required)
+## 19.2 Definition of a Nested Scope
 
-Promotion, merge, release, or “canonical” marking **MUST** be blocked unless all required gates pass:
+A **nested scope** is introduced by the presence of an `AGENTS.md` file located in a subdirectory.
 
-1. `schema_validation`
-2. `phase_schema_validation`
-3. `invariants_validation`
-4. `reproducibility_validation`
+Example:
 
-A gate failure **MUST**:
-- emit the correct failure label, and
-- stop execution.
+/AGENTS.md                → root scope /generator/AGENTS.md     → generator scope /schemas/AGENTS.md       → schema scope /docs/AGENTS.md          → documentation scope
 
----
-
-## 8) Failure Labeling Standard (Hard-Fail, Typed, Auditable)
-
-### 8.1 Required failure label fields
-On any failure, the failing phase **MUST** emit a failure label containing:
-
-- `Type`
-- `message`
-- `phase_id`
-
-### 8.2 Allowed failure types
-`Type` **MUST** be one of:
-- `deterministic_failure`
-- `schema_failure`
-- `io_failure`
-- `tool_mismatch`
-- `reproducibility_failure`
-
-### 8.3 Hard-fail policy
-- When any required invariant fails, the phase **MUST** emit a failure label and **MUST** hard-fail execution immediately.
-- “Soft failures,” “warnings-only,” or “continue on error” behavior **MUST NOT** occur for required invariants.
-
-### 8.4 Interpret phase labeling (nondeterministic)
-- `interpret` outputs **MUST** be labeled nondeterministic and **MUST** reference measured artifacts only.
-- `interpret` **MUST NOT** mutate measurement outputs or canonical anchors.
+Each nested `AGENTS.md` applies **only** to:
+- files within the same directory, and
+- all descendant subdirectories **unless overridden again**.
 
 ---
 
-## 9) Validator Operations (Required Tooling + Exact Actions)
+## 19.3 Allowed Behavior of Nested Scopes
 
-### 9.1 Required validator entrypoint
-The repo **MUST** provide a validator module capable of:
+A nested scope **MAY**:
 
-- loading `schemas/pdl.json` (wrapper → phase set),
-- resolving local `$ref` across `schemas/pdl-phases/*`,
-- validating PDL YAML/JSON,
-- emitting correctly typed failure labels,
-- exiting non-zero on failure.
+- Add **additional constraints**
+- Narrow permissions
+- Introduce stricter validation, formatting, or tooling rules
+- Specialize responsibilities for that directory
+- Declare directory-specific invariants or gates
 
-### 9.2 Phase ownership of schema validation failures
-Schema validation failures **MUST** be labeled:
-- `Type: schema_failure`
-- `phase_id: validate`
+A nested scope **MUST NOT**:
 
-### 9.3 Required pre-run action
-Agents and CI **MUST** validate any PDL before execution.
+- Weaken root-scope requirements
+- Relax invariants, determinism, or audit requirements
+- Redefine canonical phase behavior
+- Introduce operational outputs
+- Override failure labeling standards
+- Bypass validation gates
 
-✅ `python -m generator.pdl_validator pdl/example_full_9_phase.yaml schemas`
-
-If the repo uses a different invocation, it **MUST** be documented and behaviorally equivalent.
+If a nested scope conflicts with a parent scope, the **more restrictive interpretation MUST be applied**.
 
 ---
 
-## 10) Compare Phase Requirements (Deterministic Deltas)
+## 19.4 Invariant Inheritance Rule (Non-Negotiable)
 
-- `compare` **MUST** be deterministic.
-- If overlap metrics are used, they **MUST** be restricted to:
-  - `iou`
-  - `jaccard`
-- Compare outputs **MUST** be replayable and suitable for audit trails.
+All invariants defined at higher scopes are **automatically inherited** by nested scopes.
 
----
+- Nested scopes **cannot opt out** of invariants.
+- Nested scopes **cannot redefine invariants**.
+- Nested scopes may only **add invariants**, never remove them.
 
-## 11) Log Phase Requirements (Audit-Ready Output)
-
-The `log` phase **MUST** emit audit-ready outputs including:
-- `run_id`
-- input hashes (`inputs_hash_required`)
-- per-phase status (`phase_status_required`)
-- references to:
-  - PDL used
-  - schema versions
-  - overlay versions
-  - failure labels (if any)
-
-Log outputs **MUST** be sufficient to replay deterministic phases and reconstruct causal lineage.
+Violation of an inherited invariant **MUST** hard-fail execution.
 
 ---
 
-## 12) Agent Responsibilities (Exact Actions for Compliance)
+## 19.5 Constraint Narrowing Rule
 
-All agents (human or automated) working in this repo **MUST** follow this sequence whenever they create/modify pipeline artifacts.
+Constraints may be **narrowed** but never broadened.
 
-### 12.1 Before making changes
-1. **MUST** identify affected phases (subset of the 9 canonical phases).
-2. **MUST** identify touched layers:
-   - canonical layers (immutable), or
-   - generated layers (additive-only), or
-   - schemas/pdl enforcement
-3. **MUST** determine whether the change is:
-   - overlay (default, permitted), or
-   - base schema rewrite (disallowed unless explicitly authorized)
+Example:
+- Root scope: “Phase X MUST be deterministic”
+- Nested scope: “Phase X MUST be deterministic AND use algorithm Y”
 
-### 12.2 While making changes
-1. **MUST** preserve phase separation and required constraints.
-2. **MUST** preserve determinism requirements for required phases.
-3. **MUST** ensure all updated artifacts carry canonical anchor metadata.
-4. **MUST** ensure failures are labeled and hard-fail on invariant violation.
+Valid.
 
-### 12.3 After making changes (required checks)
-1. **MUST** validate all PDL documents against `schemas/pdl.json`.
-2. **MUST** ensure per-phase schemas still validate.
-3. **MUST** ensure validation gates pass before promotion.
-4. **MUST** ensure log outputs contain run id + input hashes + statuses.
-5. **MUST** provide reproducibility notes sufficient to replay deterministic phases.
+Example (invalid):
+- Root scope: “Phase X MUST be deterministic”
+- Nested scope: “Phase X MAY be nondeterministic”
 
-If any check fails, the agent **MUST** stop and emit the correct typed failure label.
+Invalid. MUST hard-fail.
 
 ---
 
-## 13) Prohibited Behaviors (Hard Stops)
+## 19.6 Directory-Specific Examples (Normative)
 
-The following are prohibited and **MUST** be treated as hard failures:
+### 19.6.1 `schemas/AGENTS.md`
+May include:
+- stricter schema linting rules
+- naming conventions
+- overlay declaration requirements
 
-- Reordering, adding, or removing phases from `full_9_phase`.
-- Collapsing phase behavior (e.g., parse+analyze).
-- Introducing nondeterminism into `normalize`, `analyze`, `validate`, or `compare`.
-- Using generative tooling to generate measurement keys (`no_generative_tools_for_measurement`).
-- Directly mutating canonical anchors.
-- Destructive edits in additive-only layers without explicit archival policy.
-- Emitting untyped failures or failing silently.
-- Violating root-scope agent rules (§0), including prohibited search commands and PR/commit flow.
-
----
-
-## 14) Minimal Acceptance Criteria (Release/Promotion Readiness)
-
-A change set is not promotion-ready unless:
-
-- PDL validation passes (`schemas/pdl.json` wrapper).
-- Phase schemas pass for all 9 phases.
-- Determinism checks pass for required phases.
-- Compare outputs are deterministic and metric-compliant.
-- Interpret outputs are measured-only and labeled nondeterministic.
-- Log outputs include run id, input hashes, statuses, and references.
-- Failure labeling is correct under intentional violation tests.
+Must not:
+- allow destructive schema edits
+- relax validation coverage
+- bypass overlay evolution rules
 
 ---
 
-## 15) Enforcement Policy (Authority)
+### 19.6.2 `generator/AGENTS.md`
+May include:
+- execution tooling requirements
+- performance or cost budgets
+- recursion depth caps tighter than root
 
-- `sswg.yaml` has highest precedence; violation policy is `hard_fail`.
-- `mvm.yaml` defines minimum acceptable completeness; missing requirements invalidate workflows.
-
-Agents **MUST** treat these as authoritative constraints. No bypasses are permitted.
-
----
-
-## 16) Quick Reference: Required Files (Minimum Set)
-
-Agents **MUST** verify presence and correctness of:
-
-- `sswg.yaml`
-- `mvm.yaml`
-- `schemas/pdl.json`
-- `schemas/pdl-phase-set.json`
-- `schemas/pdl-phases/_common.json`
-- `schemas/pdl-phases/*.json` (9 files)
-- `generator/pdl_validator.py`
-- `pdl/example_full_9_phase.yaml`
-
-Any missing file in the minimum set **MUST** stop execution and **MUST** emit:
-- `Type: reproducibility_failure` (if the environment cannot be reconstructed), or
-- `Type: io_failure` (if the file path is missing/unreadable),
-with `phase_id: validate` when discovered during validation.
+Must not:
+- change canonical phase order
+- introduce nondeterminism into required phases
+- bypass audit logging
 
 ---
 
-## 17) Change Management (Required Workflow)
+### 19.6.3 `docs/AGENTS.md`
+May include:
+- formatting rules
+- terminology enforcement checks
+- citation requirements
 
-- If a task explicitly permits edits:
-  - Agents **MUST** commit changes.
-  - Agents **MUST** invoke `make_pr` with appropriate title and body.
-  - Agents **MUST NOT** leave committed changes without calling `make_pr`.
-  - Agents **MUST NOT** call `make_pr` without commits.
-- If QA-only:
-  - Agents **MUST NOT** modify repo contents.
-  - Findings **MUST** include `task-stub` blocks after each issue.
-
----
-
-## 18) Reporting Format Requirements (When Providing Findings)
-
-- Each issue description **MUST** be followed immediately by a `task-stub` block.
-- Testing/check commands **MUST** be prefixed with emojis:
-  - ✅ pass
-  - ⚠️ warning/limitation
-  - ❌ fail
-- If TODOs/placeholders remain in the final diff:
-  - Agents **MUST** include **Notes** after **Testing**.
-  - Agents **MUST** omit **Notes** if none exist.
+Must not:
+- introduce operational instructions
+- redefine glossary terms
+- contradict repository terminology
 
 ---
 
-## 19) Required Example PDL Artifact
+## 19.7 Inline Scope Directives (File-Level)
 
-The repo **SHOULD** maintain:
-- `pdl/example_full_9_phase.yaml` as a canonical example that validates against `schemas/pdl.json`.
+Inline scope directives MAY be used **only** to further restrict behavior.
 
-If the example fails schema validation, agents **MUST** treat it as a gating defect and block promotion.
+They MUST:
+- be explicit
+- be local to the file
+- reference the governing scope
+
+Example:
+`yaml`
+# scope: schemas
+# additional_constraints:
+#   - no_backward_incompatible_changes
+
+Inline directives MUST NOT:
+
+relax parent or root constraints
+
+override invariants
+
+change enforcement behavior
+
+
 
 ---
+
+19.8 Conflict Resolution Rule (Fail-Closed)
+
+If two scopes provide conflicting instructions:
+
+1. Apply the higher-precedence scope
+
+
+2. Apply the more restrictive rule
+
+
+3. If ambiguity remains, fail closed
+
+
+
+Agents MUST NOT guess intent or attempt to reconcile ambiguity informally.
+
+
+---
+
+19.9 Required Agent Behavior on Scope Detection
+
+When operating in any directory, agents MUST:
+
+1. Identify the nearest AGENTS.md
+
+
+2. Traverse upward to the root AGENTS.md
+
+
+3. Compute the effective scope as the intersection of all applicable scopes
+
+
+4. Apply the most restrictive interpretation
+
+
+
+Failure to detect or apply a nested scope is a compliance violation.
+
+
+---
+
+19.10 Scope Auditability Requirement
+
+Nested scopes MUST be auditable.
+
+Each nested AGENTS.md SHOULD include:
+
+scope name
+
+parent scope reference
+
+rationale for additional constraints
+
+
+Changes to nested scopes MUST:
+
+be reviewed as policy changes
+
+produce an evidence bundle
+
+not be bundled silently with unrelated changes
+
+
+
+---
+
+19.11 Explicit Non-Scopes
+
+The following do not create scopes:
+
+comments without normative language
+
+README files
+
+code comments
+
+commit messages
+
+CI configuration alone
+
+
+Only an explicit AGENTS.md file defines a scope.
+
+
+---
+
+19.12 Enforcement Summary
+
+Nested scopes exist to tighten, not loosen, controls
+
+Invariants propagate downward
+
+Constraints may only narrow
+
+Ambiguity fails closed
+
+Root scope authority is absolute
+
+---
+
+
 
 End of AGENTS.md.
