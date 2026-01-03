@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 """
 Tests recursive generation behavior (meta-learning loop simulation).
 """

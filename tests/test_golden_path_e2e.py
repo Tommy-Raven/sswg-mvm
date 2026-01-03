@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 """Golden-path end-to-end test for the sswg mvm pipeline."""
 
 from pathlib import Path

@@ -242,3 +242,4 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+from ai_cores.validation_core import validate_payload; validate_payload(".")

@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 #!/usr/bin/env python3
 """Tests for recursion correctness proofs."""
 

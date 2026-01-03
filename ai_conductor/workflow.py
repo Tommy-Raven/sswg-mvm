@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_conductor/workflow.py — Core workflow container for SSWG MVM.
 
 This class is deliberately hybrid:
@@ -20,6 +20,7 @@ This class is deliberately hybrid:
 This keeps existing generator/main.py working while enabling the new
 ai_conductor orchestrator + phase controller API.
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

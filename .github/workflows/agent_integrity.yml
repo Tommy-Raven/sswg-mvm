@@ -1,0 +1,16 @@
+# anchor:
+#   anchor_id: agent-integrity-workflow
+#   anchor_version: "1.0.0"
+#   scope: root-agent/ci
+#   owner: sswg
+#   status: draft
+name: agent-integrity
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: pip install -r requirements.txt pylint
+      - run: pylint --exit-zero --recursive=y | tee artifacts/validation/lint_report.txt
+      - run: python -m ai_cores.cli_spec_validator_core --audit

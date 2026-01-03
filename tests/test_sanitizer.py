@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 from __future__ import annotations
 
 from generator.sanitizer import redact_text, sanitize_payload

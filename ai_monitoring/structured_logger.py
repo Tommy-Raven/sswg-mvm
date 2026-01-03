@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_monitoring/structured_logger.py
 
 Structured logging for the SSWG / Grimoire system.
@@ -14,6 +14,7 @@ MVM extensions:
 - All new code can simply call: log_event("mvm.process.started", {"workflow_id": "..."}).
 - Backwards-compatible with older usage: log_event(logger, "event", {...})
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

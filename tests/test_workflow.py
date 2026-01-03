@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 """
 Comprehensive test — ensures end-to-end workflow lifecycle passes
 through generation → validation → evaluation → export.

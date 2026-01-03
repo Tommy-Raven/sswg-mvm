@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
 
-"""
 ai_conductor/orchestrator.py — Core workflow orchestrator for SSWG MVM.
 
 This is the *core* orchestration layer:
@@ -23,6 +22,8 @@ has effectively moved "up" to generator.main. Here we focus on:
 
 where `workflow` is an ai_conductor.Workflow instance.
 """
+#!/usr/bin/env python3
+
 
 from __future__ import annotations
 

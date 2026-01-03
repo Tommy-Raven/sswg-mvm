@@ -1,0 +1,15 @@
+{
+  "anchor": {
+    "anchor_id": "compliance-evidence-manifest",
+    "anchor_version": "1.0.0",
+    "scope": "root-agent",
+    "owner": "sswg",
+    "status": "draft"
+  },
+  "evidence": [
+    "artifacts/audit/argparse_direct_use.txt",
+    "artifacts/audit/global_usage.txt",
+    "artifacts/audit/overlay_imports.txt",
+    "artifacts/audit/root_validator_imports.txt"
+  ]
+}

@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 from __future__ import annotations
 
 from generator.agent_policy import find_prohibited_commands, is_prohibited_command

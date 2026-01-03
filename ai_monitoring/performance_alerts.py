@@ -1,11 +1,12 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_monitoring/performance_alerts.py — Simple performance checks for SSWG MVM.
 
 This module provides small, composable helpers to check basic performance
 conditions such as latency and error rate. It is intentionally lightweight
 and side-effect free; callers decide how to emit logs or alerts.
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

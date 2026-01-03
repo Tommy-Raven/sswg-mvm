@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_monitoring/telemetry.py — Semantic telemetry for SSWG MVM.
 
 This module provides a small, class-based API on top of `structured_logger`
@@ -12,6 +12,7 @@ Usage:
     telemetry = TelemetryLogger()
     telemetry.record("workflow_start", {"workflow_id": "wf_001"})
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

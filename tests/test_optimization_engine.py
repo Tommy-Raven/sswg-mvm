@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 """
 Test suite for the sswg-mvm Optimization Subsystem.
 Ensures that optimization recursion, determinism scoring,

@@ -1,5 +1,7 @@
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
+Optimization ontology loader for sswg-mvm."""
 #!/usr/bin/env python3
-"""Optimization ontology loader for sswg-mvm."""
 
 from __future__ import annotations
 

@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_monitoring/health_card.py — Per-run health card artifact + renderer.
 
 The health card summarizes:
@@ -12,6 +12,7 @@ The health card summarizes:
 - audit certificate presence
 - promotion status
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

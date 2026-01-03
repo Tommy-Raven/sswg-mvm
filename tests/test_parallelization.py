@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 """
 Placeholder test for future parallel execution or batch generation features.
 Currently checks that the orchestrator can handle multiple runs without conflict.

@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_recursive/version_diff_engine.py — Diff-based workflow comparison (SSWG MVM)
 
 Compares two workflow versions (as dicts or JSON files) and produces a
@@ -13,6 +13,7 @@ This module is now focused on:
 
 It deliberately NO LONGER calls ai_conductor.Orchestrator directly.
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

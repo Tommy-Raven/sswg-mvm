@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_conductor/cli.py — Command-line entrypoint for core orchestration.
 
 Author: Tommy Raven, Raven Recordings, LLC ©2025
@@ -15,6 +14,8 @@ For end-to-end generation / validation / export, prefer the higher-level
 `generator/main.py` entrypoint. This CLI is oriented toward testing and
 developing the core orchestration layer in isolation.
 """
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 from __future__ import annotations
 

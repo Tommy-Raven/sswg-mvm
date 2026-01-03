@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_conductor package — Core orchestration primitives for SSWG MVM.
 
 This package is responsible for:
@@ -11,6 +11,7 @@ This package is responsible for:
 At MVM stage, we keep the public surface small and stable while allowing
 internal evolution of implementations.
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

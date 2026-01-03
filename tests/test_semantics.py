@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 """
 Placeholder for semantic analysis verification.
 Will later test NLP-based evaluation of meaning similarity.

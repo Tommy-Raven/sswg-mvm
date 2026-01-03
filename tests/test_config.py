@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 """
 test_config.py — SSWG–MVM Config Tests
 """

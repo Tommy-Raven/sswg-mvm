@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_conductor/phase_controller.py — Phase-level execution for SSWG MVM.
 
 The PhaseController is responsible for:
@@ -23,6 +23,7 @@ Contract (MVM):
 
 - Returned dicts are merged into the workflow context.
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 
