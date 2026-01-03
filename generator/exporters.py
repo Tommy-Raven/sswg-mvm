@@ -9,17 +9,19 @@ Supports both:
 Exports:
 - JSON: full workflow structure
 - Markdown: human-readable summary
+
+Serialization is centralized in ai_visualization.export_core.
 """
 
 from __future__ import annotations
 
 import asyncio
-import json
 import os
 from collections.abc import Mapping as MappingABC
 from dataclasses import dataclass
 from typing import Any, Dict, Mapping
 
+from ai_visualization.export_core import write_json, write_markdown
 from generator.utils import log
 
 
@@ -101,11 +103,9 @@ def export_json(workflow: Any, out_dir: str = "templates") -> str:
             "improved_workflow": getattr(workflow, "improved_workflow", None),
         }
 
-    with open(filename, "w", encoding="utf-8") as file_handle:
-        json.dump(data, file_handle, indent=2)
-
-    log(f"Exported workflow {wf_id} → JSON at {filename}")
-    return filename
+    path = write_json(data, filename)
+    log(f"Exported workflow {wf_id} → JSON at {path}")
+    return path
 
 
 def export_markdown(workflow: Any, out_dir: str = "templates") -> str:
@@ -179,12 +179,9 @@ def export_markdown(workflow: Any, out_dir: str = "templates") -> str:
             md_lines.append(f"- {sections.evaluation}")
 
     md_content = "\n".join(md_lines)
-
-    with open(filename, "w", encoding="utf-8") as file_handle:
-        file_handle.write(md_content)
-
-    log(f"Exported workflow {wf_id} → Markdown at {filename}")
-    return filename
+    path = write_markdown(md_content, filename)
+    log(f"Exported workflow {wf_id} → Markdown at {path}")
+    return path
 
 
 async def export_workflow_async(

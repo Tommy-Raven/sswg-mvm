@@ -25,6 +25,8 @@ from typing import Any, Callable, Dict, Iterable, List
 
 import yaml
 
+from generator.audit_core import hash_file
+
 from cli.cli_arg_parser_core import build_parser, parse_args
 from generator.pdl_validator import PDLValidationError, validate_pdl_file
 
@@ -59,14 +61,6 @@ class BenchmarkConfig:
 def _hash_bytes(payload: bytes) -> str:
     digest = hashlib.sha256()
     digest.update(payload)
-    return digest.hexdigest()
-
-
-def _hash_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
     return digest.hexdigest()
 
 
@@ -309,7 +303,7 @@ def _build_output(config: BenchmarkConfig) -> Dict[str, Any]:
             "timestamp_utc": config.timestamp_utc,
             "run_id": config.run_id,
             "working_directory": str(Path.cwd().resolve()),
-            "inputs_hash": _hash_file(config.pdl_path),
+            "inputs_hash": hash_file(config.pdl_path),
         },
         "environment": _environment_metadata(),
         "dataset": _dataset_metadata(config.pdl_path),

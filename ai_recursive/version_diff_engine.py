@@ -35,7 +35,7 @@ except Exception:  # pragma: no cover
 
 
 try:
-    from ai_evaluation.quality_metrics import evaluate_clarity  # type: ignore
+    from ai_evaluation.evaluation_core import evaluate_clarity  # type: ignore
 except Exception:  # pragma: no cover
 
     def evaluate_clarity(wf: Dict[str, Any]) -> Dict[str, float]:  # type: ignore[no-redef]

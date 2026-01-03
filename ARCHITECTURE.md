@@ -65,6 +65,10 @@ This layer enforces:
 
 Schema validation is centralized in `ai_validation/schema_core.py` and shared across validation entrypoints.
 Dependency resolution is centralized in `ai_core/dependency_core.py`.
+Export serialization is centralized in `ai_visualization/export_core.py`.
+Audit hashing and timestamps are centralized in `generator/audit_core.py`.
+Module registration is centralized in `ai_core/module_core.py`.
+Evaluation helpers are centralized in `ai_evaluation/evaluation_core.py`.
 
 Violations result in **fail-closed rejection** and a recorded decision trace.
 
