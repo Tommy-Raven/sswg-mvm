@@ -24,6 +24,14 @@ At the **MVM stage**, the goal is:
 - clear separation of concerns,
 - extension hooks for recursion, plugins, and richer scoring.
 
+Core utilities are centralized for deterministic behavior:
+
+- Audit hashing and timestamps in `generator/audit_core.py`
+- Export serialization in `ai_visualization/export_core.py`
+- Module registry storage in `ai_core/module_core.py`
+
+Terminology aligns with `TERMINOLOGY.md` and outputs remain non_operational_output.
+
 ## Key Modules
 
 - `async_executor.py` — run async tasks and fan-out workloads.

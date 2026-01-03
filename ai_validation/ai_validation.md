@@ -14,6 +14,11 @@ for SSWG workflows and related artifacts. At the MVM (Minimum Viable Model)
 stage, the focus is on **schema correctness**, **regression guardrails**, and
 **safe evolution of versions**.
 
+Core schema utilities are centralized in `ai_validation/schema_core.py` for
+deterministic validation behavior.
+
+Terminology aligns with `TERMINOLOGY.md` and outputs remain non_operational_output.
+
 ---
 
 ## Components

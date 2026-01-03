@@ -20,6 +20,7 @@ It glues together:
 
 At the MVM stage, the emphasis is on *clarity and composability*, not on
 cleverness. Everything is designed to be easy to inspect, test, and extend.
+Terminology follows `TERMINOLOGY.md` and outputs remain non_operational_output.
 
 ---
 
@@ -46,6 +47,9 @@ The `Workflow` class is what other components pass around when they say
 ### 2. `module_registry.py`
 
 **Role:** Registry of executable “modules” that implement workflow steps.
+
+Core storage utilities are centralized in `ai_core/module_core.py` to keep
+registration behavior deterministic and consistent across orchestration layers.
 
 Responsibilities:
 
@@ -115,7 +119,7 @@ workflow pipeline”.
 Even though there is a separate `ai_graph` package that focuses on graph
 analysis and visualization, the core may expose a simplified mapping that:
 
-- Wraps or delegates to `ai_graph.dependency_mapper.DependencyGraph`
+- Wraps the canonical engine in `ai_core/dependency_core.py`
 - Provides a minimal interface that `PhaseController` can use to:
   - detect obvious cycles
   - compute a safe execution order

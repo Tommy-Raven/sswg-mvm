@@ -18,6 +18,7 @@ workflows:
 - Record version lineage for future analysis.
 
 At the MVM stage, recursion is intentionally conservative and transparent.
+Terminology aligns with `TERMINOLOGY.md` and outputs remain non_operational_output.
 
 ---
 

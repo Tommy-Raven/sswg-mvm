@@ -17,6 +17,7 @@ The `ai_monitoring` package is the observability layer of SSWG:
 
 At the MVM stage, the focus is on **low-friction, low-coupling** monitoring:
 easy to call, safe to ignore, and simple to extend.
+Terminology aligns with `TERMINOLOGY.md` and outputs remain non_operational_output.
 
 ---
 

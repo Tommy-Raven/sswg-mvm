@@ -18,6 +18,7 @@ The `ai_memory` package is responsible for *state that persists across runs*:
 
 At the MVM stage, the emphasis is on **simple, inspectable storage**, not
 on heavy databases or distributed systems.
+Terminology aligns with `TERMINOLOGY.md` and outputs remain non_operational_output.
 
 ---
 
