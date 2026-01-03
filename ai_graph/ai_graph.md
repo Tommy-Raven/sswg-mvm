@@ -9,7 +9,7 @@ anchor:
 
 Dependency mapping and graph utilities.
 
-Canonical dependency resolution lives in `ai_core/dependency_core.py` and is
+Canonical dependency resolution lives in `ai_cores/dependency_core.py` and is
 used by `ai_graph` to keep cycle handling deterministic.
 
 Terminology aligns with `TERMINOLOGY.md` and outputs remain non_operational_output.

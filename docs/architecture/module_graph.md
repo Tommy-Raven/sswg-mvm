@@ -113,7 +113,7 @@ The module graph now includes optimization and verity tensor nodes that feed rec
 
 ```mermaid
 flowchart TD
-  CORE[ai_core] --> REC[ai_recursive]
+  CORE[ai_conductor] --> REC[ai_recursive]
   REC --> EVAL[ai_evaluation]
   EVAL --> VT[ai_evaluation/verity_tensor.py]
   VT --> OPT[ai_optimization]

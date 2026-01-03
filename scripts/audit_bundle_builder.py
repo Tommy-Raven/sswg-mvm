@@ -4,7 +4,7 @@ import argparse
 
 from pathlib import Path
 
-from cli.cli_arg_parser_core import build_parser, parse_args
+from ai_cores.cli_arg_parser_core import build_parser, parse_args
 from data.outputs.audit_bundle import build_audit_bundle, load_audit_spec
 from generator.failure_emitter import FailureEmitter, FailureLabel
 

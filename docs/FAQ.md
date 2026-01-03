@@ -71,7 +71,7 @@ Licensing: Raven Recordings ©️ see: *LICENSE.md*
 **A:** Ensure deterministic execution by using consistent input parameters and environment settings. Check that caching and memory persistence are functioning correctly.
 
 **Q:** Workflow modules fail to load. What should I do?
-**A:** Confirm that `ai_core/phases/` and `generator/modules.py` exist and are on the Python path. Use `registry.py` for dynamic discovery if necessary.
+**A:** Confirm that `ai_conductor/phases/` and `generator/modules.py` exist and are on the Python path. Use `registry.py` for dynamic discovery if necessary.
 
 **Q:** How do I debug recursion loops?
 **A:** Use telemetry logs in `ai_monitoring.telemetry` and benchmark metrics in `ai_memory/benchmark_tracker.py`. RecursionManager exceptions also provide traceable information.

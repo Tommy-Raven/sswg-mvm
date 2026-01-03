@@ -11,7 +11,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 
-from ai_evaluation.evaluation_core import summarize_checkpoints
+from ai_cores.evaluation_core import summarize_checkpoints
 
 
 DEFAULT_CRITERIA: Dict[str, float] = {

@@ -97,7 +97,7 @@ def task_lint_sswg() -> TaskResult:
     # Adjust module list if your tree changes.
     targets = [
         "generator",
-        "ai_core",
+        "ai_conductor",
         "ai_recursive",
         "ai_validation",
         "ai_graph",

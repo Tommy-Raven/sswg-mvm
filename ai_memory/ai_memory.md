@@ -36,7 +36,7 @@ Typical responsibilities:
 
 This module is already in use by:
 
-- `ai_core.orchestrator.Orchestrator` (saving final workflows)
+- `ai_conductor.orchestrator.Orchestrator` (saving final workflows)
 - `ai_recursive.memory_adapter.RecursiveMemoryAdapter` (saving variants)
 
 ---

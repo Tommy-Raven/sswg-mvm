@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-ai_core package — Core orchestration primitives for SSWG MVM.
+ai_conductor package — Core orchestration primitives for SSWG MVM.
 
 This package is responsible for:
 - Defining the core workflow data model
 - Orchestrating phase execution
 - Managing module registration and dependency resolution
-- Exposing a CLI-friendly entry surface (via ai_core.cli)
+- Exposing a CLI-friendly entry surface (via ai_conductor.cli)
 
 At MVM stage, we keep the public surface small and stable while allowing
 internal evolution of implementations.
@@ -35,7 +35,7 @@ def get_version() -> str:
     """
     Return a simple version identifier for the core orchestration subsystem.
     """
-    return "ai_core-mvm-0.1.0"
+    return "ai_conductor-mvm-0.1.0"
 
 
 def __getattr__(name: str):
@@ -43,4 +43,4 @@ def __getattr__(name: str):
         from .orchestrator import Orchestrator as _Orchestrator
 
         return _Orchestrator
-    raise AttributeError(f"module 'ai_core' has no attribute {name!r}")
+    raise AttributeError(f"module 'ai_conductor' has no attribute {name!r}")

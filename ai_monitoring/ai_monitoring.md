@@ -34,7 +34,7 @@ Terminology aligns with `TERMINOLOGY.md` and outputs remain non_operational_outp
 - Writes to both console and `./logs/workflow.log`.
 - Used by:
   - generator
-  - ai_core
+  - ai_conductor
   - ai_validation
   - history, exporters, etc.
 
@@ -69,7 +69,7 @@ Responsibilities:
   - phases executed
 - Render a short summary at the end of orchestration.
 
-The ai_core `Orchestrator` uses this to provide a quick “what just happened?”
+The ai_conductor `Orchestrator` uses this to provide a quick “what just happened?”
 view during development. In non-interactive environments, this can be turned
 into a no-op.
 

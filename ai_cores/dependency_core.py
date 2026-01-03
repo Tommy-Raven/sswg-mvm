@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_core/dependency_core.py — Canonical dependency graph utilities for SSWG MVM.
+ai_cores/dependency_core.py — Canonical dependency graph utilities for SSWG MVM.
 
 Provides deterministic dependency resolution and cycle correction.
 """
@@ -14,7 +14,7 @@ from typing import Any, Dict, Iterable, List
 
 import yaml
 
-logger = logging.getLogger("ai_core.dependency_core")
+logger = logging.getLogger("ai_cores.dependency_core")
 logger.setLevel(logging.INFO)
 _handler = logging.StreamHandler()
 _handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))

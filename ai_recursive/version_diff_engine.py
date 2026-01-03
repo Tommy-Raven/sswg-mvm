@@ -11,7 +11,7 @@ This module is now focused on:
 - Deciding whether regeneration is recommended.
 - Recording feedback via ai_memory + ai_evaluation (if available).
 
-It deliberately NO LONGER calls ai_core.Orchestrator directly.
+It deliberately NO LONGER calls ai_conductor.Orchestrator directly.
 """
 
 from __future__ import annotations
@@ -35,7 +35,7 @@ except Exception:  # pragma: no cover
 
 
 try:
-    from ai_evaluation.evaluation_core import evaluate_clarity  # type: ignore
+    from ai_cores.evaluation_core import evaluate_clarity  # type: ignore
 except Exception:  # pragma: no cover
 
     def evaluate_clarity(wf: Dict[str, Any]) -> Dict[str, float]:  # type: ignore[no-redef]

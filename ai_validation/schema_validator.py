@@ -12,7 +12,7 @@ Conventions:
 - Schemas declare `$schema` as JSON Schema Draft 2020-12.
 - `$ref` values are relative filenames (e.g. "metadata_schema.json"),
   which are resolved against the local SCHEMAS_DIR.
-- Core schema loading and validation helpers live in ai_validation/schema_core.py.
+- Core schema loading and validation helpers live in ai_cores/schema_core.py.
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ from typing import Any, Dict, Optional, Tuple, List
 
 from jsonschema import ValidationError
 
-from ai_validation.schema_core import get_validator, load_schema
+from ai_cores.schema_core import get_validator, load_schema
 
 logger = logging.getLogger("ai_validation.schema_validator")
 logger.setLevel(logging.INFO)

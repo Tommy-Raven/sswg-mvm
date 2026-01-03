@@ -18,8 +18,8 @@ from typing import Any, Dict, Optional
 import yaml
 from jsonschema import Draft202012Validator
 
-from ai_validation.schema_core import get_validator, load_schema
-from cli.cli_arg_parser_core import build_parser, parse_args
+from ai_cores.schema_core import get_validator, load_schema
+from ai_cores.cli_arg_parser_core import build_parser, parse_args
 
 from generator.failure_emitter import FailureEmitter, FailureLabel
 from generator.hashing import hash_data

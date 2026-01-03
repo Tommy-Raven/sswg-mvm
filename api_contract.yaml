@@ -17,7 +17,7 @@ compliance_internal:
   - scripts/audit_bundle_builder.py
 
 developer_internal:
-  - ai_core/cli.py
+  - ai_conductor/cli.py
   - ai_validation/*
   - ai_visualization/*
 

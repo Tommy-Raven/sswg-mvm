@@ -31,8 +31,8 @@ The API provides programmatic access to the **SSWG-MVM** workflow generation, ev
 | --------------------------------- | ------------------------------------- | ------------------------------------------------------------------- |
 | `generator.main`                  | `create_workflow(user_params)`        | Initializes the full workflow pipeline from high-level goals.       |
 | `generator.recursion_manager`     | `run_cycle(workflow)`                 | Executes recursive generation, feedback integration, and evolution. |
-| `ai_core.workflow`                | `assemble(phases, modules)`           | Constructs workflows from phase definitions and modular components. |
-| `ai_core.registry`                | `register(workflow_id, workflow_obj)` | Adds workflow metadata to the centralized registry.                 |
+| `ai_conductor.workflow`                | `assemble(phases, modules)`           | Constructs workflows from phase definitions and modular components. |
+| `ai_conductor.registry`                | `register(workflow_id, workflow_obj)` | Adds workflow metadata to the centralized registry.                 |
 | `ai_evaluation.semantic_analysis` | `compare(reference, candidate)`       | Computes semantic delta score between workflows.                    |
 | `ai_monitoring.telemetry`         | `record(event_type, metadata)`        | Logs events, metrics, and recursion performance.                    |
 | `ai_memory.store`                 | `save(workflow)`                      | Archives versioned workflow for traceable lineage.                  |

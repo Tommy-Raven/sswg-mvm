@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from cli.cli_spec_validator_core import main as core_main
+from ai_cores.cli_spec_validator_core import main as core_main
 
 
 def _main() -> int:

@@ -45,7 +45,7 @@ Provides user-facing and developer-facing invocation points.
 
 - CLI:
   - [cli/cli.py](../cli/cli.py)
-  - [ai_core/cli.py](../ai_core/cli.py)
+  - [ai_conductor/cli.py](../ai_conductor/cli.py)
   - [config/cli.py](../config/cli.py)
 - Scripts / Utilities:
   - [scripts/main.py](../scripts/main.py)
@@ -58,11 +58,11 @@ Provides user-facing and developer-facing invocation points.
 ### Core Orchestration
 Orchestrates cross-module phase execution, dependency resolution, and workflow lifecycle control.
 
-- [ai_core/orchestrator.py](../ai_core/orchestrator.py)
-- [ai_core/phase_controller.py](../ai_core/phase_controller.py)
-- [ai_core/workflow.py](../ai_core/workflow.py)
-- [ai_core/dependency_graph.py](../ai_core/dependency_graph.py)
-- [ai_core/module_registry.py](../ai_core/module_registry.py)
+- [ai_conductor/orchestrator.py](../ai_conductor/orchestrator.py)
+- [ai_conductor/phase_controller.py](../ai_conductor/phase_controller.py)
+- [ai_conductor/workflow.py](../ai_conductor/workflow.py)
+- [ai_conductor/dependency_graph.py](../ai_conductor/dependency_graph.py)
+- [ai_conductor/module_registry.py](../ai_conductor/module_registry.py)
 
 ---
 
@@ -269,7 +269,7 @@ flowchart LR
 Runtime Order
 -------------
 1. CLI or API triggers [`generator/main.py`](../generator/main.py).
-2. `generator` loads the workflow via [`ai_core/orchestrator.py`](../ai_core/orchestrator.py).
+2. `generator` loads the workflow via [`ai_conductor/orchestrator.py`](../ai_conductor/orchestrator.py).
 3. [`ai_validation/schema_validator.py`](../ai_validation/schema_validator.py) ensures structural validity.
 4. [`ai_evaluation/evaluation_engine.py`](../ai_evaluation/evaluation_engine.py) scores the workflow (clarity, expandability).
 5. [`generator/recursion_manager.py`](../generator/recursion_manager.py) decides:
@@ -288,7 +288,7 @@ Runtime Order
 
 ## Directory & File Mapping
 
-* [`ai_core/`](../ai_core) — Orchestration and workflow phases
+* [`ai_conductor/`](../ai_conductor) — Orchestration and workflow phases
 * [`ai_recursive/`](../ai_recursive) — Recursive generation, merging, memory, evaluation, registry
 * [`ai_memory/`](../ai_memory) — Persistent workflow storage and metrics
 * [`ai_evaluation/`](../ai_evaluation) — Quality assessment and feedback loops

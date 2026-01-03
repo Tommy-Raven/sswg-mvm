@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_validation/schema_core.py — Shared JSON Schema validation core.
+ai_cores/schema_core.py — Shared JSON Schema validation core.
 
 Provides centralized schema loading, validator construction, and artifact
 validation for deterministic enforcement.

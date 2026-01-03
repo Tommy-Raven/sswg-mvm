@@ -4,9 +4,9 @@ import argparse
 import json
 from pathlib import Path
 
-from ai_validation.schema_core import validate_artifact
+from ai_cores.schema_core import validate_artifact
 
-from cli.cli_arg_parser_core import build_parser, parse_args
+from ai_cores.cli_arg_parser_core import build_parser, parse_args
 from generator.failure_emitter import FailureEmitter, FailureLabel
 
 

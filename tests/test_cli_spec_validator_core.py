@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 from subprocess import run as subprocess_run
 
-from cli.cli_spec_validator_core import validate_spec
+from ai_cores.cli_spec_validator_core import validate_spec
 from tests.assertions import require
 
 

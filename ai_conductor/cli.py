@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-ai_core/cli.py — Command-line entrypoint for core orchestration.
+ai_conductor/cli.py — Command-line entrypoint for core orchestration.
 
 Author: Tommy Raven, Raven Recordings, LLC ©2025
 
 This CLI is intentionally minimal at the MVM stage. It:
 - Loads a workflow JSON file.
-- Wraps it in an ai_core.Workflow instance.
+- Wraps it in an ai_conductor.Workflow instance.
 - Constructs a ModuleRegistry and Orchestrator.
 - Runs the orchestrator across its configured phases.
 
@@ -30,7 +30,7 @@ from .orchestrator import Orchestrator, RunContext
 
 
 def parse_args(argv: Optional[list] = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="ai_core orchestration CLI (MVM)")
+    parser = argparse.ArgumentParser(description="ai_conductor orchestration CLI (MVM)")
     parser.add_argument(
         "-j",
         "--workflow-json",
@@ -50,7 +50,7 @@ def parse_args(argv: Optional[list] = None) -> argparse.Namespace:
     parser.add_argument(
         "--version",
         action="store_true",
-        help="Print ai_core version and exit.",
+        help="Print ai_conductor version and exit.",
     )
     return parser.parse_args(argv)
 
@@ -67,7 +67,7 @@ def main(argv: Optional[list] = None) -> int:
     args = parse_args(argv)
 
     if args.version:
-        print(f"ai_core version: {get_version()}")
+        print(f"ai_conductor version: {get_version()}")
         return 0
 
     wf_data = load_workflow_json(args.workflow_json)
@@ -85,7 +85,7 @@ def main(argv: Optional[list] = None) -> int:
     result = orchestrator.run_mvm(context)
 
     # Optional: print a short summary
-    print(f"Workflow {result.workflow.id} executed via ai_core.Orchestrator.")
+    print(f"Workflow {result.workflow.id} executed via ai_conductor.Orchestrator.")
     return 0
 
 

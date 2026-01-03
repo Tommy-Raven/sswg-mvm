@@ -5,10 +5,10 @@ generator/modules.py — Generator-local module registry.
 This is a light-weight registry specifically for generator-time modules:
 small functions or callables that transform a workflow context.
 
-It is intentionally simpler than ai_core.module_registry and can be used
+It is intentionally simpler than ai_conductor.module_registry and can be used
 by recursive expansion, semantic scoring, or custom pipelines.
 
-Storage utilities are centralized in ai_core.module_core.
+Storage utilities are centralized in ai_cores.module_core.
 """
 
 from __future__ import annotations
@@ -16,7 +16,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Callable, Dict, Optional
 
-from ai_core.module_core import ModuleRegistryCore
+from ai_cores.module_core import ModuleRegistryCore
 
 ModuleFunc = Callable[[Dict[str, Any]], Dict[str, Any]]
 

@@ -11,13 +11,13 @@ Supports the --export flag in cli.py:
     --export markdown    → saves Markdown only
     --export both        → saves both JSON + Markdown (default includes .dot)
 
-Export serialization is centralized in ai_visualization.export_core.
+Export serialization is centralized in ai_cores.export_core.
 """
 
 import os
 from datetime import datetime
 
-from ai_visualization.export_core import write_json, write_markdown
+from ai_cores.export_core import write_json, write_markdown
 
 
 # ---------------------- GRAPHVIZ EXPORT ---------------------- #

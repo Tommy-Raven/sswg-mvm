@@ -10,7 +10,7 @@ Exports:
 - JSON: full workflow structure
 - Markdown: human-readable summary
 
-Serialization is centralized in ai_visualization.export_core.
+Serialization is centralized in ai_cores.export_core.
 """
 
 from __future__ import annotations
@@ -21,7 +21,7 @@ from collections.abc import Mapping as MappingABC
 from dataclasses import dataclass
 from typing import Any, Dict, Mapping
 
-from ai_visualization.export_core import write_json, write_markdown
+from ai_cores.export_core import write_json, write_markdown
 from generator.utils import log
 
 

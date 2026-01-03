@@ -16,7 +16,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Iterable, List
 
-from ai_evaluation.evaluation_core import fit_scores
+from ai_cores.evaluation_core import fit_scores
 
 
 @dataclass

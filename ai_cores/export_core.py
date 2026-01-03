@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_visualization/export_core.py — Shared export serialization utilities.
+ai_cores/export_core.py — Shared export serialization utilities.
 
 Provides deterministic JSON/Markdown serialization for workflow exports.
 """

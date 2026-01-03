@@ -3,8 +3,8 @@ Comprehensive test — ensures end-to-end workflow lifecycle passes
 through generation → validation → evaluation → export.
 """
 
-from ai_core.orchestrator import Orchestrator
-from ai_core.workflow import Workflow
+from ai_conductor.orchestrator import Orchestrator
+from ai_conductor.workflow import Workflow
 from ai_validation.schema_validator import validate_workflow
 from ai_evaluation.quality_metrics import evaluate_clarity
 from ai_visualization.export_manager import export_workflow

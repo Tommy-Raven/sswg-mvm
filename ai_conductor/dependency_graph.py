@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-ai_core/dependency_graph.py — Core-level dependency wrapper for SSWG MVM.
+ai_conductor/dependency_graph.py — Core-level dependency wrapper for SSWG MVM.
 
 This is a thin adapter around `ai_graph.dependency_mapper.DependencyGraph`
-tailored to the needs of ai_core:
+tailored to the needs of ai_conductor:
 
 - Accepts a list of module dicts (with `module_id` and `dependencies`).
 - Provides:
@@ -12,7 +12,7 @@ tailored to the needs of ai_core:
     - `attempt_autocorrect_cycle()`
     - `topological_order()` — for execution ordering in PhaseController.
 
-ai_core code should import from here instead of directly from ai_graph so
+ai_conductor code should import from here instead of directly from ai_graph so
 the underlying implementation can evolve without breaking callers.
 """
 
@@ -21,9 +21,9 @@ from __future__ import annotations
 import logging
 from typing import Any, Dict, Iterable, List
 
-from ai_core.dependency_core import DependencyGraph as _GraphImpl
+from ai_cores.dependency_core import DependencyGraph as _GraphImpl
 
-logger = logging.getLogger("ai_core.dependency_graph")
+logger = logging.getLogger("ai_conductor.dependency_graph")
 logger.setLevel(logging.INFO)
 _handler = logging.StreamHandler()
 _handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))

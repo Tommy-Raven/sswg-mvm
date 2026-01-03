@@ -1,6 +1,6 @@
 """Smoke tests for the orchestrator pipeline."""
 
-from ai_core.orchestrator import Orchestrator
+from ai_conductor.orchestrator import Orchestrator
 from ai_validation.schema_validator import validate_workflow
 from tests.assertions import require
 

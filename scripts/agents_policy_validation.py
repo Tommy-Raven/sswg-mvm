@@ -4,7 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
-from cli.cli_arg_parser_core import build_parser, parse_args
+from ai_cores.cli_arg_parser_core import build_parser, parse_args
 from generator.agent_policy import (
     build_policy_manifest,
     detect_working_tree_changes,

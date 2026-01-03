@@ -25,9 +25,9 @@ from typing import Any, Callable, Dict, Iterable, List
 
 import yaml
 
-from generator.audit_core import hash_file
+from ai_cores.audit_core import hash_file
 
-from cli.cli_arg_parser_core import build_parser, parse_args
+from ai_cores.cli_arg_parser_core import build_parser, parse_args
 from generator.pdl_validator import PDLValidationError, validate_pdl_file
 
 PHASE_ORDER = (

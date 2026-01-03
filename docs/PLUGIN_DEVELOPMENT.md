@@ -41,7 +41,7 @@ plugins:
 The loader imports and registers each plugin at startup. Hooks can target:
 - Evaluation cycles in `ai_evaluation`
 - Recursive expansions in `ai_recursive`
-- Workflow phases under `ai_core/phases`
+- Workflow phases under `ai_conductor/phases`
 - Telemetry enrichers in `ai_monitoring`
 
 ## Development guidelines

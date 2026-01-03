@@ -75,7 +75,7 @@ Clarity metrics, semantic checks, and dependency validation.
 ```
 sswg-mvm1.0/
 │
-├── ai_core/              # Orchestration, workflow assembly
+├── ai_conductor/              # Orchestration, workflow assembly
 ├── ai_recursive/         # Diff engine, variant synthesis
 ├── ai_memory/            # Persistent logs, feedback integrator
 ├── ai_evaluation/        # Metrics, semantic scoring

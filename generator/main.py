@@ -37,15 +37,15 @@ from ai_visualization.mermaid_generator import mermaid_from_workflow
 from ai_visualization.export_manager import export_graphviz
 from ai_visualization.export_manager import export_json as viz_export_json
 from ai_visualization.export_manager import export_markdown as viz_export_markdown
-from ai_core.orchestrator import Orchestrator, RunContext
-from ai_core.workflow import Workflow
+from ai_conductor.orchestrator import Orchestrator, RunContext
+from ai_conductor.workflow import Workflow
 from ai_evaluation.checkpoints import EvaluationCheckpointer
 from ai_evaluation.evaluation_engine import evaluate_workflow_quality
 from ai_memory.memory_store import MemoryStore
 from ai_memory.feedback_integrator import FeedbackIntegrator
 from ai_recursive.version_diff_engine import compute_diff_summary
 from data.data_parsing import load_template
-from generator.audit_core import utc_timestamp
+from ai_cores.audit_core import utc_timestamp
 from generator.exporters import export_json, export_markdown
 from generator.history import HistoryManager
 from generator.recursion_manager import RecursionManager

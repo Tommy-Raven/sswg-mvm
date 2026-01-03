@@ -3,7 +3,7 @@ Placeholder test for future parallel execution or batch generation features.
 Currently checks that the orchestrator can handle multiple runs without conflict.
 """
 
-from ai_core.orchestrator import Orchestrator
+from ai_conductor.orchestrator import Orchestrator
 
 from tests.assertions import require
 

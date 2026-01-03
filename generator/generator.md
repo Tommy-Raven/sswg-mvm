@@ -13,7 +13,7 @@ The `generator` package orchestrates a single end-to-end generation run:
 
 1. Parse user configuration (purpose, audience, style, etc.).
 2. Build a workflow ID and base metadata.
-3. Run the core phases via `ai_core.Workflow`.
+3. Run the core phases via `ai_conductor.Workflow`.
 4. Optionally invoke recursive expansion (via `ai_recursive` / `RecursionManager`).
 5. Evaluate, score, and export artifacts (JSON + Markdown).
 6. Persist outputs via `ai_memory.MemoryStore` and log telemetry.
@@ -26,9 +26,9 @@ At the **MVM stage**, the goal is:
 
 Core utilities are centralized for deterministic behavior:
 
-- Audit hashing and timestamps in `generator/audit_core.py`
-- Export serialization in `ai_visualization/export_core.py`
-- Module registry storage in `ai_core/module_core.py`
+- Audit hashing and timestamps in `ai_cores/audit_core.py`
+- Export serialization in `ai_cores/export_core.py`
+- Module registry storage in `ai_cores/module_core.py`
 
 Terminology aligns with `TERMINOLOGY.md` and outputs remain non_operational_output.
 

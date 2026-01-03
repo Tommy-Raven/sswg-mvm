@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from cli.cli_spec_validator_core import main as core_main
+from ai_cores.cli_spec_validator_core import main as core_main
 
 
 def _main() -> int:

@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List
 
-from generator.audit_core import hash_file
+from ai_cores.audit_core import hash_file
 from generator.hashing import hash_data
 
 

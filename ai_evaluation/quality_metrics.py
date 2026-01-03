@@ -8,7 +8,7 @@ workflow dict.
 Existing behavior preserved:
 - `evaluate_clarity(wf)` returns {"clarity_score": float}
 
-Core evaluation helpers live in ai_evaluation.evaluation_core.
+Core evaluation helpers live in ai_cores.evaluation_core.
 
 New MVM-style scalar metrics:
 - clarity_metric(workflow)     -> float
@@ -25,10 +25,10 @@ from __future__ import annotations
 import json
 from typing import Any, Dict, List
 
-from ai_core.optimization_loader import load_optimization_map
+from ai_conductor.optimization_loader import load_optimization_map
 from ai_optimization.optimization_engine import OptimizationEngine
 
-from ai_evaluation.evaluation_core import evaluate_clarity
+from ai_cores.evaluation_core import evaluate_clarity
 from .semantic_analysis import SemanticAnalyzer
 
 _STOP_WORDS = {

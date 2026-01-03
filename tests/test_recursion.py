@@ -2,7 +2,7 @@
 Tests recursive generation behavior (meta-learning loop simulation).
 """
 
-from ai_core.orchestrator import Orchestrator
+from ai_conductor.orchestrator import Orchestrator
 
 from tests.assertions import require
 

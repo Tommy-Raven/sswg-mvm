@@ -1,15 +1,15 @@
 ---
 anchor:
-  anchor_id: ai_core_ai_core
+  anchor_id: ai_conductor_ai_conductor
   anchor_version: "1.0.0"
   scope: docs
   owner: sswg
   status: draft
 ---
 
-# ai_core — Orchestration Spine for SSWG MVM
+# ai_conductor — Orchestration Spine for SSWG MVM
 
-The `ai_core` package is the orchestration backbone of the SSWG system.  
+The `ai_conductor` package is the orchestration backbone of the SSWG system.  
 It glues together:
 
 - **Workflows** (what we’re trying to do)
@@ -48,7 +48,7 @@ The `Workflow` class is what other components pass around when they say
 
 **Role:** Registry of executable “modules” that implement workflow steps.
 
-Core storage utilities are centralized in `ai_core/module_core.py` to keep
+Core storage utilities are centralized in `ai_cores/module_core.py` to keep
 registration behavior deterministic and consistent across orchestration layers.
 
 Responsibilities:
@@ -114,12 +114,12 @@ workflow pipeline”.
 
 ### 5. `dependency_graph.py` (core-level mapping)
 
-**Role:** Light abstraction for dependency ordering in ai_core.
+**Role:** Light abstraction for dependency ordering in ai_conductor.
 
 Even though there is a separate `ai_graph` package that focuses on graph
 analysis and visualization, the core may expose a simplified mapping that:
 
-- Wraps the canonical engine in `ai_core/dependency_core.py`
+- Wraps the canonical engine in `ai_cores/dependency_core.py`
 - Provides a minimal interface that `PhaseController` can use to:
   - detect obvious cycles
   - compute a safe execution order
@@ -151,7 +151,7 @@ enough to sort modules by dependencies.
    ai_validation and ai_evaluation are called at appropriate points.
 
 6. **Export / History**  
-   Final workflow is exported and evolution recorded outside ai_core.
+   Final workflow is exported and evolution recorded outside ai_conductor.
 
 ---
 

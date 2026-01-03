@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_core/module_registry.py — Module registry for SSWG MVM.
+ai_conductor/module_registry.py — Module registry for SSWG MVM.
 
 The ModuleRegistry is a lightweight in-memory store that maps `module_id`
 to callable implementations and metadata.
@@ -17,7 +17,7 @@ Responsibilities (MVM):
 This registry is intentionally dumb and local for now; in the future it
 can be backed by a plugin system, config files, or remote service.
 
-Core storage utilities live in ai_core.module_core.
+Core storage utilities live in ai_cores.module_core.
 """
 
 from __future__ import annotations
@@ -26,9 +26,9 @@ import logging
 from typing import Any, Dict, Iterable, List, Optional
 
 from ai_monitoring.structured_logger import log_event
-from ai_core.module_core import ModuleEntry, ModuleFunc, ModuleRegistryCore
+from ai_cores.module_core import ModuleEntry, ModuleFunc, ModuleRegistryCore
 
-logger = logging.getLogger("ai_core.module_registry")
+logger = logging.getLogger("ai_conductor.module_registry")
 logger.setLevel(logging.INFO)
 _handler = logging.StreamHandler()
 _handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
@@ -36,7 +36,7 @@ logger.addHandler(_handler)
 
 class ModuleRegistry(ModuleRegistryCore):
     """
-    In-memory registry of modules used by the ai_core orchestrator.
+    In-memory registry of modules used by the ai_conductor orchestrator.
 
     Typical usage:
 

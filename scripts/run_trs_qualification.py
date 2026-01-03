@@ -4,7 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
-from cli.cli_arg_parser_core import build_parser, parse_args
+from ai_cores.cli_arg_parser_core import build_parser, parse_args
 from generator.determinism import replay_determinism_check
 from generator.environment import check_environment_drift, environment_fingerprint
 from generator.failure_emitter import FailureEmitter, FailureLabel

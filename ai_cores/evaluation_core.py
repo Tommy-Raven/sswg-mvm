@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_evaluation/evaluation_core.py — Shared evaluation helpers for SSWG MVM.
+ai_cores/evaluation_core.py — Shared evaluation helpers for SSWG MVM.
 """
 
 from __future__ import annotations

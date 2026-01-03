@@ -15,8 +15,8 @@ setup(
     url="https://github.com/Tommy-Raven/sswg-mvm1.0",
     packages=find_packages(
         include=[
-            "ai_core",
-            "ai_core.*",
+            "ai_conductor",
+            "ai_conductor.*",
             "ai_evaluation",
             "ai_evaluation.*",
             "ai_graph",
