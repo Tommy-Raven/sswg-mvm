@@ -5,8 +5,10 @@ generator/modules.py — Generator-local module registry.
 This is a light-weight registry specifically for generator-time modules:
 small functions or callables that transform a workflow context.
 
-It is intentionally simpler than ai_core.module_registry and can be used
+It is intentionally simpler than ai_conductor.module_registry and can be used
 by recursive expansion, semantic scoring, or custom pipelines.
+
+Storage utilities are centralized in ai_cores.module_core.
 """
 
 from __future__ import annotations
@@ -14,6 +16,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Callable, Dict, Optional
 
+from ai_cores.module_core import ModuleRegistryCore
 
 ModuleFunc = Callable[[Dict[str, Any]], Dict[str, Any]]
 
@@ -38,7 +41,7 @@ class GeneratorModuleRegistry:
     """
 
     def __init__(self) -> None:
-        self._modules: Dict[str, GeneratorModule] = {}
+        self._registry = ModuleRegistryCore()
 
     def register(
         self,
@@ -48,17 +51,23 @@ class GeneratorModuleRegistry:
         overwrite: bool = False,
     ) -> None:
         """Register a new module under the given name."""
-        if not overwrite and name in self._modules:
-            raise ValueError(f"Module {name!r} already registered")
-        self._modules[name] = GeneratorModule(
-            name=name,
+        self._registry.register(
+            name,
+            func,
             description=description,
-            run=func,
+            overwrite=overwrite,
         )
 
     def get(self, name: str) -> Optional[GeneratorModule]:
         """Return a module descriptor by name, if present."""
-        return self._modules.get(name)
+        entry = self._registry.get(name)
+        if entry is None:
+            return None
+        return GeneratorModule(
+            name=entry.module_id,
+            description=entry.description,
+            run=entry.func,
+        )
 
     def run(self, name: str, context: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -75,4 +84,7 @@ class GeneratorModuleRegistry:
         """
         Return a mapping of name → description for discoverability.
         """
-        return {name: module.description for name, module in self._modules.items()}
+        return {
+            entry.module_id: entry.description
+            for entry in self._registry.list_modules()
+        }

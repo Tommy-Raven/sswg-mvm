@@ -19,7 +19,7 @@ Licensing: Raven Recordings ©️ see: *LICENSE.md*
 The evolution logging pipeline keeps recursive workflows observable and reproducible. High-level entrypoints live in the root [README.md](../README.md), with documentation navigation in [docs/README.md](./README.md). This guide details how the logging pieces fit together and where to extend them.
 
 ## Architecture overview
-- **Sources:** `ai_memory.store`, `ai_recursive.expansion`, and `ai_core.workflow` emit events for every recursion pass.
+- **Sources:** `ai_memory.store`, `ai_recursive.expansion`, and `ai_conductor.workflow` emit events for every recursion pass.
 - **Formats:** JSON for machine pipelines and Markdown for human review (mirrors the patterns in [docs/TELEMETRY_GUIDE.md](./TELEMETRY_GUIDE.md)).
 - **Storage:** Persistent artifacts land in `ai_memory/outputs/` with deterministic version IDs and lineage references.
 - **Schemas:** Metadata shapes align with `schemas/workflow_schema.json` and the recursion expectations in [docs/ARCHITECTURE.md](./ARCHITECTURE.md).

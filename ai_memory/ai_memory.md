@@ -18,6 +18,7 @@ The `ai_memory` package is responsible for *state that persists across runs*:
 
 At the MVM stage, the emphasis is on **simple, inspectable storage**, not
 on heavy databases or distributed systems.
+Terminology aligns with `TERMINOLOGY.md` and outputs remain non_operational_output.
 
 ---
 
@@ -35,7 +36,7 @@ Typical responsibilities:
 
 This module is already in use by:
 
-- `ai_core.orchestrator.Orchestrator` (saving final workflows)
+- `ai_conductor.orchestrator.Orchestrator` (saving final workflows)
 - `ai_recursive.memory_adapter.RecursiveMemoryAdapter` (saving variants)
 
 ---

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_core/phase_controller.py — Phase-level execution for SSWG MVM.
+ai_conductor/phase_controller.py — Phase-level execution for SSWG MVM.
 
 The PhaseController is responsible for:
 
@@ -36,7 +36,7 @@ from .dependency_graph import CoreDependencyGraph
 from .module_registry import ModuleRegistry, ModuleEntry
 from .workflow import Workflow
 
-logger = logging.getLogger("ai_core.phase_controller")
+logger = logging.getLogger("ai_conductor.phase_controller")
 logger.setLevel(logging.INFO)
 _handler = logging.StreamHandler()
 _handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
@@ -181,4 +181,4 @@ def _execute_module(entry: ModuleEntry, context: Dict[str, Any]) -> Any:
     return result
 
 
-# End of ai_core/phase_controller.py
+# End of ai_conductor/phase_controller.py

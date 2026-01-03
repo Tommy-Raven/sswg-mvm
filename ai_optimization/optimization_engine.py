@@ -16,7 +16,7 @@ from pathlib import Path
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
-from ai_core.optimization_loader import load_optimization_map
+from ai_conductor.optimization_loader import load_optimization_map
 
 
 @dataclass(frozen=True)

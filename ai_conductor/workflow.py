@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_core/workflow.py — Core workflow container for SSWG MVM.
+ai_conductor/workflow.py — Core workflow container for SSWG MVM.
 
 This class is deliberately hybrid:
 
@@ -18,7 +18,7 @@ This class is deliberately hybrid:
     wf.to_dict()
 
 This keeps existing generator/main.py working while enabling the new
-ai_core orchestrator + phase controller API.
+ai_conductor orchestrator + phase controller API.
 """
 
 from __future__ import annotations

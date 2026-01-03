@@ -22,7 +22,6 @@ import argparse
 import json
 import logging
 from copy import deepcopy
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Optional, Union
 
@@ -38,14 +37,15 @@ from ai_visualization.mermaid_generator import mermaid_from_workflow
 from ai_visualization.export_manager import export_graphviz
 from ai_visualization.export_manager import export_json as viz_export_json
 from ai_visualization.export_manager import export_markdown as viz_export_markdown
-from ai_core.orchestrator import Orchestrator, RunContext
-from ai_core.workflow import Workflow
+from ai_conductor.orchestrator import Orchestrator, RunContext
+from ai_conductor.workflow import Workflow
 from ai_evaluation.checkpoints import EvaluationCheckpointer
 from ai_evaluation.evaluation_engine import evaluate_workflow_quality
 from ai_memory.memory_store import MemoryStore
 from ai_memory.feedback_integrator import FeedbackIntegrator
 from ai_recursive.version_diff_engine import compute_diff_summary
 from data.data_parsing import load_template
+from ai_cores.audit_core import utc_timestamp
 from generator.exporters import export_json, export_markdown
 from generator.history import HistoryManager
 from generator.recursion_manager import RecursionManager
@@ -59,10 +59,6 @@ handler = logging.StreamHandler()
 handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
 logger.addHandler(handler)
 logger.propagate = False
-
-
-def _utc_timestamp() -> str:
-    return datetime.now(timezone.utc).isoformat()
 
 
 def _snapshot_dependencies(modules: list[dict[str, Any]]) -> dict[str, list[str]]:
@@ -210,7 +206,7 @@ def _apply_task_packaging(
         _append_causal_entry(
             workflow,
             {
-                "timestamp": _utc_timestamp(),
+                "timestamp": utc_timestamp(),
                 "change_type": "task_packaging_normalized",
                 "source": change_source,
                 "rationale": (
@@ -363,7 +359,7 @@ def _apply_inheritance_checks(
         _append_causal_entry(
             workflow,
             {
-                "timestamp": _utc_timestamp(),
+                "timestamp": utc_timestamp(),
                 "change_type": "inheritance_provenance_applied",
                 "source": change_source,
                 "rationale": "Ensure imported tasks carry origin domain/version.",
@@ -454,7 +450,7 @@ def _apply_meta_metrics(
         )
 
     meta_metrics = {
-        "timestamp": _utc_timestamp(),
+        "timestamp": utc_timestamp(),
         "scores": scores,
         "overall_score": overall,
         "baseline": {
@@ -539,7 +535,7 @@ def _apply_dependency_tracking(
         _append_causal_entry(
             workflow,
             {
-                "timestamp": _utc_timestamp(),
+                "timestamp": utc_timestamp(),
                 "change_type": "dependency_autocorrect",
                 "source": change_source,
                 "rationale": (
@@ -809,7 +805,7 @@ def process_workflow(
         _append_causal_entry(
             refined,
             {
-                "timestamp": _utc_timestamp(),
+                "timestamp": utc_timestamp(),
                 "change_type": "workflow_refinement",
                 "source": "recursive_refinement",
                 "rationale": refined.get("recursion_metadata", {}).get(

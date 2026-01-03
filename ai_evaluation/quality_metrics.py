@@ -8,6 +8,8 @@ workflow dict.
 Existing behavior preserved:
 - `evaluate_clarity(wf)` returns {"clarity_score": float}
 
+Core evaluation helpers live in ai_cores.evaluation_core.
+
 New MVM-style scalar metrics:
 - clarity_metric(workflow)     -> float
 - coverage_metric(workflow)    -> float
@@ -22,6 +24,12 @@ from __future__ import annotations
 
 import json
 from typing import Any, Dict, List
+
+from ai_conductor.optimization_loader import load_optimization_map
+from ai_optimization.optimization_engine import OptimizationEngine
+
+from ai_cores.evaluation_core import evaluate_clarity
+from .semantic_analysis import SemanticAnalyzer
 
 _STOP_WORDS = {
     "a",
@@ -46,10 +54,6 @@ _STOP_WORDS = {
     "this",
 }
 
-from ai_core.optimization_loader import load_optimization_map
-from ai_optimization.optimization_engine import OptimizationEngine
-from .semantic_analysis import SemanticAnalyzer
-
 _analyzer = SemanticAnalyzer()
 _optimization_engine = OptimizationEngine()
 
@@ -66,44 +70,6 @@ def _load_optimization_profile() -> Dict[str, Any]:
 # ---------------------------------------------------------------------- #
 # Legacy-style clarity evaluator (dict output)
 # ---------------------------------------------------------------------- #
-def evaluate_clarity(wf: Dict[str, Any]) -> Dict[str, float]:
-    """
-    Legacy clarity evaluation.
-
-    For each phase, computes a crude clarity score proportional to the
-    number of words in `ai_task_logic` (or fallback text), then returns
-    the average across phases as "clarity_score".
-
-    Original behavior:
-        score_phase = len(text.split()) / 10
-
-    MVM additions:
-    - Supports `phase_id` as well as `id`.
-    - Avoids division by zero when there are no phases.
-    - Clamps per-phase scores to [0, 1] for sanity.
-    """
-    scores: Dict[str, float] = {}
-
-    for phase in wf.get("phases", []) or []:
-        if not isinstance(phase, dict):
-            continue
-
-        text = phase.get("ai_task_logic") or phase.get("description") or ""
-        phase_id = phase.get("id") or phase.get("phase_id") or "<unnamed>"
-
-        words = len(str(text).split())
-        # Original heuristic: len(words) / 10; clamp into [0, 1] band
-        raw_score = words / 10.0
-        score = max(0.0, min(1.0, raw_score))
-        scores[str(phase_id)] = score
-
-    if not scores:
-        return {"clarity_score": 0.0}
-
-    avg = sum(scores.values()) / len(scores)
-    return {"clarity_score": avg}
-
-
 # ---------------------------------------------------------------------- #
 # Scalar metrics for evaluation_engine
 # ---------------------------------------------------------------------- #

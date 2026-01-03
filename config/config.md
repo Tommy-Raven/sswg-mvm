@@ -7,4 +7,6 @@ anchor:
   status: draft
 ---
 
-package for YAML configurations
+Package for YAML configurations (e.g., graph limits for dependency_core).
+
+Terminology aligns with `TERMINOLOGY.md` and outputs remain non_operational_output.

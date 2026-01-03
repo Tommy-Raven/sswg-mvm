@@ -7,7 +7,7 @@ anchor:
   status: draft
 ---
 
-# 🧬 Core API (ai_core/)
+# 🧬 Core API (ai_conductor/)
 ### Orchestrator, Phase Controller, Module Registry
 
 ---
@@ -89,7 +89,7 @@ Executes the canonical phase sequence for workflow execution.
 
 Legacy compatibility mode remains available for development and testing:
 
-- `Workflow.run_all_phases()` currently uses stubbed phase execution in `ai_core/workflow.py`.
+- `Workflow.run_all_phases()` currently uses stubbed phase execution in `ai_conductor/workflow.py`.
 - `Workflow.execute_phase()` returns stubbed payloads and should not be used for canonical runs.
 
 Production runs should rely on the canonical PDL-driven execution and handler resolution defined in `pdl/handlers.py`.

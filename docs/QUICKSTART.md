@@ -120,7 +120,7 @@ Canonical invariants (including schema validation invariants) are defined in [in
 | Directory | Purpose |
 |--------|--------|
 | generator/ | Workflow execution, recursion, export, history |
-| ai_core/ | Orchestration, phase control, lifecycle |
+| ai_conductor/ | Orchestration, phase control, lifecycle |
 | ai_recursive/ | Variant generation, merging, version control |
 | ai_evaluation/ | Semantic and quality scoring |
 | ai_memory/ | Persistence, benchmarks, feedback |

@@ -110,7 +110,7 @@ Only standard Python + jsonschema + optional Graphviz.
 
 | Subsystem | Directory | Purpose |
 |-----------|-----------|---------|
-| Core | `ai_core` | Orchestration, pipeline glue |
+| Core | `ai_conductor` | Orchestration, pipeline glue |
 | Recursive | `ai_recursive` | Diff engine, refinement |
 | Validation | `ai_validation` | Workflow schema, consistency checks |
 | Evaluation | `ai_evaluation` | Scores, metrics |

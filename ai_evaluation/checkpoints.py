@@ -11,6 +11,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 
+from ai_cores.evaluation_core import summarize_checkpoints
+
 
 DEFAULT_CRITERIA: Dict[str, float] = {
     "overall_score": 0.55,
@@ -103,14 +105,4 @@ class EvaluationCheckpointer:
 
     def summarize(self) -> Dict[str, object]:
         """Provide a compact summary for attaching to workflow metadata."""
-        if not self.history:
-            return {"checkpoints": 0, "last_passed": False, "regressions": {}}
-
-        last = self.history[-1]
-        return {
-            "checkpoints": len(self.history),
-            "last_passed": last.passed,
-            "last_name": last.name,
-            "regressions": last.regressions,
-            "rollback_recommended": last.rollback_recommended,
-        }
+        return summarize_checkpoints(self.history)

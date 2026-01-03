@@ -25,6 +25,9 @@ from typing import Any, Callable, Dict, Iterable, List
 
 import yaml
 
+from ai_cores.audit_core import hash_file
+
+from ai_cores.cli_arg_parser_core import build_parser, parse_args
 from generator.pdl_validator import PDLValidationError, validate_pdl_file
 
 PHASE_ORDER = (
@@ -58,14 +61,6 @@ class BenchmarkConfig:
 def _hash_bytes(payload: bytes) -> str:
     digest = hashlib.sha256()
     digest.update(payload)
-    return digest.hexdigest()
-
-
-def _hash_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
     return digest.hexdigest()
 
 
@@ -308,7 +303,7 @@ def _build_output(config: BenchmarkConfig) -> Dict[str, Any]:
             "timestamp_utc": config.timestamp_utc,
             "run_id": config.run_id,
             "working_directory": str(Path.cwd().resolve()),
-            "inputs_hash": _hash_file(config.pdl_path),
+            "inputs_hash": hash_file(config.pdl_path),
         },
         "environment": _environment_metadata(),
         "dataset": _dataset_metadata(config.pdl_path),
@@ -392,9 +387,7 @@ def _sample_run(report: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def _parse_args() -> BenchmarkConfig:
-    parser = argparse.ArgumentParser(
-        description="Reproducible benchmark pipeline for sswg-mvm.",
-    )
+    parser = build_parser("Reproducible benchmark pipeline for sswg-mvm.")
     parser.add_argument(
         "--pdl",
         type=Path,
@@ -477,7 +470,7 @@ def _parse_args() -> BenchmarkConfig:
         help="Disable handler resolution checks.",
     )
 
-    args = parser.parse_args()
+    args = parse_args(parser)
     timestamp_utc = args.timestamp_utc or _format_timestamp()
     output_path = args.output
     if output_path is None:

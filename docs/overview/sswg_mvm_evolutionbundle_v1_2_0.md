@@ -62,7 +62,7 @@ evaluate, and recursively refine workflows autonomously.
 
 **Key Features:**
 - Implemented `generator/recursion_manager.py` and `ai_recursive/recursive_expansion.py`.
-- Integrated the phase controller (`ai_core/phase_controller.py`).
+- Integrated the phase controller (`ai_conductor/phase_controller.py`).
 - Created deterministic recursion depth management.
 - Introduced evaluation metrics and semantic coherence checks.
 - Added schema validation before recursion.
@@ -80,7 +80,7 @@ Transition from static templates to self-refining workflows.
 Established Schema Law so every cognitive act obeys governing schema.
 
 **Key Features:**
-- Built the orchestrator core (`ai_core/orchestrator.py`).
+- Built the orchestrator core (`ai_conductor/orchestrator.py`).
 - Connected recursion, evaluation, and validation through governance.
 - Added module registry and dependency graph mapping.
 - Implemented error governance and anomaly detection.

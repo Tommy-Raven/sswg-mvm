@@ -66,6 +66,9 @@ Local resolution is handled by:
 ai_validation/schema_validator.py
 `(base URI = SCHEMAS_DIR.as_uri())`
 
+Core schema loading and validation live in `ai_cores/schema_core.py`.
+Terminology aligns with `TERMINOLOGY.md` and outputs remain non_operational_output.
+
 
 ---
 

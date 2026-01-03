@@ -16,6 +16,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Iterable, List
 
+from ai_cores.evaluation_core import fit_scores
+
 
 @dataclass
 class ScoreAdapter:
@@ -42,12 +44,7 @@ class ScoreAdapter:
         scores_list: List[float] = list(scores)
         if not scores_list:
             return self
-        self.min_score = min(scores_list)
-        self.max_score = max(scores_list)
-        if self.min_score == self.max_score:
-            # Avoid division by zero, widen artificially
-            self.min_score -= 0.5
-            self.max_score += 0.5
+        self.min_score, self.max_score = fit_scores(scores_list)
         return self
 
     def transform(self, score: float) -> float:

@@ -69,7 +69,7 @@ Generated workflows appear in `data/workflows/` and logs in `logs/workflow.log`.
 
 ## Project Structure
 
-* `/ai_core/` — Core workflow orchestration, module management, and phases
+* `/ai_conductor/` — Core workflow orchestration, module management, and phases
 * `/ai_recursive/` — Recursive generation and self-improving workflow routines tuned to SSWG
 * `/ai_memory/` — Persistent memory, version history, and lineage tracking
 * `/ai_evaluation/` — Evaluation metrics: clarity, coverage, expandability, translatability

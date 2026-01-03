@@ -63,6 +63,13 @@ This layer enforces:
 - Root contract adherence
 - Invariant preservation
 
+Schema validation is centralized in `ai_cores/schema_core.py` and shared across validation entrypoints.
+Dependency resolution is centralized in `ai_cores/dependency_core.py`.
+Export serialization is centralized in `ai_cores/export_core.py`.
+Audit hashing and timestamps are centralized in `ai_cores/audit_core.py`.
+Module registration is centralized in `ai_cores/module_core.py`.
+Evaluation helpers are centralized in `ai_cores/evaluation_core.py`.
+
 Violations result in **fail-closed rejection** and a recorded decision trace.
 
 ---

@@ -1,14 +1,14 @@
-"""Audit bundle creation and validation helpers."""
+"""Audit bundle creation and validation helpers (hashing via audit_core)."""
 
 from __future__ import annotations
 
-import hashlib
 import json
 import shutil
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List
 
+from ai_cores.audit_core import hash_file
 from generator.hashing import hash_data
 
 
@@ -25,15 +25,6 @@ class BundleEntry:
 def load_audit_spec(path: Path) -> Dict[str, Any]:
     """Load the audit bundle specification from disk."""
     return json.loads(path.read_text(encoding="utf-8"))
-
-
-def _hash_file(path: Path) -> str:
-    """Hash file contents using SHA-256."""
-    hasher = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(8192), b""):
-            hasher.update(chunk)
-    return hasher.hexdigest()
 
 
 def _resolve_components(spec: Dict[str, Any], run_id: str) -> List[dict]:
@@ -82,7 +73,7 @@ def build_bundle(
                     component_id=component_id,
                     source_path=source_path,
                     bundle_path=target_path,
-                    content_hash=_hash_file(target_path),
+                    content_hash=hash_file(target_path),
                 )
             )
 
@@ -125,7 +116,7 @@ def validate_bundle(manifest: Dict[str, Any]) -> Dict[str, Any]:
         if not bundle_path.exists():
             errors.append({"type": "missing_bundle_path", "path": str(bundle_path)})
             continue
-        content_hash = _hash_file(bundle_path)
+        content_hash = hash_file(bundle_path)
         if content_hash != entry.get("content_hash"):
             errors.append({"type": "hash_mismatch", "path": str(bundle_path)})
         if bundle_path.suffix == ".json":

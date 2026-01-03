@@ -20,7 +20,11 @@
                 "invariants_required": { "type": "boolean", "const": true },
                 "bijectivity_check_required": { "type": "boolean" }
               },
-              "required": ["deterministic_required", "schema_validation_required", "invariants_required"]
+              "required": [
+                "deterministic_required",
+                "schema_validation_required",
+                "invariants_required"
+              ]
             }
           },
           "required": ["constraints"]

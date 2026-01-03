@@ -17,6 +17,7 @@ The `ai_monitoring` package is the observability layer of SSWG:
 
 At the MVM stage, the focus is on **low-friction, low-coupling** monitoring:
 easy to call, safe to ignore, and simple to extend.
+Terminology aligns with `TERMINOLOGY.md` and outputs remain non_operational_output.
 
 ---
 
@@ -33,7 +34,7 @@ easy to call, safe to ignore, and simple to extend.
 - Writes to both console and `./logs/workflow.log`.
 - Used by:
   - generator
-  - ai_core
+  - ai_conductor
   - ai_validation
   - history, exporters, etc.
 
@@ -68,7 +69,7 @@ Responsibilities:
   - phases executed
 - Render a short summary at the end of orchestration.
 
-The ai_core `Orchestrator` uses this to provide a quick “what just happened?”
+The ai_conductor `Orchestrator` uses this to provide a quick “what just happened?”
 view during development. In non-interactive environments, this can be turned
 into a no-op.
 

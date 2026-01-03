@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_core/module_registry.py — Module registry for SSWG MVM.
+ai_conductor/module_registry.py — Module registry for SSWG MVM.
 
 The ModuleRegistry is a lightweight in-memory store that maps `module_id`
 to callable implementations and metadata.
@@ -16,41 +16,28 @@ Responsibilities (MVM):
 
 This registry is intentionally dumb and local for now; in the future it
 can be backed by a plugin system, config files, or remote service.
+
+Core storage utilities live in ai_cores.module_core.
 """
 
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass, field
-from typing import Any, Awaitable, Callable, Dict, Iterable, List, Optional, Union
+from typing import Any, Dict, Iterable, List, Optional
 
 from ai_monitoring.structured_logger import log_event
+from ai_cores.module_core import ModuleEntry, ModuleFunc, ModuleRegistryCore
 
-logger = logging.getLogger("ai_core.module_registry")
+logger = logging.getLogger("ai_conductor.module_registry")
 logger.setLevel(logging.INFO)
 _handler = logging.StreamHandler()
 _handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
 logger.addHandler(_handler)
 
-ModuleFunc = Union[Callable[..., Any], Callable[..., Awaitable[Any]]]
 
-
-@dataclass
-class ModuleEntry:
-    """Descriptor for a registered module."""
-
-    module_id: str
-    func: ModuleFunc
-    phase_id: Optional[str] = None
-    inputs: List[str] = field(default_factory=list)
-    outputs: List[str] = field(default_factory=list)
-    description: str = ""
-    metadata: Dict[str, Any] = field(default_factory=dict)
-
-
-class ModuleRegistry:
+class ModuleRegistry(ModuleRegistryCore):
     """
-    In-memory registry of modules used by the ai_core orchestrator.
+    In-memory registry of modules used by the ai_conductor orchestrator.
 
     Typical usage:
 
@@ -68,7 +55,7 @@ class ModuleRegistry:
     """
 
     def __init__(self) -> None:
-        self._modules: Dict[str, ModuleEntry] = {}
+        super().__init__()
 
     # ------------------------------------------------------------------ #
     # Registration
@@ -96,16 +83,16 @@ class ModuleRegistry:
             description: Human-readable description.
             metadata: Arbitrary additional info.
         """
-        entry = ModuleEntry(
+        entry = super().register(
             module_id=module_id,
             func=func,
             phase_id=phase_id,
-            inputs=list(inputs or []),
-            outputs=list(outputs or []),
+            inputs=inputs,
+            outputs=outputs,
             description=description,
-            metadata=metadata or {},
+            metadata=metadata,
+            overwrite=True,
         )
-        self._modules[module_id] = entry
 
         logger.info("Registered module: %s (phase=%s)", module_id, phase_id)
         log_event(
@@ -128,31 +115,22 @@ class ModuleRegistry:
         Returns:
             ModuleEntry or None if not found.
         """
-        return self._modules.get(module_id)
+        return super().get(module_id)
 
     def require(self, module_id: str) -> ModuleEntry:
         """
         Retrieve a module entry by id, raising if not found.
         """
-        entry = self.get(module_id)
-        if entry is None:
-            raise KeyError(f"Module not registered: {module_id}")
-        return entry
+        return super().require(module_id)
 
     def list_modules(self) -> List[ModuleEntry]:
         """
         Return all registered module entries.
         """
-        return list(self._modules.values())
+        return super().list_modules()
 
     def list_by_phase(self, phase_id: str) -> List[ModuleEntry]:
         """
         Return all modules that belong to the given phase_id.
         """
-        return [m for m in self._modules.values() if m.phase_id == phase_id]
-
-    def __contains__(self, module_id: str) -> bool:
-        return module_id in self._modules
-
-    def __len__(self) -> int:
-        return len(self._modules)
+        return super().list_by_phase(phase_id)

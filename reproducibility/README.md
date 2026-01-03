@@ -7,6 +7,8 @@ anchor:
   status: draft
 ---
 
+Terminology aligns with `TERMINOLOGY.md` and outputs remain non_operational_output.
+
 1. environment.yaml
 Path:
 

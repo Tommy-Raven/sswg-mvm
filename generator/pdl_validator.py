@@ -16,7 +16,10 @@ from pathlib import Path
 from typing import Any, Dict, Optional
 
 import yaml
-from jsonschema import Draft202012Validator, RefResolver
+from jsonschema import Draft202012Validator
+
+from ai_cores.schema_core import get_validator, load_schema
+from ai_cores.cli_arg_parser_core import build_parser, parse_args
 
 from generator.failure_emitter import FailureEmitter, FailureLabel
 from generator.hashing import hash_data
@@ -57,27 +60,12 @@ class PDLValidationError(RuntimeError):
 
 def _load_schema(schema_dir: Path, schema_name: str) -> Dict[str, Any]:
     """Load a JSON schema from disk."""
-    schema_path = schema_dir / schema_name
-    if not schema_path.exists():
-        raise FileNotFoundError(f"Schema file not found: {schema_path}")
-    return json.loads(schema_path.read_text(encoding="utf-8"))
+    return load_schema(schema_dir, schema_name)
 
 
 def _get_validator(schema_dir: Path, schema_name: str) -> Draft202012Validator:
     """Build a JSON schema validator with a local ref store."""
-    schema_dir = schema_dir.resolve()
-    schema = _load_schema(schema_dir, schema_name)
-    store: Dict[str, Any] = {}
-    for path in schema_dir.rglob("*.json"):
-        try:
-            payload = json.loads(path.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            continue
-        if "$id" in payload:
-            store[payload["$id"].rstrip("#")] = payload
-    base_uri = schema_dir.as_uri().rstrip("/") + "/"
-    resolver = RefResolver(base_uri=base_uri, referrer=schema, store=store)
-    return Draft202012Validator(schema, resolver=resolver)
+    return get_validator(schema_dir, schema_name)
 
 
 def _load_pdl_yaml(path: Path) -> Dict[str, Any]:
@@ -399,9 +387,7 @@ def _write_validation_report(
 
 def _parse_args() -> argparse.Namespace:
     """Parse command line arguments for PDL validation."""
-    parser = argparse.ArgumentParser(
-        description="Validate a PDL YAML file against the PDL schema.",
-    )
+    parser = build_parser("Validate a PDL YAML file against the PDL schema.")
     parser.add_argument(
         "pdl_path",
         type=Path,
@@ -439,8 +425,7 @@ def _parse_args() -> argparse.Namespace:
         action="store_false",
         help="Disable handler resolution checks.",
     )
-    args = parser.parse_args()
-    return args
+    return parse_args(parser)
 
 
 def _main() -> int:

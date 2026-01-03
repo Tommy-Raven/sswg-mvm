@@ -16,6 +16,11 @@ to workflows and their outputs. At the MVM stage, the goals are:
 - Keep evaluation composable and side-effect free.
 - Make it easy to plug in external scorers (LLMs, classifiers, etc.) later.
 
+Core evaluation helpers are centralized in `ai_cores/evaluation_core.py`
+to keep scoring deterministic and reusable.
+
+Terminology aligns with `TERMINOLOGY.md` and outputs remain non_operational_output.
+
 ---
 
 ## Components

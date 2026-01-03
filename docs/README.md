@@ -61,7 +61,7 @@ generator/      Core MVM workflow generator and recursion engine
 cli/            Command-line interface for workflow execution and governance  
 pdl/            Phase Definition Language (PDL) files defining workflow phases  
 schemas/        Canonical schema contracts (workflow, phase, recursion, evaluation)  
-ai_core/        Core orchestration, workflow lifecycle, and phase control  
+ai_conductor/        Core orchestration, workflow lifecycle, and phase control  
 ai_evaluation/ Semantic and quality evaluation engines  
 ai_graph/       Dependency and semantic graph intelligence  
 ai_memory/      Feedback, benchmarking, and persistence  

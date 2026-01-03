@@ -4,7 +4,7 @@
 
 import argparse
 
-from ai_core.orchestrator import Orchestrator, RunContext
+from ai_conductor.orchestrator import Orchestrator, RunContext
 
 
 def main():

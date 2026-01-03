@@ -4,25 +4,14 @@ import argparse
 import json
 from pathlib import Path
 
-from jsonschema import Draft202012Validator, RefResolver
+from ai_cores.schema_core import validate_artifact
 
+from ai_cores.cli_arg_parser_core import build_parser, parse_args
 from generator.failure_emitter import FailureEmitter, FailureLabel
 
 
-def _get_validator(schema_dir: Path) -> Draft202012Validator:
-    schema = json.loads(
-        (schema_dir / "experiment-scope.json").read_text(encoding="utf-8")
-    )
-    base_uri = schema_dir.as_uri().rstrip("/") + "/"
-    return Draft202012Validator(
-        schema, resolver=RefResolver(base_uri=base_uri, referrer=schema)
-    )
-
-
 def _parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Validate experiment scope declaration."
-    )
+    parser = build_parser("Validate experiment scope declaration.")
     parser.add_argument("scope_path", type=Path, help="Experiment scope JSON path.")
     parser.add_argument(
         "--schema-dir",
@@ -36,7 +25,7 @@ def _parse_args() -> argparse.Namespace:
         default="local-run",
         help="Run identifier for failure logs.",
     )
-    return parser.parse_args()
+    return parse_args(parser)
 
 
 def main() -> int:
@@ -53,23 +42,13 @@ def main() -> int:
         return 1
 
     scope = json.loads(args.scope_path.read_text(encoding="utf-8"))
-    validator = _get_validator(args.schema_dir)
-    errors = sorted(validator.iter_errors(scope), key=lambda e: e.path)
+    errors = validate_artifact(scope, args.schema_dir, "experiment-scope.json")
     if errors:
         failure = FailureLabel(
             Type="schema_failure",
             message="Experiment scope validation failed",
             phase_id="validate",
-            evidence={
-                "errors": [
-                    {
-                        "message": error.message,
-                        "path": list(error.path),
-                        "schema_path": list(error.schema_path),
-                    }
-                    for error in errors
-                ]
-            },
+            evidence={"errors": errors},
         )
         FailureEmitter(Path("artifacts/failures")).emit(failure, run_id=args.run_id)
         print(f"Experiment scope validation failed: {failure.as_dict()}")

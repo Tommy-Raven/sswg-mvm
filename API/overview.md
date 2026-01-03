@@ -30,7 +30,7 @@ Other docs are secondary/overview and should defer to the canonical runbook abov
 
 ```
 generator/       → Main entrypoints, refinement loop, export pipeline  
-ai_core/         → Orchestrator + workflow lifecycle  
+ai_conductor/         → Orchestrator + workflow lifecycle  
 ai_validation/   → Schema/structure validation  
 ai_recursive/    → Diff-based regeneration + variant synthesis  
 ai_graph/        → Dependency graph engine  

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-ai_core/orchestrator.py — Core workflow orchestrator for SSWG MVM.
+ai_conductor/orchestrator.py — Core workflow orchestrator for SSWG MVM.
 
 This is the *core* orchestration layer:
 
@@ -21,7 +21,7 @@ has effectively moved "up" to generator.main. Here we focus on:
 
     Orchestrator.run(workflow, phases=None)
 
-where `workflow` is an ai_core.Workflow instance.
+where `workflow` is an ai_conductor.Workflow instance.
 """
 
 from __future__ import annotations
@@ -51,7 +51,7 @@ from .module_registry import ModuleRegistry
 from .phase_controller import PhaseController
 from .workflow import Workflow
 
-logger = logging.getLogger("ai_core.orchestrator")
+logger = logging.getLogger("ai_conductor.orchestrator")
 logger.setLevel(logging.INFO)
 _handler = logging.StreamHandler()
 _handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
