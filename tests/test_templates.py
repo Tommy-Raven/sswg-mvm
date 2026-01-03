@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 """Schema validation tests for bundled templates."""
 
 import json

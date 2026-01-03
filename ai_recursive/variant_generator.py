@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_recursive/variant_generator.py — Workflow variant generation (MVM stub).
 
 This module defines a small, deterministic way of creating multiple
@@ -7,6 +7,7 @@ variants of a given workflow. At MVM stage, it does *not* call LLMs
 or external services; it performs structured tweaks to metadata/text
 to simulate variant behavior.
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

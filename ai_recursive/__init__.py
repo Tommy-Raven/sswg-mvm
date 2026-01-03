@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_recursive package — Recursive refinement utilities for SSWG MVM.
 
 This package handles:
@@ -8,6 +8,7 @@ This package handles:
 - Merging variants into improved candidates
 - Interfacing with memory/history for iterative refinement
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 """Tests for evaluation metric helpers."""
 
 from ai_evaluation.quality_metrics import evaluate_clarity

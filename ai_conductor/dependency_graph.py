@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_conductor/dependency_graph.py — Core-level dependency wrapper for SSWG MVM.
 
 This is a thin adapter around `ai_graph.dependency_mapper.DependencyGraph`
@@ -15,6 +15,7 @@ tailored to the needs of ai_conductor:
 ai_conductor code should import from here instead of directly from ai_graph so
 the underlying implementation can evolve without breaking callers.
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

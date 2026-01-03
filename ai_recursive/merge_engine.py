@@ -1,10 +1,11 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_recursive/merge_engine.py — Variant merging for SSWG MVM.
 
 Provides utilities to merge multiple workflow variants into a single
 “best effort” child workflow. The MVM strategy is deliberately simple.
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

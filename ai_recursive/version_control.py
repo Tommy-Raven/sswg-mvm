@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_recursive/version_control.py — Version helpers for recursive workflows.
 
 Provides:
@@ -7,6 +7,7 @@ Provides:
 - create_child_version: convenience for creating a child workflow dict,
   updating version, and recording history.
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

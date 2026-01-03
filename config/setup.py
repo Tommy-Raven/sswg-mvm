@@ -1,3 +1,4 @@
+"""Root configuration governed by canonical agent per AGENTS.md §19.1."""
 #!/usr/bin/env python3
 
 """Package configuration for the AI Instructional Workflow Generator."""

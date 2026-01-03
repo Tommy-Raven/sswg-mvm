@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 def test_imports_smoke() -> None:
     __import__("ai_conductor")
     __import__("ai_cores")

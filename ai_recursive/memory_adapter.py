@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_recursive/memory_adapter.py — Memory integration for recursive workflows.
 
 This module provides small helpers that connect the recursive subsystem
@@ -9,6 +9,7 @@ At MVM, the design goal is to avoid tight coupling:
 - We try to use ai_memory.MemoryStore if available.
 - We optionally log evolution via generator.history.HistoryManager.
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

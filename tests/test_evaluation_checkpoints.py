@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 """Tests for evaluation checkpoints."""
 
 from ai_evaluation.checkpoints import EvaluationCheckpointer

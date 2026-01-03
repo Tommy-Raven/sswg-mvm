@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_recursive/recursion_manager.py — Guardrails for recursive refinement.
 
 This module enforces hard safety constraints for recursive workflows:
@@ -13,6 +13,7 @@ This module enforces hard safety constraints for recursive workflows:
 The implementation is intentionally lightweight for MVM while still
 providing strict runtime checks and structured logging hooks.
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

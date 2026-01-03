@@ -1,0 +1,1 @@
+ai_conductor/ai_core.md:- **Composition over magic:** no hidden global state, no spooky behavior.

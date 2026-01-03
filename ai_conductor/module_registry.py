@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_conductor/module_registry.py — Module registry for SSWG MVM.
 
 The ModuleRegistry is a lightweight in-memory store that maps `module_id`
@@ -19,6 +19,7 @@ can be backed by a plugin system, config files, or remote service.
 
 Core storage utilities live in ai_cores.module_core.
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 

@@ -1,3 +1,4 @@
+"""Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 """Smoke tests for the orchestrator pipeline."""
 
 from ai_conductor.orchestrator import Orchestrator

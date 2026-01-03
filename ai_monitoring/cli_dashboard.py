@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""
+"""Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
+
 ai_monitoring/cli_dashboard.py — Minimal CLI dashboard for SSWG MVM.
 
 Responsibilities (MVM):
@@ -10,6 +10,7 @@ Responsibilities (MVM):
 This module is intentionally lightweight and suitable for local / dev use.
 In headless environments, callers may swap this out for a no-op stub.
 """
+#!/usr/bin/env python3
 
 from __future__ import annotations
 
