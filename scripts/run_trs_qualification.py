@@ -11,8 +11,8 @@ from generator.failure_emitter import FailureEmitter, FailureLabel
 from generator.hashing import hash_data
 from generator.pdl_validator import PDLValidationError, validate_pdl_object
 
-from compatibility_checks import evaluate_compatibility
-from scripts.overlay_ops import load_artifact, load_overlays, write_json
+from scripts.compatibility_checks import evaluate_compatibility
+from scripts.core.overlay_core import load_artifact, load_overlays, write_json
 
 
 def _parse_args() -> argparse.Namespace:
