@@ -10,7 +10,7 @@ from generator.failure_emitter import FailureEmitter, FailureLabel
 from generator.hashing import hash_data
 from generator.pdl_validator import PDLValidationError, validate_pdl_object
 
-from scripts.overlay_ops import (
+from scripts.core.overlay_core import (
     OverlayOperationError,
     apply_overlays,
     load_artifact,

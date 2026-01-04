@@ -8,8 +8,8 @@ from ai_cores.cli_arg_parser_core import build_parser, parse_args
 from generator.failure_emitter import FailureEmitter, FailureLabel
 from generator.hashing import hash_data
 
-from compatibility_checks import evaluate_compatibility
-from scripts.overlay_ops import (
+from scripts.compatibility_checks import evaluate_compatibility
+from scripts.core.overlay_core import (
     OverlayOperationError,
     load_artifact,
     load_overlays,

@@ -7,7 +7,7 @@ from typing import Any
 from generator.determinism import replay_determinism_check
 from generator.pdl_validator import PDLValidationError, validate_pdl_object
 
-from scripts.overlay_ops import OverlayOperationError, apply_overlays
+from scripts.core.overlay_core import OverlayOperationError, apply_overlays
 
 
 def evaluate_compatibility(
