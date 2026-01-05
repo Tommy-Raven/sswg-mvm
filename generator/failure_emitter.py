@@ -12,8 +12,11 @@ from generator.hashing import hash_data
 from generator.sanitizer import sanitize_payload
 
 ALLOWED_FAILURE_TYPES = {
+    "deprecation_violation",
     "deterministic_failure",
+    "governance_violation",
     "schema_failure",
+    "tooling_reference_violation",
     "io_failure",
     "tool_mismatch",
     "reproducibility_failure",
@@ -27,6 +30,7 @@ class FailureLabel:  # pylint: disable=invalid-name
     Type: str
     message: str
     phase_id: str
+    path: str = "<unspecified>"
     evidence: Optional[Dict[str, Any]] = None
 
     def as_dict(self) -> Dict[str, Any]:
@@ -35,6 +39,7 @@ class FailureLabel:  # pylint: disable=invalid-name
             "Type": self.Type,
             "message": self.message,
             "phase_id": self.phase_id,
+            "path": self.path,
         }
         if self.evidence is not None:
             payload["evidence"] = self.evidence
@@ -49,6 +54,8 @@ def validate_failure_label(label: FailureLabel) -> None:
         raise ValueError("Failure label message must be non-empty")
     if not label.phase_id:
         raise ValueError("Failure label phase_id must be non-empty")
+    if not label.path.strip():
+        raise ValueError("Failure label path must be non-empty")
 
 
 class FailureEmitter:  # pylint: disable=too-few-public-methods
@@ -72,6 +79,7 @@ class FailureEmitter:  # pylint: disable=too-few-public-methods
             Type=label.Type,
             message=label.message,
             phase_id=label.phase_id,
+            path=label.path,
             evidence=sanitize_payload(label.evidence) if label.evidence else None,
         )
         payload: Dict[str, Any] = {
