@@ -1,10 +1,16 @@
----
+# Canonic Ledger
+```yaml
 anchor:
-  anchor_id: directive_core_docs_sswg_constitution
-  anchor_version: "1.0.0"
-  scope: directive_core/docs
-  owner: sswg
-  status: draft
----
-
-# SSWG_CONSTITUTION
+  anchor_id: "sswg_constitution"
+  anchor_model: "sswg+mvm"
+  anchor_version: "1.2.0"
+  scope: "directive_core/docs"
+  owner:
+    - "2025© Raven Recordings"
+    - "Tommy Raven (Thomas Byers)"
+  status: "invariant"
+  output_mode: "non_operational_output"
+  init_purpose: "Define the canonical SSWG constitution for governance."
+  init_authors:
+    - "Tommy Raven"
+```

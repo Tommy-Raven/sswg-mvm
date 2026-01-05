@@ -1,10 +1,16 @@
----
+# Canonic Ledger
+```yaml
 anchor:
-  anchor_id: directive_core_docs_agents
-  anchor_version: "1.0.0"
-  scope: directive_core/docs
-  owner: sswg
-  status: draft
----
-
-# AGENTS
+  anchor_id: "sswg_agents"
+  anchor_model: "sswg+mvm"
+  anchor_version: "1.2.0"
+  scope: "directive_core/docs"
+  owner:
+    - "2025© Raven Recordings"
+    - "Tommy Raven (Thomas Byers)"
+  status: "invariant"
+  output_mode: "non_operational_output"
+  init_purpose: "Define canonical agent governance for directive_core."
+  init_authors:
+    - "Tommy Raven"
+```
