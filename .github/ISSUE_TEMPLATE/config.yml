@@ -1,8 +1,10 @@
 blank_issues_enabled: false
+
 contact_links:
-  - name: 📘 Documentation
-    url: https://github.com/Tommy-Raven/Grimoire-WorkflowAI/tree/main/docs
-    about: Review the docs before submitting an issue.
-  - name: 💬 Community Discussion
-    url: https://github.com/Tommy-Raven/Grimoire-WorkflowAI/discussions
-    about: For brainstorming or non-bug ideas.
+  - name: Documentation
+    url: https://github.com/Tommy-Raven/sswg-mvm/tree/main/docs
+    about: Review the internal documentation before submitting an issue.
+
+  - name: 💬 Not an Issue?
+    url: https://github.com/Tommy-Raven/sswg-mvm/discussions
+    about: Use Discussions for questions, ideas, or examples that are not bug reports.
