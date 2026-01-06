@@ -8,6 +8,11 @@ body:
   - type: markdown
     attributes:
       value: |
+        Governance-affecting proposals (schemas, directives, validators)
+        **MUST** be submitted using the **Governance / Directive Change** form.
+  - type: markdown
+    attributes:
+      value: |
         ## Feature request
 
         Use this form to propose **new capabilities or improvements**.
