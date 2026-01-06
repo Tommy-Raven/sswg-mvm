@@ -1,0 +1,21 @@
+{
+  "$schema": "../schemas/directive_definition.schema.json",
+  "schema_version": "1.0.0",
+  "directive_id": "sswg_constitution",
+  "title": "SSWG_CONSTITUTION",
+  "source_path": "directive_core/docs/SSWG_CONSTITUTION.md",
+  "scope": "directive_core/docs",
+  "status": "invariant",
+  "anchor_id": "sswg_constitution",
+  "anchor_model": "sswg+mvm",
+  "anchor_version": "1.2.0",
+  "owner": [
+    "2025© Raven Recordings",
+    "Tommy Raven (Thomas Byers)"
+  ],
+  "output_mode": "non_operational_output",
+  "init_purpose": "Define the canonical SSWG constitution for governance.",
+  "init_authors": [
+    "Tommy Raven"
+  ]
+}

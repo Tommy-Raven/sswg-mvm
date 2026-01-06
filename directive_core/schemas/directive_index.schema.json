@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Directive Index",
+  "type": "object",
+  "required": ["schema_version", "canonical_path", "definitions"],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "canonical_path": {
+      "type": "string"
+    },
+    "definitions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["directive_id", "definition_path", "schema_path"],
+        "properties": {
+          "directive_id": {
+            "type": "string"
+          },
+          "definition_path": {
+            "type": "string"
+          },
+          "schema_path": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

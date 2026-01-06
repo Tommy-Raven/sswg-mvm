@@ -1,0 +1,42 @@
+{
+  "$schema": "schemas/directive_index.schema.json",
+  "schema_version": "1.0.0",
+  "canonical_path": "directive_core",
+  "definitions": [
+    {
+      "directive_id": "sswg_governance_root",
+      "definition_path": "directive_core/definitions/governance_root.json",
+      "schema_path": "directive_core/schemas/directive_definition.schema.json"
+    },
+    {
+      "directive_id": "sswg_terminology",
+      "definition_path": "directive_core/definitions/terminology.json",
+      "schema_path": "directive_core/schemas/directive_definition.schema.json"
+    },
+    {
+      "directive_id": "sswg_constitution",
+      "definition_path": "directive_core/definitions/sswg_constitution.json",
+      "schema_path": "directive_core/schemas/directive_definition.schema.json"
+    },
+    {
+      "directive_id": "sswg_agents",
+      "definition_path": "directive_core/definitions/agents.json",
+      "schema_path": "directive_core/schemas/directive_definition.schema.json"
+    },
+    {
+      "directive_id": "sswg_architecture",
+      "definition_path": "directive_core/definitions/architecture.json",
+      "schema_path": "directive_core/schemas/directive_definition.schema.json"
+    },
+    {
+      "directive_id": "sswg_formal_guarantees",
+      "definition_path": "directive_core/definitions/formal_guarantees.json",
+      "schema_path": "directive_core/schemas/directive_definition.schema.json"
+    },
+    {
+      "directive_id": "sswg_references",
+      "definition_path": "directive_core/definitions/references.json",
+      "schema_path": "directive_core/schemas/directive_definition.schema.json"
+    }
+  ]
+}

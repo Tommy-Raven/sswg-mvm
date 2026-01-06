@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Directive Definition",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "directive_id",
+    "title",
+    "source_path",
+    "scope",
+    "status",
+    "anchor_id",
+    "anchor_model",
+    "anchor_version",
+    "owner",
+    "output_mode",
+    "init_purpose",
+    "init_authors"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "directive_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "source_path": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "anchor_id": {
+      "type": "string"
+    },
+    "anchor_model": {
+      "type": "string"
+    },
+    "anchor_version": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "output_mode": {
+      "type": "string"
+    },
+    "init_purpose": {
+      "type": "string"
+    },
+    "init_authors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
