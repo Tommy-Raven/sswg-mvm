@@ -14,7 +14,9 @@ from generator.sanitizer import sanitize_payload
 ALLOWED_FAILURE_TYPES = {
     "deprecation_violation",
     "deterministic_failure",
+    "governance_violation",
     "schema_failure",
+    "tooling_reference_violation",
     "io_failure",
     "tool_mismatch",
     "reproducibility_failure",
@@ -37,6 +39,7 @@ class FailureLabel:  # pylint: disable=invalid-name
             "Type": self.Type,
             "message": self.message,
             "phase_id": self.phase_id,
+            "path": self.path,
         }
         if self.path is not None:
             payload["path"] = self.path
