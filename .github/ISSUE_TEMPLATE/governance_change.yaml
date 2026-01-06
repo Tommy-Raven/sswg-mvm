@@ -1,0 +1,99 @@
+name: Governance / Directive Change
+description: Propose a change to directive_core governance, schemas, or constitutional documents
+title: "[GOVERNANCE] "
+labels: ["governance", "directive-change"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Governance / Directive Change Request
+
+        This form is **mandatory** for any proposal that modifies:
+        - `directive_core/docs/*`
+        - `directive_core/schemas/*`
+        - Governance ordering, invariants, or validation rules
+
+        ⚠️ Changes to governance are **phase-gated**, **fail-closed**, and **validator-enforced**.
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Governance phase
+      description: Select the phase in which this change is proposed.
+      options:
+        - Phase 0 (Repository preparation / quarantine)
+        - Phase 1 (Directive core establishment)
+        - Phase 2 (Validator enforcement & CI integration)
+        - Phase 3 (Stabilization / hardening)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: blocking_status
+    attributes:
+      label: Blocking status
+      description: Does this change block other work or releases?
+      options:
+        - Blocking (must be resolved before proceeding)
+        - Non-blocking
+    validations:
+      required: true
+
+  - type: textarea
+    id: change_summary
+    attributes:
+      label: Change summary
+      description: Concisely describe the governance or directive change being proposed.
+      placeholder: What invariant, rule, or document is being changed?
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation / rationale
+      description: Explain why this change is necessary and what problem it resolves.
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected_scope
+    attributes:
+      label: Affected directive_core scope
+      description: List exact files, schemas, or documents impacted.
+      placeholder: |
+        directive_core/docs/SSWG_CONSTITUTION.md
+        directive_core/schemas/...
+    validations:
+      required: true
+
+  - type: textarea
+    id: invariants
+    attributes:
+      label: Invariants impacted
+      description: List any invariants affected. Use exact terminology.
+      placeholder: |
+        - invariant_id:
+        - expected change:
+
+  - type: textarea
+    id: validation_impact
+    attributes:
+      label: Validator impact
+      description: Describe required validator updates or new enforcement rules.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Mandatory confirmations
+      options:
+        - label: I confirm this change does not introduce ambiguous interpretation.
+          required: true
+        - label: I confirm this change is aligned with SSWG_CONSTITUTION.md.
+          required: true
+        - label: I confirm validator enforcement will fail on mismatch.
+          required: true
