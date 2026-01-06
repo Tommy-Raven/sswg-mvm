@@ -1,7 +1,7 @@
 name: Feature request
-description: Propose an improvement aligned with sswg/mvm principles
-title: ""
-labels: []
+description: Propose an improvement aligned with sswg-mvm principles
+title: "[FEATURE] "
+labels: ["enhancement"]
 assignees: []
 
 body:
@@ -9,37 +9,40 @@ body:
     attributes:
       value: |
         ## Feature request
-        Share a clear proposal that aligns with the repository's 9-phase pipeline and validation gates.
+
+        Use this form to propose **new capabilities or improvements**.
+        Requests should align with the sswg/mvm 9-phase pipeline, determinism rules, and validation gates.
 
   - type: textarea
-    id: describe
+    id: feature_description
     attributes:
-      label: Describe the feature
-      description: A clear and concise description of the feature or improvement you want.
+      label: Feature description
+      description: Clearly describe the proposed feature or improvement.
+      placeholder: What should be added or changed?
     validations:
       required: true
 
   - type: textarea
     id: motivation
     attributes:
-      label: Problem or motivation
-      description: Explain the problem this solves or why it matters.
+      label: Motivation / problem statement
+      description: Explain the problem this feature solves or why it is needed.
     validations:
       required: true
 
   - type: textarea
-    id: approach
+    id: proposed_approach
     attributes:
       label: Proposed approach
-      description: Describe how you think this could be implemented.
+      description: Describe a possible implementation approach or design.
     validations:
       required: true
 
   - type: dropdown
-    id: layer
+    id: affected_layer
     attributes:
-      label: Affected layer (optional)
-      description: Select the most relevant repository area.
+      label: Affected repository layer
+      description: Select the primary layer impacted.
       options:
         - schemas/
         - pdl/
@@ -51,10 +54,10 @@ body:
         - Other
 
   - type: checkboxes
-    id: phases
+    id: affected_phases
     attributes:
-      label: Affected phase(s) (optional)
-      description: Choose any pipeline phases impacted.
+      label: Affected pipeline phase(s)
+      description: Select all phases this feature would impact.
       options:
         - label: ingest
         - label: normalize
@@ -67,33 +70,13 @@ body:
         - label: log
 
   - type: textarea
-    id: determinism
+    id: determinism_considerations
     attributes:
-      label: Determinism and validation considerations (optional)
-      description: Note any expected impacts on deterministic phases or schema validation.
+      label: Determinism and validation considerations
+      description: Describe any expected impact on deterministic phases, schemas, or validation gates.
 
   - type: textarea
-    id: context
+    id: additional_context
     attributes:
       label: Additional context
-      description: Add any other context or screenshots about the feature request here.
-
-  - type: markdown
-    attributes:
-      value: |
-        **Optional additional items**
-
-  - type: input
-    id: issue_default_title
-    attributes:
-      label: Issue default title
-
-  - type: input
-    id: assignees
-    attributes:
-      label: Assignees
-
-  - type: input
-    id: labels
-    attributes:
-      label: Labels
+      description: Add any other relevant information, links, or references.
