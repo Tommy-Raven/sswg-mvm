@@ -1,16 +1,15 @@
-  - type: markdown
-    attributes:
-      value: |
-        ⚠️ If this issue affects governance, directives, or validation rules,
-        **do not use this form**.
-        Submit a **Governance / Directive Change** instead.
-        
 name: Bug report
 description: Report a defect or regression affecting sswg-mvm behavior
 title: "[BUG] "
 labels: ["bug"]
 assignees: []
 body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ If this issue affects governance, directives, or validation rules,
+        **do not use this form**.
+        Submit a **Governance / Directive Change** instead.
   - type: markdown
     attributes:
       value: |
