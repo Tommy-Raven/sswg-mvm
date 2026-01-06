@@ -1,10 +1,10 @@
 blank_issues_enabled: false
 
 contact_links:
-  - name: Documentation
-    url: https://github.com/Tommy-Raven/sswg-mvm/tree/main/docs
-    about: Review the internal documentation before submitting an issue.
+  - name: 📜 Governance & Directives
+    url: https://github.com/Tommy-Raven/sswg-mvm/tree/main/directive_core/docs
+    about: Canonical governance documents and directive core.
 
-  - name: 💬 Not an Issue?
+  - name: 💬 Discussions
     url: https://github.com/Tommy-Raven/sswg-mvm/discussions
-    about: Use Discussions for questions, ideas, or examples that are not bug reports.
+    about: Questions, clarifications, or non-actionable discussion.
