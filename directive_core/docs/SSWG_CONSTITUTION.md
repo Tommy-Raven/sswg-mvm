@@ -15,6 +15,12 @@ anchor:
     - "Tommy Raven"
 ```
 
+## Naming Status (Canonical)
+
+Only **SSWG/MVM** (formal) and **sswg-mvm** (lowercase) are usable. All other
+variants are deprecated. See
+[`deprecated_ nomenclature.md`](./deprecated_%20nomenclature.md).
+
 ## Canonical Governance Ingestion Order
 
 Governance documents MUST be ingested in this exact order:
