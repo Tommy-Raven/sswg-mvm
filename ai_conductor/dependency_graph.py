@@ -1,6 +1,6 @@
 """Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
 
-ai_conductor/dependency_graph.py — Core-level dependency wrapper for SSWG MVM.
+ai_conductor/dependency_graph.py — Core-level dependency wrapper for sswg-mvm.
 
 This is a thin adapter around `ai_graph.dependency_mapper.DependencyGraph`
 tailored to the needs of ai_conductor:

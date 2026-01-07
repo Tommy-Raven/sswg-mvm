@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_validation/schema_validator.py — JSON Schema validation utilities for SSWG MVM.
+ai_validation/schema_validator.py — JSON Schema validation utilities for sswg-mvm.
 
 Provides:
 - validate_workflow: validate a workflow dict against workflow_schema.json

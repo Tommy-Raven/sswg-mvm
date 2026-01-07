@@ -1,1 +1,1 @@
-"""Canonical core utilities for SSWG MVM."""
+"""Canonical core utilities for sswg-mvm."""

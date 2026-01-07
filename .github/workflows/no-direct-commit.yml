@@ -1,5 +1,5 @@
 # =====================================================================
-# SSWG–MVM Governance Rule: PR-Only Enforcement
+# sswg-mvm Governance Rule: PR-Only Enforcement
 # File: .github/workflows/no-direct-commit.yml
 #
 # Purpose:
@@ -40,7 +40,7 @@ jobs:
         run: |
           echo "⛔ Direct push blocked."
           echo ""
-          echo "Branch protection is enabled for SSWG-MVM."
+          echo "Branch protection is enabled for sswg-mvm."
           echo "Only the repository owner and CI/CD bots may push directly."
           echo ""
           echo "Actor: ${{ github.actor }}"

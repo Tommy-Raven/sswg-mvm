@@ -13,9 +13,7 @@ def main() -> None:
     """Placeholder entrypoint for generating GitHub REST API documentation."""
     repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     timestamp = datetime.utcnow().isoformat()
-    output_path = os.path.join(repo_root, "artifacts", "git_REST_API.md")
-
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    output_path = os.path.join(repo_root, "git_REST_API.md")
     with open(output_path, "w", encoding="utf-8") as handle:
         handle.write(f"Generated at {timestamp}\n")
 

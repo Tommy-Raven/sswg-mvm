@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_graph/dependency_mapper.py — Dependency graph utilities for SSWG MVM.
+ai_graph/dependency_mapper.py — Dependency graph utilities for sswg-mvm.
 
 This module delegates to the canonical dependency engine in
 ai_cores.dependency_core.

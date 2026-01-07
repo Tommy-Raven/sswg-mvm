@@ -19,9 +19,9 @@ Date: 12-23-2025
 Document title: Instruction Lifecycle
 Author: Tommy Raven
 Licensing: Raven Recordings ©️ see: *LICENSE.md*
-(Document) Purpose: Define a universal lifecycle for instructions so creative artifacts move predictably from conception to retirement without conflicting versions or endless iteration. Establishes states, promotion gates, deprecation rules, and lineage safeguards aligned to the SSWG-MVM recursion and evaluation stack.
+(Document) Purpose: Define a universal lifecycle for instructions so creative artifacts move predictably from conception to retirement without conflicting versions or endless iteration. Establishes states, promotion gates, deprecation rules, and lineage safeguards aligned to the sswg-mvm recursion and evaluation stack.
 
-# Instruction Lifecycle — SSWG-MVM
+# Instruction Lifecycle — sswg-mvm
 
 ## Overview
 

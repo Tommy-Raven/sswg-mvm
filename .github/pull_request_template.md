@@ -18,7 +18,7 @@ SSWG Pull Request Template
 📘 Summary
 
 Describe what this PR does.
-Explain what was changed, why, and how it affects SSWG-MVM.
+Explain what was changed, why, and how it affects sswg-mvm.
 If this PR modifies generator logic, schema definitions, workflow templates, PDL, or meta-knowledge, call that out directly.
 
 

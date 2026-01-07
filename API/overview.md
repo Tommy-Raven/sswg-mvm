@@ -7,7 +7,7 @@ anchor:
   status: draft
 ---
 
-# 🧩 SSWG-MVM API Overview  
+# 🧩 sswg-mvm API Overview  
 ### Developer Reference · v.09.mvm.25
 
 The **SSWG Minimum Viable Model (MVM)** is a modular architecture composed of interoperable subsystems.  
@@ -40,7 +40,7 @@ ai_visualization/→ Mermaid/Graphviz/document exporters
 ai_monitoring/   → Telemetry, logging, diagnostics  
 ```
 
-All subsystems follow the SSWG-MVM principles:
+All subsystems follow the SSWG/MVM principles:
 
 - **Schema-aligned internal models**  
 - **Deterministic execution**  

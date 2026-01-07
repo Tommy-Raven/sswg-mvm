@@ -14,7 +14,7 @@ anchor:
   status: draft
 ---
 
-# ai_recursive — Recursive Refinement Layer (SSWG MVM)
+# ai_recursive — Recursive Refinement Layer (sswg-mvm)
 
 The `ai_recursive` package is responsible for **iterative improvement** of
 workflows:

@@ -14,7 +14,7 @@ anchor:
   status: draft
 ---
 
-# ai_conductor — Orchestration Spine for SSWG MVM
+# ai_conductor — Orchestration Spine for sswg-mvm
 
 The `ai_conductor` package is the orchestration backbone of the SSWG system.  
 It glues together:

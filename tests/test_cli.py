@@ -18,6 +18,6 @@ def test_cli_help():
     )
     require(result.returncode == 0, "Expected CLI help command to succeed")
     require(
-        "SSWG Workflow Generator" in result.stdout,
+        "sswg-mvm software" in result.stdout,
         "Expected CLI help output to include banner",
     )

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-data/data_parsing.py — Template loading & normalization for SSWG MVM.
+data/data_parsing.py — Template loading & normalization for sswg-mvm.
 
 Responsibilities:
 - Map human-friendly template slugs (e.g. "creative") to concrete JSON files.

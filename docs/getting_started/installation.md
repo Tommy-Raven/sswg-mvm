@@ -47,5 +47,5 @@ python3 -m generator.main --version
 Expected:
 
 ```
-SSWG Workflow Generator — MVM v1.2.0
+sswg-mvm software — MVM v1.2.0
 ```

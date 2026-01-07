@@ -1,5 +1,5 @@
 """
-generator/pdl_validator.py — PDL schema validation for SSWG MVM.
+generator/pdl_validator.py — PDL schema validation for sswg-mvm.
 
 Validates a PDL object or YAML file against the PDL phase set schema and
 emits deterministic failure labels on schema or IO errors.

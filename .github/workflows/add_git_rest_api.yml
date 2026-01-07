@@ -1,4 +1,4 @@
-name: "SSWG–MVM: Generate git_REST_API.md"
+name: "sswg-mvm: Generate git_REST_API.md"
 
 # ───────────────────────────────────────────────
 # EVENT TRIGGERS
@@ -8,8 +8,8 @@ on:
   push:
     branches: ["main"]
     paths:
-      - "scripts/write_git_REST_API_md.py"
-      - ".github/workflows/sswg-generate-git-rest-api.yml"
+      - "scripts/write_git_REST_API.py"
+      - ".github/workflows/add_git_rest_api.yml"
   pull_request:
     types: [opened, reopened, synchronize]
     branches: ["main"]
@@ -26,7 +26,7 @@ permissions:
 # ───────────────────────────────────────────────
 jobs:
   generate-rest-api-doc:
-    name: "Generate git_REST_API.md (SSWG–MVM)"
+    name: "Generate git_REST_API.md (sswg-mvm)"
     runs-on: ubuntu-latest
     timeout-minutes: 8
 
@@ -64,8 +64,8 @@ jobs:
       - name: Generate git_REST_API.md
         id: generate_doc
         run: |
-          echo "[SSWG-MVM] Running documentation generator script..."
-          python3 scripts/write_git_REST_API_md.py
+          echo "[sswg-mvm] Running documentation generator script..."
+          python3 scripts/write_git_REST_API.py
 
       # ----------------------------------------------------
       # 4. Detect Changed Content
@@ -86,14 +86,14 @@ jobs:
         id: commit_updated_documentation
         if: steps.detect_changes.outputs.doc_changed == 'true'
         run: |
-          git config --global user.name "SSWG-MVM AutoDoc Bot"
+          git config --global user.name "sswg-mvm AutoDoc Bot"
           git config --global user.email "actions@github.com"
 
           branch="autodoc/git-rest-api-$(date +'%Y%m%d-%H%M%S')"
           git checkout -b "$branch"
 
           git add git_REST_API.md
-          git commit -m "Auto-generate git_REST_API.md (SSWG-MVM v0.9.mvm.25)"
+          git commit -m "Auto-generate git_REST_API.md (sswg-mvm v0.9.mvm.25)"
           git push origin "$branch"
 
           echo "branch_name=$branch" >> "$GITHUB_OUTPUT"
@@ -106,14 +106,14 @@ jobs:
         uses: peter-evans/create-pull-request@d4f3be6ce6f4083b7ac7490ab98b48a62db1ee41
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          title: "SSWG-MVM AutoDoc Update: git_REST_API.md"
+          title: "sswg-mvm AutoDoc Update: git_REST_API.md"
           body: |
             Automated documentation refresh generated under:
 
-            - **Engine:** SSWG–MVM v0.9.mvm.25  
+            - **Engine:** sswg-mvm v0.9.mvm.25  
             - **Module:** Recursive AutoDoc Processor  
             - **Event:** `${{ github.event_name }}`  
-            - **Bot:** SSWG-MVM AutoDoc
+            - **Bot:** sswg-mvm AutoDoc
 
             This PR updates:  
             **git_REST_API.md**

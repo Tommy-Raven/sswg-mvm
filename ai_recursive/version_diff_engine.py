@@ -1,6 +1,6 @@
 """Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
 
-ai_recursive/version_diff_engine.py — Diff-based workflow comparison (SSWG MVM)
+ai_recursive/version_diff_engine.py — Diff-based workflow comparison (sswg-mvm)
 
 Compares two workflow versions (as dicts or JSON files) and produces a
 structured diff summary. Optionally, a caller-provided regeneration

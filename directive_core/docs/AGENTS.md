@@ -14,3 +14,9 @@ anchor:
   init_authors:
     - "Tommy Raven"
 ```
+
+## Naming Status (Canonical)
+
+Only **SSWG/MVM** (mindset and ethos) and **sswg-mvm** (software) are usable. All other
+variants are deprecated. See
+[`deprecated_ nomenclature.md`](./deprecated_%20nomenclature.md).

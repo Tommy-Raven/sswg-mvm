@@ -1,6 +1,6 @@
 """Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
 
-ai_monitoring package — Telemetry and observability for SSWG MVM.
+ai_monitoring package — Telemetry and observability for sswg-mvm.
 
 Public surface (MVM level):
 

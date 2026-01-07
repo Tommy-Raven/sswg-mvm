@@ -1,6 +1,6 @@
 """Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
 
-ai_monitoring/performance_alerts.py — Simple performance checks for SSWG MVM.
+ai_monitoring/performance_alerts.py — Simple performance checks for sswg-mvm.
 
 This module provides small, composable helpers to check basic performance
 conditions such as latency and error rate. It is intentionally lightweight

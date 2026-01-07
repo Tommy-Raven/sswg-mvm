@@ -3,7 +3,7 @@
 # Canonical governance will be resolved from directive_core/docs/
 #!/usr/bin/env python3
 
-"""Package configuration for the AI Instructional Workflow Generator."""
+"""Package configuration for the sswg-mvm software."""
 
 from setuptools import setup, find_packages
 
@@ -12,7 +12,7 @@ setup(
     version="1.3.0+mvm",
     author="Tommy Byers (Tommy-Raven)",
     author_email="your.email@example.com",
-    description="sswg mvm is the minimum viable model for the sswg workflow generation system.",
+    description="sswg-mvm is the minimum viable model for the sswg workflow generation system.",
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/Tommy-Raven/sswg-mvm1.0",

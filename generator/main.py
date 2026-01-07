@@ -2,7 +2,7 @@
 """
 generator/main.py — SSWG Minimum Viable Model Entrypoint
 
-AI Instructional Workflow Generator (MVM)
+sswg-mvm software (MVM)
 
 This version operates on schema-aligned JSON workflows:
 - Loads a workflow JSON file (e.g., data/templates/campfire_workflow.json)
@@ -616,7 +616,7 @@ def parse_args(argv: Optional[list] = None) -> argparse.Namespace:
     Parse command-line arguments for the MVM entrypoint.
     """
     parser = argparse.ArgumentParser(
-        description="SSWG MVM: Workflow validation, refinement, and export.",
+        description="sswg-mvm software: Workflow validation, refinement, and export.",
     )
     parser.add_argument(
         "-j",
@@ -997,12 +997,12 @@ def run_mvm(
 
 def main(argv: Optional[list] = None) -> int:
     """
-    Command-line entrypoint for the SSWG MVM generator.
+    Command-line entrypoint for the sswg-mvm software.
     """
     args = parse_args(argv)
 
     if args.version:
-        print("SSWG Workflow Generator — MVM v0.1.0")
+        print("sswg-mvm software — MVM v0.1.0")
         return 0
 
     # Resolve workflow source:

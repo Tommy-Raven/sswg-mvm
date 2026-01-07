@@ -1,6 +1,6 @@
 """Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
 
-ai_monitoring/cli_dashboard.py — Minimal CLI dashboard for SSWG MVM.
+ai_monitoring/cli_dashboard.py — Minimal CLI dashboard for sswg-mvm.
 
 Responsibilities (MVM):
 - Track workflow "cycles" (runs) with success/failure counts.

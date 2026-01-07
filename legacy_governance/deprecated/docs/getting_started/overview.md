@@ -14,11 +14,11 @@ anchor:
   status: draft
 ---
 
-# Getting Started with SSWG-MVM
+# Getting Started with sswg-mvm
 
-This section introduces the Minimum Viable Model for the Synthetic Synthesist of Workflow Generation (SSWG-MVM).  
+This section introduces the Minimum Viable Model for the Synthetic Synthesist of Workflow Generation (sswg-mvm).  
 
-## What is SSWG-MVM?
+## What is sswg-mvm?
 
 A modular, schema-enforced AI system that:
 
@@ -32,7 +32,7 @@ A modular, schema-enforced AI system that:
 
 # Workflow Lifecycle
 
-SSWG-MVM runs through:
+sswg-mvm runs through:
 
 1. **Loading**  
 2. **Schema validation**  

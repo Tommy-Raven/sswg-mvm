@@ -14,9 +14,9 @@ anchor:
   status: draft
 ---
 
-# Quickstart Guide — SSWG-MVM
+# Quickstart Guide — sswg-mvm
 
-Welcome to **SSWG-MVM (Synthetic Synthesist of Workflow Generation — Minimum Viable Model)**.
+Welcome to **sswg-mvm (Synthetic Synthesist of Workflow Generation — Minimum Viable Model)**.
 
 This system generates, evaluates, and recursively evolves instructional workflows, producing both **human-readable** and **machine-readable** outputs. It is designed for reproducibility, extensibility, and research-grade inspection.
 

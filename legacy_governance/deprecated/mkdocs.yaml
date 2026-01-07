@@ -5,7 +5,7 @@
 > Canonical governance will reside exclusively in `directive_core/docs/`.
 > This file exists only for historical or migration reference.
 
-site_name: "SSWG–MVM Documentation"
+site_name: "sswg-mvm Documentation"
 site_description: "Synthetic Synthesist of Workflow Generation — Minimum Viable Model (v.09.mvm.25)"
 site_author: "Tommy Raven / Raven Recordings, LLC © 2025"
 site_url: "https://tommy-raven.github.io/sswg-mvm1.0/"

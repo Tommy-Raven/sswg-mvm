@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_cores/dependency_core.py — Canonical dependency graph utilities for SSWG MVM.
+ai_cores/dependency_core.py — Canonical dependency graph utilities for sswg-mvm.
 
 Provides deterministic dependency resolution and cycle correction.
 """

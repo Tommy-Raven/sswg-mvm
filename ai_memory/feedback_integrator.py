@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 ai_memory/feedback_integrator.py
-Grimoire / SSWG MVM — Feedback Integration & Long-Term Memory Engine
+Grimoire / sswg-mvm — Feedback Integration & Long-Term Memory Engine
 
 Aggregates historical feedback, regeneration outcomes, and evaluation
 metrics into a persistent knowledge base. Used to:

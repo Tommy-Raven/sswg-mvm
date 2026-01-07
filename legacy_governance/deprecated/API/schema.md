@@ -20,7 +20,7 @@ anchor:
 ```markdown
 # 📐 Workflow Schema API
 
-SSWG–MVM is fully schema-driven.
+sswg-mvm is fully schema-driven.
 
 Schemas define:
 

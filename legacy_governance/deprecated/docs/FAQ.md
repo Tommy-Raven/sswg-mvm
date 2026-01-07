@@ -19,14 +19,14 @@ Date: 05-03-2025
 Document title: Frequently Asked Questions (FAQ)
 Author: Tommy Raven
 Licensing: Raven Recordings ©️ see: *LICENSE.md*
-(Document) Purpose: Provide quick answers about the SSWG-MVM, including installation, workflow execution, recursion controls, memory, evaluation, and contribution pathways. Connect new readers to the root [README](../README.md) and [docs/README.md](./README.md) so they can navigate to deeper architecture and API guides. Emphasize SSWG as the topic base multiplier that keeps refinements anchored during iterative runs.
+(Document) Purpose: Provide quick answers about the sswg-mvm, including installation, workflow execution, recursion controls, memory, evaluation, and contribution pathways. Connect new readers to the root [README](../README.md) and [docs/README.md](./README.md) so they can navigate to deeper architecture and API guides. Emphasize SSWG as the topic base multiplier that keeps refinements anchored during iterative runs.
 
-# Frequently Asked Questions (FAQ) — SSWG-MVM
+# Frequently Asked Questions (FAQ) — sswg-mvm
 
 ## General
 
-**Q:** What is the SSWG-MVM?
-**A:** The SSWG-MVM is a modular AI system for generating, evaluating, and recursively improving instructional workflows. It produces human- and machine-readable outputs, with persistent memory and deterministic execution while keeping the SSWG topic focus anchored as iterations progress.
+**Q:** What is the sswg-mvm?
+**A:** The sswg-mvm is a modular AI system for generating, evaluating, and recursively improving instructional workflows. It produces human- and machine-readable outputs, with persistent memory and deterministic execution while keeping the SSWG topic focus anchored as iterations progress.
 
 **Q:** Who is this system intended for?
 **A:** Developers, AI researchers, and instructional designers looking for automated workflow generation with self-improving recursive capabilities.

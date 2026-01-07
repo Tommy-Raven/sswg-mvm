@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_visualization/mermaid_generator.py — Mermaid diagram generator for SSWG MVM.
+ai_visualization/mermaid_generator.py — Mermaid diagram generator for sswg-mvm.
 
 Converts a schema-aligned workflow dict into a Mermaid flowchart.
 

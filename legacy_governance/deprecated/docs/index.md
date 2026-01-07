@@ -14,19 +14,19 @@ anchor:
   status: draft
 ---
 
-# 🐦 SSWG-MVM — Synthetic Synthesist of Workflow Generation  
+# 🐦 sswg-mvm — Synthetic Synthesist of Workflow Generation  
 ### *Minimum Viable Model Documentation*  
 Created by **Tommy Raven / Raven Recordings, LLC ©2025**
 
 ---
 
 <div align="center">
-<img src="assets/raven.svg" width="200px" alt="SSWG-MVM Logo"/>
+<img src="assets/raven.svg" width="200px" alt="sswg-mvm Logo"/>
 </div>
 
 <p align="center">
 <a href="https://github.com/Tommy-Raven/sswg-mvm1.0">
-<img src="https://img.shields.io/badge/SSWG-MVM-v1.2.0-purple?style=flat-square">
+<img src="https://img.shields.io/badge/sswg-mvm-v1.2.0-purple?style=flat-square">
 </a>
 <img src="https://img.shields.io/badge/Python-3.10+-blue?style=flat-square">
 <img src="https://img.shields.io/badge/Status-Stable-green?style=flat-square">
@@ -37,7 +37,7 @@ Created by **Tommy Raven / Raven Recordings, LLC ©2025**
 
 # 🌑 Overview
 
-**SSWG-MVM** is a recursive, schema-aligned, instruction-generating AI engine capable of:
+**sswg-mvm** is a recursive, schema-aligned, instruction-generating AI engine capable of:
 
 - interpreting high-level human goals  
 - generating structured, multi-phase workflows  

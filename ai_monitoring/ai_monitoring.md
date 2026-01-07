@@ -7,7 +7,7 @@ anchor:
   status: draft
 ---
 
-# ai_monitoring — Telemetry & Observability for SSWG MVM
+# ai_monitoring — Telemetry & Observability for sswg-mvm
 
 The `ai_monitoring` package is the observability layer of SSWG:
 

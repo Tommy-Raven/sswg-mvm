@@ -14,10 +14,10 @@ anchor:
   status: draft
 ---
 
-# 🌍 SSWG–MVM API Routes  
+# 🌍 sswg-mvm API Routes  
 **Canonical HTTP Interface for Workflow Generation, Validation & Recursion**
 
-The SSWG–MVM engine exposes a clean, predictable, schema-aligned REST API designed for automation, tooling integration, and recursive meta-workflow pipelines.  
+The sswg-mvm engine exposes a clean, predictable, schema-aligned REST API designed for automation, tooling integration, and recursive meta-workflow pipelines.  
 Every route returns structured JSON and follows deterministic behavior based on the MVM core.
 
 ---
@@ -80,7 +80,7 @@ Production-style deployments typically mount under the same `/api` root.
 
 ## POST /api/workflows/validate
 
-—Validate any workflow dict against the official SSWG–MVM schema.
+—Validate any workflow dict against the official sswg-mvm schema.
 
 ### Request Body
 
@@ -175,7 +175,7 @@ Production-style deployments typically mount under the same `/api` root.
 
 > {
   "status": "ok",
-  "engine": "SSWG–MVM",
+  "engine": "sswg-mvm",
   "version": "v1.2.0"
 }
 

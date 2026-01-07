@@ -1,4 +1,4 @@
-name: "SSWG–MVM: Build & Test Core System"
+name: "sswg-mvm: Build & Test Core System"
 
 # ───────────────────────────────────────────────
 # EVENT TRIGGERS
@@ -41,7 +41,7 @@ permissions:
 # ───────────────────────────────────────────────
 jobs:
   build_and_lint:
-    name: 🧩 Build & Lint (SSWG–MVM Core)
+    name: 🧩 Build & Lint (sswg-mvm Core)
     runs-on: ubuntu-latest
 
     steps:
@@ -109,5 +109,5 @@ jobs:
     steps:
       - name: 💬 Post summary
         run: |
-          echo "✅ SSWG–MVM CI Pipeline completed successfully."
+          echo "✅ sswg-mvm CI Pipeline completed successfully."
 

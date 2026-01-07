@@ -19,13 +19,13 @@ Date: 05-03-2025
 Document title: Community & Collaboration Guide
 Author: Tommy Raven
 Licensing: Raven Recordings ©️ see: *LICENSE.md*
-(Document) Purpose: Outline how contributors collaborate around the SSWG-MVM, including contribution etiquette, communication channels, and onboarding steps. Reinforce that SSWG is the topic base multiplier that guides recursive work. Link newcomers to the root [README](../README.md) and [docs/README.md](./README.md) for deeper system context.
+(Document) Purpose: Outline how contributors collaborate around the sswg-mvm, including contribution etiquette, communication channels, and onboarding steps. Reinforce that SSWG is the topic base multiplier that guides recursive work. Link newcomers to the root [README](../README.md) and [docs/README.md](./README.md) for deeper system context.
 
-# Community & Collaboration Guide — SSWG-MVM
+# Community & Collaboration Guide — sswg-mvm
 
 ## Overview
 
-**SSWG-MVM** encourages collaboration, learning, and shared development of AI instructional workflows. This document outlines community expectations, contribution paths, and communication channels.
+**sswg-mvm** encourages collaboration, learning, and shared development of instructional workflows. This document outlines community expectations, contribution paths, and communication channels.
 
 ---
 

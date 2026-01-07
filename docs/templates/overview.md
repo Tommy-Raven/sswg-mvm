@@ -8,9 +8,9 @@ anchor:
 ---
 
 # 📚 Workflow Template Library  
-### SSWG-MVM — Modular Instruction Blueprint System
+### sswg-mvm — Modular Instruction Blueprint System
 
-The SSWG-MVM ships with a curated set of **base templates** that provide structured, domain-specific workflow blueprints. These templates serve as:
+The sswg-mvm ships with a curated set of **base templates** that provide structured, domain-specific workflow blueprints. These templates serve as:
 
 - **starting points** for generation  
 - **training data** for schema alignment  

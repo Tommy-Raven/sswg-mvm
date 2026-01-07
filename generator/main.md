@@ -12,7 +12,7 @@ anchor:
 """
 generator/main.py — codename 'Grimoire' Version 4.5  (Merged/Unified)
 
-AI Instructional Workflow Generator
+sswg-mvm software
 -----------------------------------
 Combines the interactive CLI and programmatic JSON builder into a single,
 cohesive engine.
@@ -46,14 +46,14 @@ logger.addHandler(handler)
 # ─── Input Parsing ────────────────────────────────────────────────
 def parse_user_input(argv: Optional[list] = None) -> Dict[str, Any]:
     """Parse CLI args or fall back to interactive prompts."""
-    parser = argparse.ArgumentParser(description="AI Instructional Workflow Generator")
+    parser = argparse.ArgumentParser(description="sswg-mvm software")
     parser.add_argument("--purpose", "-p", type=str, help="Purpose of the workflow")
     parser.add_argument("--audience", "-a", type=str, help="Target audience")
     parser.add_argument("--delivery_mode", "-d", type=str, help="Delivery modes (e.g., text,code)")
     parser.add_argument("--expansion_mode", "-x", type=str, help="Expansion modes (e.g., recursive,modular)")
     parser.add_argument("--evaluation_method", "-e", type=str, help="Evaluation method (self-refinement, peer-review)")
     parser.add_argument("--style", "-s", type=str, help="Workflow style/voice (technical, friendly, wizardly)")
-    parser.add_argument("--title", "-t", type=str, default="AI Instructional Workflow Generator")
+    parser.add_argument("--title", "-t", type=str, default="sswg-mvm software")
     parser.add_argument("--out", "-o", type=str, default="./build/ai_workflow_output.json", help="Output JSON path")
     parser.add_argument("--pretty", action="store_true", help="Write pretty JSON output")
     parser.add_argument("--overwrite", action="store_true", help="Allow overwriting existing files")
@@ -62,7 +62,7 @@ def parse_user_input(argv: Optional[list] = None) -> Dict[str, Any]:
     args = parser.parse_args(argv)
 
     if args.version:
-        print("AI Instructional Workflow Generator v4.5.0")
+        print("sswg-mvm software v4.5.0")
         sys.exit(0)
 
     # Fallback interactive prompts if args missing

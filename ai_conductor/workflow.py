@@ -1,6 +1,6 @@
 """Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
 
-ai_conductor/workflow.py — Core workflow container for SSWG MVM.
+ai_conductor/workflow.py — Core workflow container for sswg-mvm.
 
 This class is deliberately hybrid:
 

@@ -239,7 +239,7 @@ snapshot without regenerating.
 
     sswg-mvm1.0/
     ├── generator/
-    │     └── main.py                 → Primary workflow generator entry point
+    │     └── main.py                 → Primary workflow software entry point
     ├── ai_validation/                → JSON schema enforcement
     ├── ai_graph/                     → DAG building & correction logic
     ├── ai_recursive/                 → Recursion engine

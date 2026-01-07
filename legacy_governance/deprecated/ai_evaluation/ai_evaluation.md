@@ -14,7 +14,7 @@ anchor:
   status: draft
 ---
 
-# ai_evaluation — Quality, Scoring, and Semantic Checks (SSWG MVM)
+# ai_evaluation — Quality, Scoring, and Semantic Checks (sswg-mvm)
 
 The `ai_evaluation` package is responsible for assigning *quality signals*
 to workflows and their outputs. At the MVM stage, the goals are:

@@ -12,7 +12,7 @@ Date: 05-03-2025
 Document title: Metrics System
 Author: Tommy Raven
 Licensing: Raven Recordings ©️ see: *LICENSE.md*
-(Document) Purpose: Describe the metrics surfaces that keep the SSWG-MVM accountable and observable. Highlight how evaluation, memory, and recursion layers report progress while maintaining the SSWG topic base multiplier through refinements. Point readers to the root [README](../README.md) and [docs/README.md](./README.md) for related workflows and entrypoints.
+(Document) Purpose: Describe the metrics surfaces that keep the sswg-mvm accountable and observable. Highlight how evaluation, memory, and recursion layers report progress while maintaining the SSWG topic base multiplier through refinements. Point readers to the root [README](../README.md) and [docs/README.md](./README.md) for related workflows and entrypoints.
 
 anchor_id: metrics_system_docs
 anchor_version: v1
@@ -20,11 +20,11 @@ scope: docs
 owner: metrics-team
 status: draft
 
-# Metrics System — SSWG-MVM
+# Metrics System — sswg-mvm
 
 ## Overview
 
-The Metrics System provides structured measurement of workflow quality, clarity, expandability, and AI-readability within the **SSWG-MVM**. It integrates with evaluation, memory, and recursion layers for continuous improvement while verifying that SSWG remains the central subject of each iteration.
+The Metrics System provides structured measurement of workflow quality, clarity, expandability, and AI-readability within the **sswg-mvm**. It integrates with evaluation, memory, and recursion layers for continuous improvement while verifying that SSWG remains the central subject of each iteration.
 
 ---
 

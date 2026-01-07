@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Golden-path end-to-end run for sswg mvm."""
+"""Golden-path end-to-end run for sswg-mvm."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from generator.main import DEFAULT_TEMPLATE, run_mvm
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Run the sswg mvm golden-path end-to-end demo.",
+        description="Run the sswg-mvm golden-path end-to-end demo.",
     )
     parser.add_argument(
         "--template",

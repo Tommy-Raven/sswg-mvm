@@ -10,7 +10,7 @@ anchor:
 # 🧩 Workflow API
 
 Workflow-related endpoints and functions allow external systems to invoke
-the full SSWG–MVM pipeline, including:
+the full sswg-mvm pipeline, including:
 
 - Workflow creation
 - Refinement & recursion
@@ -56,7 +56,7 @@ Exports workflow artifacts.
 
 ## 🗂 Workflow Structure
 
-A valid SSWG–MVM workflow contains:
+A valid sswg-mvm workflow contains:
 
 ```json
 {

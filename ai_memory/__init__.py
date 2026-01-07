@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_memory package — Long-lived state, feedback, and benchmarks for SSWG MVM.
+ai_memory package — Long-lived state, feedback, and benchmarks for sswg-mvm.
 """
 
 from __future__ import annotations

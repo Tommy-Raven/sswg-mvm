@@ -1,4 +1,4 @@
-name: SSWG–MVM Auto Version Bump
+name: sswg-mvm Auto Version Bump
 
 on:
   push:

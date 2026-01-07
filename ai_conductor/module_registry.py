@@ -1,6 +1,6 @@
 """Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
 
-ai_conductor/module_registry.py — Module registry for SSWG MVM.
+ai_conductor/module_registry.py — Module registry for sswg-mvm.
 
 The ModuleRegistry is a lightweight in-memory store that maps `module_id`
 to callable implementations and metadata.

@@ -1,14 +1,14 @@
 # =====================================================================
-# SSWG–MVM API CI Pipeline
+# sswg-mvm API CI Pipeline
 # File: .github/workflows/add_git_rest_api.yml
 # Description:
 #   Validates, lints, and tests API/ + generator/ modules.
-#   Designed for SSWG–MVM v0.9.mvm.25 governance rules.
+#   Designed for sswg-mvm v0.9.mvm.25 governance rules.
 #
 # Author: Tommy Raven / Raven Recordings, LLC ©2025
 # =====================================================================
 
-name: "🧩 SSWG–MVM: Build & Test API"
+name: "🧩 sswg-mvm: Build & Test API"
 
 # ---------------------------------------------------------------------
 # EVENT TRIGGERS
@@ -131,6 +131,6 @@ jobs:
     steps:
       - name: 💬 Post Summary
         run: |
-          echo "🎉 SSWG–MVM API pipeline completed successfully!"
+          echo "🎉 sswg-mvm API pipeline completed successfully!"
           echo "API + generator modules linted and tested."
           echo "Version: v0.9.mvm.25"

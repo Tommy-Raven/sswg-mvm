@@ -7,7 +7,7 @@ anchor:
   status: draft
 ---
 
-# ai_memory — Memory, Feedback, and Benchmarks (SSWG MVM)
+# ai_memory — Memory, Feedback, and Benchmarks (sswg-mvm)
 
 The `ai_memory` package is responsible for *state that persists across runs*:
 

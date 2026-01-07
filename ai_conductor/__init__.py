@@ -1,6 +1,6 @@
 """Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
 
-ai_conductor package — Core orchestration primitives for SSWG MVM.
+ai_conductor package — Core orchestration primitives for sswg-mvm.
 
 This package is responsible for:
 - Defining the core workflow data model

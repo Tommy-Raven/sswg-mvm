@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_evaluation/scoring_adapter.py — Score normalization utilities for SSWG MVM.
+ai_evaluation/scoring_adapter.py — Score normalization utilities for sswg-mvm.
 
 Provides a small adapter class to normalize arbitrary raw scores into a
 standard 0–1 range and clip outliers.
