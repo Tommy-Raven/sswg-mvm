@@ -21,11 +21,11 @@ Author: Tommy Raven
 Licensing: Raven Recordings ©️ see: *LICENSE.md*
 (Document) Purpose: Describe how the SSWG recursion layer drives iterative improvement, aligns with repository entrypoints, and keeps refinements observable and reproducible across runs. Summarize the core components that translate evaluation signals into new iterations. Provide onboarding tips for extending the module while preserving schema and safety guarantees. Show how recursion connects to memory, evaluation, and export paths referenced in the root [README](../README.md) and [docs/README.md](./README.md).
 
-# AI Recursion Module — SSWG-MVM
+# AI Recursion Module — sswg-mvm
 
 ## Overview
 
-The AI Recursion module is a core component of the **SSWG-MVM**, responsible for enabling workflows to self-improve, self-expand, and propagate learning across subsequent workflows. This module ensures that each generated instructional workflow can recursively teach itself, update its own logic, and provide feedback to other AI agents or human operators. SSWG (the topic base multiplier) anchors each refinement pass so outputs stay centered on the requested subject while the system iterates.
+The AI Recursion module is a core component of the **sswg-mvm**, responsible for enabling workflows to self-improve, self-expand, and propagate learning across subsequent workflows. This module ensures that each generated instructional workflow can recursively teach itself, update its own logic, and provide feedback to other AI agents or human operators. SSWG (the topic base multiplier) anchors each refinement pass so outputs stay centered on the requested subject while the system iterates.
 
 Key goals of the module:
 

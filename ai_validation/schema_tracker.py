@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_validation/schema_tracker.py — Schema discovery utilities for SSWG MVM.
+ai_validation/schema_tracker.py — Schema discovery utilities for sswg-mvm.
 
 Responsibilities (MVM level):
 

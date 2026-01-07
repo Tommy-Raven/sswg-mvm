@@ -15,7 +15,7 @@ anchor:
 ---
 
 Below is a fully rewritten, updated schema.md, aligned with:
-* SSWG-MVM philosophy
+* SSWG/MVM philosophy
 * `ts/dtr` versioning logic
 * the canonical repo structure
 * deterministic + transitive semantic expectations
@@ -26,7 +26,7 @@ Below is a fully rewritten, updated schema.md, aligned with:
 
 ---
  
-# SSWG-MVM Schema Overview
+# sswg-mvm Schema Overview
 ### *(Updated & Standardized to Current SSWG-1.0.0mvm Specifications)*
 
 > This directory defines the JSON Schemas used by the SSWG Minimum Viable Model (MVM) and all future `ts/dtr` builds. These schemas formalize the structure, semantics, and constraints of workflows, phases, tasks, recursion metadata, modules, ontology views, and evaluation systems. 

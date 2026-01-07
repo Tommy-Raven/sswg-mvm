@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Asynchronous Task Executor for SSWG MVM.
+Asynchronous Task Executor for sswg-mvm.
 
 Provides helpers for running synchronous and asynchronous functions concurrently,
 with structured logging and safe error handling at task boundaries.

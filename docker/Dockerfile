@@ -1,2 +1,2 @@
 # Placeholder Dockerfile.
-# Build steps for the SSWG/MVM runtime image will be defined here.
+# Build steps for the sswg-mvm runtime image will be defined here.

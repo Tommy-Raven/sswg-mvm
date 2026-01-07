@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_validation package — Validation utilities for SSWG MVM.
+ai_validation package — Validation utilities for sswg-mvm.
 
 Public surface (MVM level):
 

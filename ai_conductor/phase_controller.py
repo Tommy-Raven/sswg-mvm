@@ -1,6 +1,6 @@
 """Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
 
-ai_conductor/phase_controller.py — Phase-level execution for SSWG MVM.
+ai_conductor/phase_controller.py — Phase-level execution for sswg-mvm.
 
 The PhaseController is responsible for:
 

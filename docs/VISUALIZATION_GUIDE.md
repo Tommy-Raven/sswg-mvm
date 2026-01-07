@@ -7,7 +7,7 @@ anchor:
   status: draft
 ---
 
-# Visualization Guide — AI Instructions Workflow Generator
+# Visualization Guide — sswg-mvm software
 
 ## Overview
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_validation/regression_tests.py — Minimal regression harness for SSWG MVM.
+ai_validation/regression_tests.py — Minimal regression harness for sswg-mvm.
 
 Purpose:
 - Quickly verify that canonical workflow JSON files still pass schema validation.

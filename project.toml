@@ -10,7 +10,7 @@ name = "sswg-mvm"
 version = "1.3.0+mvm"
 status = "active"
 release_stage = "pre-release"
-description = "sswg mvm is the minimum viable model for the sswg workflow generation system."
+description = "sswg-mvm is the minimum viable model for the sswg workflow generation system."
 
 [system]
 component = "sswg"

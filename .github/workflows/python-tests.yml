@@ -1,16 +1,16 @@
 # ===================================================================== 
-# SSWG–MVM Python Tests Workflow
+# sswg-mvm Python Tests Workflow
 # File: .github/workflows/python-tests.yml
 #
 # Purpose:
-#   - Run the full pytest suite for SSWG–MVM.
+#   - Run the full pytest suite for sswg-mvm.
 #   - Ensure all modules (API, generator, ai_core, etc.) pass.
 #
 # Author: Tommy Raven / Raven Recordings, LLC ©2025
 # Version: v0.9.mvm.25
 # =====================================================================
 
-name: 🧪 SSWG–MVM Python Tests
+name: 🧪 sswg-mvm Python Tests
 
 on:
   push:

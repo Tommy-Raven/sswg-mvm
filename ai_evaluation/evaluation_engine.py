@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_evaluation/evaluation_engine.py — Quality evaluation engine for SSWG MVM.
+ai_evaluation/evaluation_engine.py — Quality evaluation engine for sswg-mvm.
 
 High-level orchestration over individual metric functions defined in
 `quality_metrics.py`.

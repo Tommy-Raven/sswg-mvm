@@ -20,10 +20,10 @@ Applies to: (sswg: minimum viable model) sswg-mvm-1.x
 
 Status: Living document aligned to repository state
 
-# SSWG-MVM Architecture
+# sswg-mvm Architecture
 
 ## Scope
-This document describes the canonical architecture of the SSWG-MVM system as implemented in the SSWG-mvm1.0 repository.
+This document describes the canonical architecture of the sswg-mvm system as implemented in the SSWG-mvm1.0 repository.
 
 It is intentionally code-first: all diagrams, subsystems, and execution flows reference real files and directories present in the repository. This document serves simultaneously as:
 - a developer onboarding reference,
@@ -33,7 +33,7 @@ It is intentionally code-first: all diagrams, subsystems, and execution flows re
 ---
 
 ## System Definition
-SSWG-MVM (Synthetic Synthesist of Workflow Generation â€” Minimum Viable Model) is a schema-governed workflow generation and refinement system featuring:
+sswg-mvm (Synthetic Synthesist of Workflow Generation â€” Minimum Viable Model) is a schema-governed workflow generation and refinement system featuring:
 - deterministic pipeline execution,
 - formal validation against versioned schemas,
 - semantic and quality evaluation,
@@ -181,7 +181,7 @@ Abstracts model inference, enabling integration with local or API-based LLMs for
 
 - [modules/llm_adapter.py](../modules/llm_adapter.py)
 
-This layer allows SSWG-MVM to remain model-agnostic while supporting LLM-in-the-loop recursion, bridging to any local runtime or remote API for targeted refinements or meta-generation passes.
+This layer allows sswg-mvm to remain model-agnostic while supporting LLM-in-the-loop recursion, bridging to any local runtime or remote API for targeted refinements or meta-generation passes.
 
 ---
 

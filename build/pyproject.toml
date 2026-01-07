@@ -95,7 +95,7 @@ ignore_missing_imports = true
 strict_optional = true
 
 # ----------------------------
-# SSWG–MVM Internal Metadata
+# sswg-mvm Internal Metadata
 # ----------------------------
 [tool.sswg]
 schema-version = "1.0.0"

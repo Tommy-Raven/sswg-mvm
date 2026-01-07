@@ -9,7 +9,7 @@ anchor:
 
 # 📜 Workflow Structure Specification
 
-SSWG-MVM workflows follow a strict, schema-aligned structure.
+sswg-mvm workflows follow a strict, schema-aligned structure.
 
 ---
 

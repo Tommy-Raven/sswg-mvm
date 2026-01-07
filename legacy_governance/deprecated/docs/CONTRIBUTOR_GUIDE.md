@@ -19,13 +19,13 @@ Date: 05-03-2025
 Document title: Contributor Guide
 Author: Tommy Raven
 Licensing: Raven Recordings ©️ see: *LICENSE.md*
-(Document) Purpose: Help new contributors onboard to the SSWG-MVM by outlining setup, project structure, coding standards, and support channels. Reinforce that SSWG is the topic base multiplier guiding recursive refinement. Direct readers to the root [README](../README.md) and [docs/README.md](./README.md) for system entrypoints and navigation.
+(Document) Purpose: Help new contributors onboard to the sswg-mvm by outlining setup, project structure, coding standards, and support channels. Reinforce that SSWG is the topic base multiplier guiding recursive refinement. Direct readers to the root [README](../README.md) and [docs/README.md](./README.md) for system entrypoints and navigation.
 
-# Contributor Guide — SSWG-MVM
+# Contributor Guide — sswg-mvm
 
 ## Welcome
 
-Welcome to the **SSWG-MVM**, an AI instructional workflow generator anchored on the SSWG topic base multiplier. This guide helps new contributors onboard quickly, understand the system architecture, and follow best practices for development, testing, and contribution.
+Welcome to the **sswg-mvm**, the workflow software anchored on the SSWG topic base multiplier. This guide helps new contributors onboard quickly, understand the system architecture, and follow best practices for development, testing, and contribution.
 
 ---
 
@@ -156,4 +156,4 @@ CI/CD uses GitHub Actions to enforce tests, code linting, and deployment checks.
 * GitHub Issues preferred for questions or support.
 * Author: Tommy Raven
 * Repository: [github.com/Tommy-Raven/sswg-mvm1.0](https://github.com/Tommy-Raven/sswg-mvm1.0)
-* Codename: SSWG-MVM
+* Codename: sswg-mvm

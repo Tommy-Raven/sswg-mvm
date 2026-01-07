@@ -19,7 +19,7 @@ anchor:
 ## Scope
 
 This document records the formal guarantees (or lack thereof) for recursion
-termination and convergence in the sswg mvm runtime. The recursion policy is
+termination and convergence in the sswg-mvm runtime. The recursion policy is
 summarized in the root [README](../README.md) and expanded in the architecture
 notes in [docs/architecture/recursion_engine.md](./architecture/recursion_engine.md).
 

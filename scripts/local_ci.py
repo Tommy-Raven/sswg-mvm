@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # scripts/local_ci.py
 """
-Local CI runner for SSWG-MVM if GitHub Actions is unavailable.
+Local CI runner for sswg-mvm if GitHub Actions is unavailable.
 
 Tasks:
   - tests   : run pytest for core and API
@@ -211,7 +211,7 @@ def summarize(results: List[TaskResult]) -> int:
 
 def parse_args(argv: Sequence[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Local CI runner for SSWG-MVM (tests, SSWG CI checks, recursive benchmark)."
+        description="Local CI runner for sswg-mvm (tests, SSWG CI checks, recursive benchmark)."
     )
     parser.add_argument(
         "task",

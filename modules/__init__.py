@@ -1,1 +1,1 @@
-"""Adapters and shared modules for the workflow generator."""
+"""Adapters and shared modules for the sswg-mvm software."""

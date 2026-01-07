@@ -1,4 +1,4 @@
-name: SSWG-MVM Auto Changelog
+name: sswg-mvm Auto Changelog
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
 
       - name: Commit & Push Changelog
         run: |
-          git config --global user.name "SSWG-MVM Auto-Changelog"
+          git config --global user.name "sswg-mvm Auto-Changelog"
           git config --global user.email "actions@github.com"
           git add CHANGELOG.md
           git commit -m "Auto-generate changelog for $GITHUB_REF_NAME" || echo "No changes"

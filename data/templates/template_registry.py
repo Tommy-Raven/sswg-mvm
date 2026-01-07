@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-SSWG-MVM Template Registry
+sswg-mvm Template Registry
 Central registry for all workflow templates, providing:
 - slug → file resolution
 - schema-aware loading
@@ -24,7 +24,7 @@ TEMPLATE_DIR = Path("data/templates")
 
 class TemplateRegistry:
     """
-    Registry for all SSWG-MVM templates.
+    Registry for all sswg-mvm templates.
     Handles resolving template slugs, reading metadata,
     and enumerating available workflow blueprints.
     """

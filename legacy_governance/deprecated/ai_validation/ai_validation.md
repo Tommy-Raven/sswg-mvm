@@ -14,7 +14,7 @@ anchor:
   status: draft
 ---
 
-# ai_validation — Validation Layer for SSWG MVM
+# ai_validation — Validation Layer for sswg-mvm
 
 The `ai_validation` package provides the core validation and safety checks
 for SSWG workflows and related artifacts. At the MVM (Minimum Viable Model)

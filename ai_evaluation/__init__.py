@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_evaluation package — Quality & scoring utilities for SSWG MVM.
+ai_evaluation package — Quality & scoring utilities for sswg-mvm.
 
 Public surface (MVM level):
 

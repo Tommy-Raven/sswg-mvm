@@ -16,7 +16,7 @@ anchor:
 
 sswg-mvm — recursive workflow generation and compliance scaffolding
 
-sswg-mvm is a schema-aligned workflow generator that enforces the canonical
+sswg-mvm is a schema-aligned workflow software that enforces the canonical
 9-phase pipeline, deterministic measurement gates, and audit-ready outputs. It
 integrates semantic evaluation, graph-based dependency management, and
 recursive feedback loops to refine workflow structures.

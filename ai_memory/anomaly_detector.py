@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_memory/anomaly_detector.py — Basic anomaly detection for SSWG MVM.
+ai_memory/anomaly_detector.py — Basic anomaly detection for sswg-mvm.
 """
 
 from __future__ import annotations

@@ -7,9 +7,9 @@ anchor:
   status: draft
 ---
 
-# 📡 SSWG–MVM API Overview
+# 📡 sswg-mvm API Overview
 
-The SSWG–MVM API exposes a stable interface for programmatic workflow
+The sswg-mvm API exposes a stable interface for programmatic workflow
 generation, validation, refinement, and export.
 
 This API is designed for:

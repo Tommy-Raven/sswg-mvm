@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_memory/benchmark_tracker.py — Benchmark tracking for SSWG MVM.
+ai_memory/benchmark_tracker.py — Benchmark tracking for sswg-mvm.
 
 Tracks named benchmarks and their best scores over time.
 """

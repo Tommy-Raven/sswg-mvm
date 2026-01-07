@@ -1,5 +1,5 @@
 """
-cli_spec_validator_core.py — Shared CLI spec validation for sswg mvm.
+cli_spec_validator_core.py — Shared CLI spec validation for sswg-mvm.
 
 Validation output is a non_operational_output decision_trace.
 

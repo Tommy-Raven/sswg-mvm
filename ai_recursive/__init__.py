@@ -1,6 +1,6 @@
 """Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
 
-ai_recursive package — Recursive refinement utilities for SSWG MVM.
+ai_recursive package — Recursive refinement utilities for sswg-mvm.
 
 This package handles:
 - Generating workflow variants

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_cores/module_core.py — Canonical module registry utilities for SSWG MVM.
+ai_cores/module_core.py — Canonical module registry utilities for sswg-mvm.
 """
 
 from __future__ import annotations

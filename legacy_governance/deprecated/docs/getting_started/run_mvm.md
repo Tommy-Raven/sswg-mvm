@@ -14,7 +14,7 @@ anchor:
   status: draft
 ---
 
-# Running SSWG-MVM
+# Running sswg-mvm
 
 **Canonical runbook (how to run + expected outputs):** `docs/RUNBOOK.md` is the primary entrypoint. This document is secondary/overview and should defer to the canonical runbook to avoid drift.
 

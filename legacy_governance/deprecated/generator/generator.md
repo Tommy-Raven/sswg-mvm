@@ -14,7 +14,7 @@ anchor:
   status: draft
 ---
 
-# generator/ — SSWG Workflow Generator (MVM Layer)
+# generator/ — sswg-mvm software (MVM Layer)
 
 The `generator` package orchestrates a single end-to-end generation run:
 

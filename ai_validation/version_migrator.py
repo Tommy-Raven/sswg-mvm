@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_validation/version_migrator.py — Workflow version migration for SSWG MVM.
+ai_validation/version_migrator.py — Workflow version migration for sswg-mvm.
 
 Goal:
 - Provide a simple, explicit pattern for migrating workflow artifacts between

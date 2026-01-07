@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-schemas/__init__.py — SSWG-MVM JSON Schema package
+schemas/__init__.py — sswg-mvm JSON Schema package
 
 This module provides a lightweight, centralized interface for working with the
 JSON Schemas defined under the `schemas/` directory.

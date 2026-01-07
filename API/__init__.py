@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-API Package Initialization — SSWG-MVM v.09.mvm.25
+API Package Initialization — sswg-mvm v.09.mvm.25
 
 This package provides a stable, public-facing Python API layer for
 programmatic access to workflow loading, validation, refinement, export,

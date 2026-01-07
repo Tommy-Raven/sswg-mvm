@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_memory/memory_store.py — Persistent workflow storage for SSWG MVM.
+ai_memory/memory_store.py — Persistent workflow storage for sswg-mvm.
 
 Provides a simple filesystem-backed store for workflow snapshots.
 

@@ -201,4 +201,4 @@ The system explicitly does not:
 The **sswg-mvm** architecture is a governance-first substrate for recursive artifact generation. Its design prioritizes control, auditability, and safety over flexibility or convenience.
 
 ---
-Conforms to SSWG-MVM 1.2 ethos. All agents delegate deterministically under canonical enforcement.
+Conforms to SSWG/MVM 1.2 ethos. All agents delegate deterministically under canonical enforcement.

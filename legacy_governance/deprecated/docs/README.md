@@ -14,11 +14,11 @@ anchor:
   status: draft
 ---
 
-# SSWG-MVM (SSWG Skeleton)
+# sswg-mvm (SSWG Skeleton)
 
-SSWG-MVM (Synthetic Synthesist of Workflow Generation â€” Minimum Viable Model) is a **meta-educational AI system** for generating, evaluating, and evolving both AI- and human-formatted instructional workflows.
+sswg-mvm (Synthetic Synthesist of Workflow Generation â€” Minimum Viable Model) is a **meta-educational AI system** for generating, evaluating, and evolving both AI- and human-formatted instructional workflows.
 
-This repository represents the **canonical skeleton and reference implementation** of the SSWG MVM: a schema-governed, recursively evaluative workflow generation system designed for reproducibility, extensibility, and research-grade introspection.
+This repository represents the **canonical skeleton and reference implementation** of the sswg-mvm: a schema-governed, recursively evaluative workflow generation system designed for reproducibility, extensibility, and research-grade introspection.
 
 The system combines deterministic pipeline execution with semantic evaluation, recursive refinement, and memory-driven feedback loops to demonstrate **self-improving instructional and procedural workflow synthesis**.
 
@@ -35,13 +35,13 @@ Other docs are secondary/overview and should defer to this canonical runbook to 
 
 ## What This Repository Is
 
-This repository serves as the **canonical skeleton** for SSWG-MVM.
+This repository serves as the **canonical skeleton** for sswg-mvm.
 
 It defines:
 - the immutable base structure of the system,
 - core orchestration and generation scaffolding,
 - schema contracts and validation rules,
-- and placeholder or evolving modules for modular, recursive AI instructional workflows.
+- and placeholder or evolving modules for modular, iterative instructional workflows.
 
 All downstream projects, forks, and experimental branches are expected to inherit from or reference this structure.
 
@@ -64,7 +64,7 @@ All architectural claims in this project are grounded in executable code and val
 
 ## Repository Structure (High-Level)
 
-generator/      Core MVM workflow generator and recursion engine  
+generator/      Core MVM workflow software and recursion engine  
 cli/            Command-line interface for workflow execution and governance  
 pdl/            Phase Definition Language (PDL) files defining workflow phases  
 schemas/        Canonical schema contracts (workflow, phase, recursion, evaluation)  
@@ -88,7 +88,7 @@ This repository exists to:
 - Provide a **stable, immutable base** for SSWG workflows.
 - Enable **branch and fork governance** for all edits beyond canonical modules.
 - Define **modular phase-execution scaffolds** for PDL-based AI workflows.
-- Serve as the reference structure for **all SSWG MVM operations, rebuilds, and research**.
+- Serve as the reference structure for **all sswg-mvm operations, rebuilds, and research**.
 - Demonstrate recursive, evaluative workflow generation in a reproducible and inspectable manner.
 
 ---
@@ -129,7 +129,7 @@ This repository exists to:
 
 ## Status
 
-SSWG-MVM is an actively evolving research and engineering system.
+sswg-mvm is an actively evolving research and engineering system.
 
 The current focus (Phase I) is on:
 - architectural clarity,

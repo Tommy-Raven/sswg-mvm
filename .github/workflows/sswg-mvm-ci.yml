@@ -1,4 +1,4 @@
-name: SSWG MVM CI & Validation
+name: sswg-mvm CI & Validation
 
 on:
   push:
@@ -93,7 +93,7 @@ jobs:
       - name: Run tests
         run: |
           pytest -q
-          echo "🚀 SSWG-MVM CI Summary"
+          echo "🚀 sswg-mvm CI Summary"
           echo "• Version: $SSWG_VERSION"
           echo "• Python: $(python3 --version)"
           echo "• Installed packages:"

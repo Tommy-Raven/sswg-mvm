@@ -1,4 +1,4 @@
-"""SSWG–MVM test suite initialization.
+"""sswg-mvm test suite initialization.
 
 Ensures pytest resolves imports relative to project root.
 """

@@ -788,4 +788,4 @@ Root scope authority is absolute
 End of AGENTS.md.
 
 ---
-Conforms to SSWG-MVM 1.2 ethos. All agents delegate deterministically under canonical enforcement.
+Conforms to SSWG/MVM 1.2 ethos. All agents delegate deterministically under canonical enforcement.

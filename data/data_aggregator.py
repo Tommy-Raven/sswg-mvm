@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-data/data_aggregator.py — Aggregated data views for SSWG MVM.
+data/data_aggregator.py — Aggregated data views for sswg-mvm.
 
 Responsibilities (MVM-level):
 

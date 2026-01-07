@@ -1,6 +1,6 @@
 """Validation tests governed by deterministic agent scope per AGENTS.md §9."""
 """
-Test the SSWG–MVM main pipeline.
+Test the sswg-mvm main pipeline.
 """
 
 from generator.main import run_mvm

@@ -1,6 +1,6 @@
 """Conductor agent: delegates exclusively to ai_cores.module_core per AGENTS.md §19.7.
 
-ai_monitoring/telemetry.py — Semantic telemetry for SSWG MVM.
+ai_monitoring/telemetry.py — Semantic telemetry for sswg-mvm.
 
 This module provides a small, class-based API on top of `structured_logger`
 for recording semantic events. It is intentionally thin at the MVM stage.

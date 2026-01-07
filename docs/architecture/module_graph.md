@@ -9,7 +9,7 @@ anchor:
 
 # 🕸 Module Graph Architecture  
 
-The SSWG-MVM system models all workflows as **Directed Acyclic Graphs (DAGs)**.  
+The sswg-mvm system models all workflows as **Directed Acyclic Graphs (DAGs)**.  
 These encode task dependencies, logical flow, and expansion structure.
 
 ---

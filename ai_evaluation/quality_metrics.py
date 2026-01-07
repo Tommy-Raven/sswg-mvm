@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ai_evaluation/quality_metrics.py — Workflow quality metrics for SSWG MVM.
+ai_evaluation/quality_metrics.py — Workflow quality metrics for sswg-mvm.
 
 Contains small, deterministic metric functions that operate on a schema-style
 workflow dict.

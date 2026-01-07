@@ -1,9 +1,9 @@
 # ⚠️ DEPRECATION NOTICE — Naming Variants Prohibited
 
 The terms listed below are **deprecated** and **must not** appear in new or
-updated materials. Use only the canonical names **SSWG/MVM** (formal) and
-**sswg-mvm** (lowercase). Any derivation, expansion, or alternate branding is
-explicitly forbidden in updated content.
+updated materials. Use only the canonical names **SSWG/MVM** (mindset and
+ethos) and **sswg-mvm** (software). Any derivation, expansion, or alternate
+branding is explicitly forbidden in updated content.
 
 ## Deprecated naming variants (observed or requested)
 
