@@ -4,10 +4,10 @@ import argparse
 from pathlib import Path
 
 from ai_cores.cli_arg_parser_core import build_parser, parse_args
-from ai_cores.governance_core import (
+from scripts.validate_governance_ingestion import (
     CANONICAL_GOVERNANCE_ORDER,
+    GovernanceIngestionError,
     validate_governance_ingestion_order,
-    validate_required_governance_documents,
 )
 from generator.failure_emitter import FailureEmitter, FailureLabel
 
@@ -44,14 +44,11 @@ def main() -> int:
     repo_root = args.repo_root.resolve()
     docs_root = repo_root / "directive_core" / "docs"
 
-    documents, doc_errors = validate_required_governance_documents(repo_root)
-    errors = doc_errors or validate_governance_ingestion_order(
-        repo_root, observed_order=[doc.name for doc in documents]
-    )
-    if errors:
-        first_error = errors[0]
-        filename = first_error.split(":")[0]
-        path = docs_root / filename if filename.endswith(".md") else docs_root
+    try:
+        validate_governance_ingestion_order(docs_root, CANONICAL_GOVERNANCE_ORDER)
+    except GovernanceIngestionError as exc:
+        first_error = str(exc)
+        path = docs_root
         _emit_failure(
             args.run_id,
             f"Governance ingestion order validation failed: {first_error}",
