@@ -21,3 +21,6 @@ anchor:
 - Governance resolution MUST source exclusively from `directive_core/docs`.
 - Governance-like artifacts outside `directive_core/docs` are non-authoritative and SHALL trigger validation failure.
 - `directive_core/docs` inputs take precedence over any other references.
+- This is EXPLICITLY declared NON-AUTHORITATIVE.
+- This NOT the constitution.
+- Validators IGNORE it for ingestion order
