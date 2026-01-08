@@ -8,9 +8,9 @@ anchor:
   owner:
     - "2025© Raven Recordings"
     - "Tommy Raven (Thomas Byers)"
-  status: "invariant"
+  status: "deprecated"
   output_mode: "non_operational_output"
-  init_purpose: "Ratify directive_core as the authoritative governance root."
+  init_purpose: "Ratify directive_core as the authoritative governance root. This is explicitly declared non-authoritative. This not the constitution. Validators ignore it for ingestion order."
   init_authors:
     - "Tommy Raven"
 ```
