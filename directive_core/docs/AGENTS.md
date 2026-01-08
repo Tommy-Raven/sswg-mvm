@@ -2,8 +2,8 @@
 ```yaml
 anchor:
   anchor_id: "sswg_agents"
-  anchor_model: "sswg+mvm"
-  anchor_version: "1.2.0"
+  anchor_model: "sswg+mvm+version"
+  anchor_version: "1.0.0"
   scope: "directive_core/docs"
   owner:
     - "2025© Raven Recordings"
