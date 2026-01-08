@@ -15,6 +15,12 @@ from typing import Iterable, List, Optional, Tuple
 
 import yaml
 
+from scripts.validate_governance_ingestion import (
+    CANONICAL_GOVERNANCE_ORDER,
+    GovernanceIngestionError,
+    validate_governance_ingestion_order as enforce_governance_ingestion_order,
+)
+
 __all__ = [
     "CANONICAL_GOVERNANCE_ORDER",
     "GOVERNANCE_FILENAME_PATTERNS",
@@ -33,15 +39,6 @@ __all__ = [
     "validate_governance_ingestion_order",
     "validate_governance_source_location",
     "validate_required_governance_documents",
-]
-
-CANONICAL_GOVERNANCE_ORDER = [
-    "TERMINOLOGY.md",
-    "SSWG_CONSTITUTION.md",
-    "AGENTS.md",
-    "ARCHITECTURE.md",
-    "FORMAL_GUARANTEES.md",
-    "REFERENCES.md",
 ]
 
 GOVERNANCE_FILENAME_PATTERNS = [
@@ -218,17 +215,12 @@ def validate_governance_ingestion_order(
     observed_order: Optional[List[str]] = None,
 ) -> list[str]:
     """Return validation errors for the directive_core governance order."""
-    documents, errors = validate_required_governance_documents(repo_root)
-    if errors:
-        return errors
-
-    actual_order = observed_order or [doc.name for doc in documents]
-    if actual_order != CANONICAL_GOVERNANCE_ORDER:
-        errors.append(
-            "Governance documents must be ingested in canonical order: "
-            f"{', '.join(CANONICAL_GOVERNANCE_ORDER)}"
-        )
-    return errors
+    docs_root = repo_root / "directive_core" / "docs"
+    try:
+        enforce_governance_ingestion_order(docs_root, CANONICAL_GOVERNANCE_ORDER)
+    except GovernanceIngestionError as exc:
+        return [str(exc)]
+    return []
 
 
 def extract_ingestion_order(text: str) -> Optional[List[str]]:
