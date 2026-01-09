@@ -1,3 +1,16 @@
+# Canonic Ledger
+```toml
+[anchor]
+anchor_id = "deprecated_nomenclature"
+anchor_model = "sswg+mvm+version"
+anchor_version = "1.0.0"
+scope = "directive_core/docs"
+owner = ["2025© Raven Recordings", "Tommy Raven (Thomas Byers)"]
+status = "invariant"
+output_mode = "non_operational_output"
+init_purpose = "Define deprecated nomenclature for directive_core."
+init_authors = ["Tommy Raven"]
+```
 
 # ⚠️ DEPRECATION NOTICE — Naming Variants Prohibited
 

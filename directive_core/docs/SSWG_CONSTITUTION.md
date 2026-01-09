@@ -108,10 +108,11 @@ Governance documents **MUST** be ingested in the following exact order:
 1. `TERMINOLOGY.md`
 2. `AGENTS.md`
 3. `SSWG_CONSTITUTION.md`
-4. `ARCHITECTURE.md`
-5. `FORMAL_GUARANTEES.md`
-6. `REFERENCES.md`
-7. `deprecated_nomenclature.md`
+4. `FORMAT_BOUNDARY_CONTRACT.md`
+5. `ARCHITECTURE.md`
+6. `FORMAL_GUARANTEES.md`
+7. `REFERENCES.md`
+8. `deprecated_nomenclature.md`
 
 Missing, malformed, or out-of-order ledger documents **SHALL** cause governance validation failure.
 

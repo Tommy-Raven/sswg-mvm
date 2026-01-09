@@ -119,6 +119,14 @@ AMBIGUITY_PATTERNS: List[Tuple[str, re.Pattern]] = [
             re.IGNORECASE,
         ),
     ),
+    (
+        "conditional_permission_language",
+        re.compile(
+            r"\b(allowed unless|permitted except|allowed with approval|unless explicitly waived|"
+            r"may be allowed|generally allowed|allowed in special cases)\b",
+            re.IGNORECASE,
+        ),
+    ),
 ]
 
 
@@ -138,11 +146,9 @@ def emit_failure(path: Path, findings: List[AmbiguityFinding]) -> Dict[str, Any]
         "Type": "semantic_ambiguity",
         "severity": "critical",
         "failure_behavior": "fail_closed",
-        "message": "Semantic Ambiguity detected: ambiguity is a security vulnerability and SHALL be rejected.",
+        "message": ERROR_LABEL,
         "error_label": ERROR_LABEL,
         "affected_path": str(path),
-        "findings": [f.__dict__ for f in findings],
-        "remediation_required": True,
     }
 
 def quarantine_append(quarantine_path: Path, payload: Dict[str, Any]) -> None:
