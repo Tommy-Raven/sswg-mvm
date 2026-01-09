@@ -1,19 +1,16 @@
 # Canonic Ledger
 
-```yaml
-anchor:
-  anchor_id: "sswg_constitution"
-  anchor_model: "sswg+mvm+version"
-  anchor_version: "1.0.0"
-  scope: "directive_core/docs"
-  owner:
-    - "2025© Raven Recordings"
-    - "Tommy Raven (Thomas Byers)"
-  status: "invariant"
-  output_mode: "non_operational_output"
-  init_purpose: "Define the canonical SSWG constitution for governance."
-  init_authors:
-    - "Tommy Raven"
+```toml
+[anchor]
+anchor_id = "sswg_constitution"
+anchor_model = "sswg+mvm+version"
+anchor_version = "1.0.0"
+scope = "directive_core/docs"
+owner = ["2025© Raven Recordings", "Tommy Raven (Thomas Byers)"]
+status = "invariant"
+output_mode = "non_operational_output"
+init_purpose = "Define the canonical SSWG constitution for governance."
+init_authors = ["Tommy Raven"]
 ```
 
 --- 
@@ -77,9 +74,9 @@ This Constitution **SHALL NEVER** govern:
 
 All canonical governance documents **MUST** declare their identity using the following anchor encoding:
 
-```yaml
-anchor_model: "sswg+mvm+version"
-anchor_version: "1.0.0"
+```toml
+anchor_model = "sswg+mvm+version"
+anchor_version = "1.0.0"
 ```
 
 This encoding establishes the governance system and the semantic baseline version independently. Any deviation **SHALL** result in validation failure.
@@ -101,10 +98,11 @@ Governance documents **MUST** be ingested in the following exact order:
 1. `TERMINOLOGY.md`
 2. `AGENTS.md`
 3. `SSWG_CONSTITUTION.md`
-4. `ARCHITECTURE.md`
-5. `FORMAL_GUARANTEES.md`
-6. `REFERENCES.md`
-7. `deprecated_nomenclature.md`
+4. `FORMAT_BOUNDARY_CONTRACT.md`
+5. `ARCHITECTURE.md`
+6. `FORMAL_GUARANTEES.md`
+7. `REFERENCES.md`
+8. `deprecated_nomenclature.md`
 
 Missing, malformed, or out-of-order ledger documents **SHALL** cause governance validation failure.
 
