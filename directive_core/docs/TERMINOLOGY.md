@@ -1,19 +1,16 @@
 # Canonic Ledger
 
-```yaml
-anchor:
-  anchor_id: "terminology"
-  anchor_model: "sswg+mvm+version"
-  anchor_version: "1.0.0"
-  scope: "directive_core/docs"
-  owner:
-    - "2025© Raven Recordings"
-    - "Tommy Raven (Thomas Byers)"
-  status: "invariant"
-  output_mode: "non_operational_output"
-  init_purpose: "Define the canonical terminology for SSWG/MVM governance and enforcement."
-  init_authors:
-    - "Tommy Raven"
+```toml
+[anchor]
+anchor_id = "terminology"
+anchor_model = "sswg+mvm+version"
+anchor_version = "1.0.0"
+scope = "directive_core/docs"
+owner = ["2025© Raven Recordings", "Tommy Raven (Thomas Byers)"]
+status = "invariant"
+output_mode = "non_operational_output"
+init_purpose = "Define the canonical terminology for SSWG/MVM governance and enforcement."
+init_authors = ["Tommy Raven"]
 ```
 
 ---
@@ -55,7 +52,7 @@ Effective at `anchor_version: 1.0.0`, this terminology set is enforced as a **se
 | Governance mindset | uppercase             | `SSWG`, `MVM`                           |
 | Concepts / terms   | snake_case            | `semantic_ambiguity`, `evaluation_gate` |
 | Constants          | UPPERCASE             | `FAIL_CLOSED`                           |
-| Anchors            | YAML block            | `anchor_id`, `anchor_version`           |
+| Anchors            | TOML block            | `anchor_id`, `anchor_version`           |
 
 Any deviation **SHALL** be treated as a terminology violation.
 

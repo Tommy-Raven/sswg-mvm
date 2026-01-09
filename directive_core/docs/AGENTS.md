@@ -1,19 +1,14 @@
 # Canonic Ledger
-```Toml
-# === CANONIC LEDGER (TOML) ===
-
+```toml
 [anchor]
 anchor_id = "sswg_agents"
 anchor_model = "sswg+mvm+version"
 anchor_version = "1.0.0"
 scope = "directive_core/docs"
+owner = ["2025© Raven Recordings", "Tommy Raven (Thomas Byers)"]
 status = "invariant"
 output_mode = "non_operational_output"
-owner = [
-  "2025© Raven Recordings",
-  "Tommy Raven (Thomas Byers)"
-]
-init_purpose = "Human-readable purpose statement. markdown is non-authoritative."
+init_purpose = "Define canonical agent governance for directive_core."
 init_authors = ["Tommy Raven"]
 ```
 ---
