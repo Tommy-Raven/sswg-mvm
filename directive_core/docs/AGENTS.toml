@@ -53,34 +53,68 @@ waivable = false
 
 _These rules apply to all agents, including human contributors, automation, validators, CI systems, and any delegated execution environment._
 
-# --- BEGIN NEW INVARIANT: NON-DESTRUCTIVE ACTIONS ONLY --- #
+# --- BEGIN NEW INVARIANT: DIFF-BASED NON-DESTRUCTIVE EDITING --- #
 
 [agent_action_constraints]
 
-# Absolute prohibitions — non-waivable
-prohibit_file_deletion = true
-prohibit_file_renaming = true
-prohibit_destructive_editing = true
-prohibit_subtractive_editing = true
+# Canonical diff interpretation
+diff_format = "unified"
+diff_semantics = "authoritative"
 
-# Definitions (normative)
+# Absolute prohibitions (non-waivable, fail-closed)
+
+# A governance edit SHALL NEVER introduce any diff hunk containing:
+#   - a deletion line prefixed with "-"
+#   - a file deletion marker
+#   - a file rename marker
+#   - a net-negative line count
+
+prohibit_diff_deletions = true        # any "-" line outside context is forbidden
+prohibit_file_deletion = true         # e.g. diff --git a/file b/dev/null
+prohibit_file_rename = true           # e.g. rename from / rename to
+prohibit_net_negative_diff = true     # total added lines MUST >= removed lines (removed MUST be zero)
+
+# Formal definitions (normative)
+
 destructive_editing_definition = """
-Any edit that removes, truncates, overwrites, or alters existing authoritative
-content such that information, intent, or governance meaning is lost.
+Any proposed change whose unified diff contains one or more deletion hunks
+(lines beginning with '-') or file-level delete or rename directives.
 """
 
 subtractive_editing_definition = """
-Any edit whose net effect is removal or reduction of existing content,
-including deletion of sections, lines, clauses, files, or anchors.
+Any change where the resulting diff produces a net-negative line delta
+or removes any previously canonical content, regardless of intent.
 """
 
-allow_additive_editing_only = true
+# Allowed behavior (strictly constrained)
+
+allow_additive_diff_only = true
 
 additive_editing_definition = """
-Edits that strictly add new content without removing, renaming, relocating,
-or weakening existing content. Additions MUST preserve all prior meaning,
-authority, and auditability.
+A change whose unified diff contains only:
+- context lines (" ")
+- added lines ("+")
+and introduces no file deletions, no renames, and no removed content.
 """
+
+# Enforcement behavior (mandatory)
+
+violation_behavior = [
+  "fail_closed",
+  "reject_action",
+  "emit_security_violation",
+  "quarantine_diff"
+]
+
+# Exception handling (explicitly forbidden)
+
+exceptions_permitted = false
+waivers_permitted = false
+manual_override_permitted = false
+
+# --- END NEW INVARIANT: DIFF-BASED NON-DESTRUCTIVE EDITING --- #
+
+_These rules are non-waivable._
 
 # Enforcement semantics
 violation_behavior = [
