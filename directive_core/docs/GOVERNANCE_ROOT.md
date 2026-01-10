@@ -24,5 +24,5 @@ init_authors = ["Tommy Raven"]
 - Governance-like artifacts outside `directive_core/docs` are non-authoritative and SHALL trigger validation failure.
 - `directive_core/docs` inputs take precedence over any other references.
 - This is EXPLICITLY declared NON-AUTHORITATIVE.
-- This NOT the constitution.
-- Validators IGNORE it for ingestion order
+- This is NOT the sswg_constitution.
+- Validators SHALL IGNORE it for ingestion order
