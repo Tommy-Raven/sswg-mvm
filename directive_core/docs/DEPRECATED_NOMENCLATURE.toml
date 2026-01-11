@@ -1,0 +1,161 @@
+# ============================================================
+# DEPRECATED_NOMENCLATURE — CANONICAL DEPRECATION REGISTRY
+# ============================================================
+
+[anchor]
+anchor_id = "deprecated_nomenclature"
+anchor_model = "sswg+mvm+version"
+anchor_version = "1.0.0"
+scope = "directive_core/docs"
+status = "invariant"
+output_mode = "non_operational_output"
+
+owner = [
+  "2025© Raven Recordings",
+  "Tommy Raven (Thomas Byers)"
+]
+
+init_purpose = "Define all prohibited and deprecated nomenclature for the SSWG/MVM governance system."
+init_authors = ["Tommy Raven"]
+
+# ------------------------------------------------------------
+# SECTION 1 — AUTHORITY AND ENFORCEMENT STATUS
+# ------------------------------------------------------------
+
+[authority]
+
+authoritative = true
+waivable = false
+exceptions_permitted = false
+
+violation_behavior = [
+  "fail_closed",
+  "reject_artifact",
+  "emit_validation_error",
+  "quarantine_artifact"
+]
+
+# ------------------------------------------------------------
+# SECTION 2 — CANONICAL NAMING RULE
+# ------------------------------------------------------------
+
+[naming_rule]
+
+canonical_governance_identifier = "SSWG/MVM"
+canonical_software_identifier = "sswg-mvm"
+
+any_other_identifier_forbidden = true
+
+description = """
+Only the identifiers 'SSWG/MVM' (governance mindset and ethos)
+and 'sswg-mvm' (software implementation) are permitted.
+
+Any derivation, alias, expansion, branding variant, or descriptive substitute
+is explicitly prohibited in canonical governance, code, schemas, tooling,
+documentation, or validation output.
+"""
+
+# ------------------------------------------------------------
+# SECTION 3 — DEPRECATED NAMING VARIANTS
+# ------------------------------------------------------------
+
+[deprecated.derivations_from_sswg_mvm]
+
+items = [
+  "SSWG-MVM",
+  "SSWG–MVM",
+  "SSWG MVM",
+  "sswg mvm",
+  "SSWG Workflow Generator",
+  "AI Instructional Workflow Generator",
+  "AI Instructions Workflow Generator",
+  "SSWG Workflow Generator — MVM",
+  "Recursive_Grimoire",
+  "Recursive Grimoire"
+]
+
+# ------------------------------------------------------------
+# SECTION 4 — DEPRECATED DESCRIPTIVE OR MARKETING TERMS
+# ------------------------------------------------------------
+
+[deprecated.descriptive_or_marketing_terms]
+
+items = [
+  "Recursion",
+  "Recursive",
+  "Recursive AI",
+  "Recursive workflow generator",
+  "AI Workflow",
+  "Ai Generator",
+  "Workflow generator",
+  "Workflow Generator",
+  "Workflow Synthesis Engine",
+  "Meta-instructional synthesis engine",
+  "Meta-educational AI system",
+  "GenAI Instructional Workflow Engine",
+  "Meta-workflow engine",
+  "Instructional Workflow Generator",
+  "AI-assisted procedural framework",
+  "Instructional Framework Generator",
+  "GenAI Instructional Framework",
+  "GenAI Workflow System",
+  "Hybrid Neuro-Symbolic System",
+  "Neuro-symbolic architecture",
+  "Constitutional AI framework",
+  "Rule-governed generative system",
+  "Deterministic workflow synthesis engine",
+  "Reproducible workflow generator",
+  "GenAI Instructional Framework Specification",
+  "sswg-workflow"
+]
+
+# ------------------------------------------------------------
+# SECTION 5 — DETECTION AND VALIDATION REQUIREMENTS
+# ------------------------------------------------------------
+
+[enforcement]
+
+case_sensitive = false
+substring_match = true
+context_ignored = true
+intent_ignored = true
+
+detection_scope = [
+  "governance_documents",
+  "schemas",
+  "validators",
+  "tooling",
+  "tests",
+  "documentation",
+  "generated_artifacts"
+]
+
+# ------------------------------------------------------------
+# SECTION 6 — FAILURE SEMANTICS
+# ------------------------------------------------------------
+
+[failure_semantics]
+
+public_error_label = "Deprecated Nomenclature"
+
+on_detection = [
+  "fail_closed",
+  "halt_ingestion",
+  "quarantine_artifact"
+]
+
+guidance_or_suggestions_forbidden = true
+
+# ------------------------------------------------------------
+# SECTION 7 — INTERACTION WITH OTHER GOVERNANCE
+# ------------------------------------------------------------
+
+[precedence]
+
+terminology_governs_interpretation = true
+constitution_overrides_all = true
+agents_enforce_strictly = true
+
+# ------------------------------------------------------------
+# END OF DEPRECATED_NOMENCLATURE
+# ------------------------------------------------------------
