@@ -18,9 +18,9 @@ owner = [
 init_purpose = "Define canonical agent governance for directive_core."
 init_authors = ["Tommy Raven"]
 
-# ------------------------------------------------------------
-# SECTION 1 — CANONICAL HEADER CONSTRAINTS
-# ------------------------------------------------------------
+# ============================================================
+# SECTION 1 — CANONICAL HEADER CONSTRAINTS (INVARIANT)
+# ============================================================
 
 [canonical_header]
 
@@ -30,14 +30,11 @@ mixed_headers_forbidden = true
 duplicate_anchors_forbidden = true
 yaml_fences_forbidden = true
 
-description = """
-Every governance document MUST begin with a TOML canonical ledger header.
-No YAML, mixed formats, or duplicate anchors are permitted.
-"""
+description = "All governance documents MUST begin with a single TOML canonical ledger header. YAML, mixed formats, or duplicate anchors are forbidden."
 
-# ------------------------------------------------------------
-# SECTION 2 — ROOT-SCOPE AGENT RULES (INVARIANT)
-# ------------------------------------------------------------
+# ============================================================
+# SECTION 2 — ROOT-SCOPE AGENT APPLICABILITY
+# ============================================================
 
 [agents.scope]
 
@@ -51,93 +48,48 @@ applies_to = [
 
 waivable = false
 
-_These rules apply to all agents, including human contributors, automation, validators, CI systems, and any delegated execution environment._
+# ============================================================
+# SECTION 3 — NON-DESTRUCTIVE EDITING INVARIANT (AUTHORITATIVE)
+# ============================================================
 
-# --- BEGIN NEW INVARIANT: DIFF-BASED NON-DESTRUCTIVE EDITING --- #
+[agents.editing_invariant]
 
-[agent_action_constraints]
-
-# Canonical diff interpretation
 diff_format = "unified"
 diff_semantics = "authoritative"
 
-# Absolute prohibitions (non-waivable, fail-closed)
+allow_additive_only = true
 
-# A governance edit SHALL NEVER introduce any diff hunk containing:
-#   - a deletion line prefixed with "-"
-#   - a file deletion marker
-#   - a file rename marker
-#   - a net-negative line count
+prohibit = [
+  "line_deletion",
+  "file_deletion",
+  "file_rename",
+  "net_negative_diff"
+]
 
-prohibit_diff_deletions = true        # any "-" line outside context is forbidden
-prohibit_file_deletion = true         # e.g. diff --git a/file b/dev/null
-prohibit_file_rename = true           # e.g. rename from / rename to
-prohibit_net_negative_diff = true     # total added lines MUST >= removed lines (removed MUST be zero)
+definitions.destructive_editing = "Any diff containing deleted lines, file deletions, or renames."
+definitions.subtractive_editing = "Any change resulting in a net-negative line count."
+definitions.additive_editing = "Diffs containing only context lines and added lines."
 
-# Formal definitions (normative)
-
-destructive_editing_definition = """
-Any proposed change whose unified diff contains one or more deletion hunks
-(lines beginning with '-') or file-level delete or rename directives.
-"""
-
-subtractive_editing_definition = """
-Any change where the resulting diff produces a net-negative line delta
-or removes any previously canonical content, regardless of intent.
-"""
-
-# Allowed behavior (strictly constrained)
-
-allow_additive_diff_only = true
-
-additive_editing_definition = """
-A change whose unified diff contains only:
-- context lines (" ")
-- added lines ("+")
-and introduces no file deletions, no renames, and no removed content.
-"""
-
-# Enforcement behavior (mandatory)
-
-violation_behavior = [
+enforcement.on_violation = [
   "fail_closed",
   "reject_action",
   "emit_security_violation",
   "quarantine_diff"
 ]
 
-# Exception handling (explicitly forbidden)
-
 exceptions_permitted = false
 waivers_permitted = false
 manual_override_permitted = false
 
-# --- END NEW INVARIANT: DIFF-BASED NON-DESTRUCTIVE EDITING --- #
-
-_These rules are non-waivable._
-
-# Enforcement semantics
-violation_behavior = [
-  "fail_closed",
-  "reject_action",
-  "emit_security_violation",
-  "quarantine_attempt"
-]
-
-# No exceptions
-exceptions_permitted = false
-waivers_permitted = false
-discretionary_override_permitted = false
-
-# ------------------------------------------------------------
-# SECTION 3 — SEMANTIC AMBIGUITY PROHIBITION (INVARIANT)
-# ------------------------------------------------------------
+# ============================================================
+# SECTION 4 — SEMANTIC AMBIGUITY PROHIBITION (INVARIANT)
+# ============================================================
 
 [agents.semantic_ambiguity]
 
 classification = "security_vulnerability"
-treat_as_style_issue = false
 assume_malicious_potential = true
+treat_as_style_issue = false
 
 agents_must_not = [
   "introduce_ambiguity",
@@ -149,9 +101,9 @@ agents_must_not = [
 
 public_error_label = "Semantic Ambiguity"
 
-# ------------------------------------------------------------
-# SECTION 4 — ABSOLUTELY FORBIDDEN LANGUAGE
-# ------------------------------------------------------------
+# ============================================================
+# SECTION 5 — FORBIDDEN GOVERNANCE LANGUAGE
+# ============================================================
 
 [agents.forbidden_language]
 
@@ -171,9 +123,9 @@ context_ignored = true
 intent_ignored = true
 harmlessness_ignored = true
 
-# ------------------------------------------------------------
-# SECTION 5 — ABSOLUTE LANGUAGE REQUIREMENTS
-# ------------------------------------------------------------
+# ============================================================
+# SECTION 6 — REQUIRED GOVERNANCE LANGUAGE
+# ============================================================
 
 [agents.required_language]
 
@@ -193,9 +145,9 @@ disallowed_modals = [
   "typically"
 ]
 
-# ------------------------------------------------------------
-# SECTION 6 — EXCEPTION HANDLING (EXPLICIT ONLY)
-# ------------------------------------------------------------
+# ============================================================
+# SECTION 7 — EXCEPTION HANDLING (STRICT)
+# ============================================================
 
 [agents.exceptions]
 
@@ -212,9 +164,9 @@ exceptions_must = [
   "be_scope_bounded"
 ]
 
-# ------------------------------------------------------------
-# SECTION 7 — MANDATORY AMBIGUITY GATE
-# ------------------------------------------------------------
+# ============================================================
+# SECTION 8 — MANDATORY AMBIGUITY GATE
+# ============================================================
 
 [agents.ambiguity_gate]
 
@@ -222,9 +174,7 @@ required = true
 executes_before_schema_validation = true
 fail_closed = true
 
-user_visible_output = [
-  "Semantic Ambiguity"
-]
+user_visible_output = ["Semantic Ambiguity"]
 
 must_not_expose = [
   "rule_identifiers",
@@ -232,26 +182,23 @@ must_not_expose = [
   "remediation_hints"
 ]
 
-# ------------------------------------------------------------
-# SECTION 8 — FAILURE SEMANTICS
-# ------------------------------------------------------------
+# ============================================================
+# SECTION 9 — FAILURE SEMANTICS
+# ============================================================
 
 [agents.failure_semantics]
 
-on_ambiguity = [
+on_violation = [
   "fail_closed",
   "quarantine_artifact",
-  "halt_processing",
-  "skip_normalization",
-  "skip_enforcement",
-  "skip_execution"
+  "halt_processing"
 ]
 
 guidance_forbidden = true
 
-# ------------------------------------------------------------
-# SECTION 9 — INTERPRETATION PROHIBITION
-# ------------------------------------------------------------
+# ============================================================
+# SECTION 10 — INTERPRETATION PROHIBITION
+# ============================================================
 
 [agents.interpretation]
 
@@ -261,8 +208,6 @@ resolution_allowed = false
 
 ambiguity_results_in = "rejection_only"
 
-# ------------------------------------------------------------
-# END OF AGENTS
-# ------------------------------------------------------------
-
-_These rules are non-waivable._
+# ============================================================
+# END OF AGENTS — ALL RULES ARE NON-WAIVABLE
+# ============================================================
