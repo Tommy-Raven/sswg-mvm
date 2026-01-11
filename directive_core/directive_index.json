@@ -5,13 +5,15 @@
   "authoritative_format": "toml",
 
   "governance_ingestion_order": [
-    "TERMINOLOGY",
-    "AGENTS",
-    "SSWG_CONSTITUTION",
-    "FORMAT_BOUNDARY_CONTRACT",
-    "ARCHITECTURE",
-    "FORMAL_GUARANTEES",
-    "REFERENCES"
+    "TERMINOLOGY.toml",
+    "AGENTS.toml",
+    "SSWG_CONSTITUTION.toml",
+    "SECURITY_INVARIANTS.toml",
+    "FORMAT_BOUNDARY_CONTRACT.toml",
+    "ARCHITECTURE.toml",
+    "FORMAL_GUARANTEES.toml",
+    "REFERENCES.toml",
+    "DEPRECATED_NOMENCLATURE.toml"
   ],
 
   "authoritative_governance": {
@@ -40,6 +42,11 @@
     },
     "FORMAT_BOUNDARY_CONTRACT": {
       "file": "FORMAT_BOUNDARY_CONTRACT.toml",
+      "format": "toml",
+      "required": true
+    },
+    "SECURITY_INVARIANTS": {
+      "file": "SECURITY_INVARIANTS.toml",
       "format": "toml",
       "required": true
     },
