@@ -1,33 +1,61 @@
-# === CANONIC LEDGER (TOML) ===
-```toml
-[anchor]
-anchor_id = "sswg_governance_root"
-anchor_model = "sswg+mvm"
-anchor_version = "1.2.0"
-scope = "directive_core/docs"
-status = "deprecated"
-output_mode = "non_operational_output"
+# GOVERNANCE ROOT — INFORMATIONAL NOTICE (NON-AUTHORITATIVE)
 
-owner = [
-  "2025© Raven Recordings",
-  "Tommy Raven (Thomas Byers)"
-]
+⚠️ **This document is informational only. It is not authoritative.**
 
-init_purpose = "Ratify directive_core as the authoritative governance root. This is explicitly declared non-authoritative. This not the constitution. Validators ignore it for ingestion order."
-init_authors = ["Tommy Raven"]
-```
+All authoritative governance for this repository is defined exclusively
+in canonical **TOML** documents located under:
 
-# ⚠️ Notice: This document is non-authoritative, and non-operational⚠️
-It is forbidden to use markdown formatting for any authoritative or operational and contractual documentation. ALL markdown documents SHALL NEVER be used authoritatively or operatively. TOML formatting is the only acceptable format for authoritative source. You may view the TOML document-pair equivalent, `directive_core/docs/GOVERNANCE_ROOT.toml`.
+directive_core/docs/
+
+This Markdown file exists solely to provide **human-readable context**
+and **navigation assistance**. It defines **no rules**, **no precedence**,
+and **no enforcement behavior**.
+
+---
+
+## What Is the Governance Root?
+
+The governance root is the directory from which all canonical governance
+documents are loaded, validated, and enforced.
+
+For this repository:
+
+- The governance root is **`directive_core/docs/`**
+- All authoritative governance artifacts are TOML
+- All validation is fail-closed and schema-driven
+
+---
+
+## Where Authority Actually Lives
+
+Refer to the following authoritative documents:
+
+- `SSWG_CONSTITUTION.toml` — supreme governance authority
+- `GOVERNANCE_ROOT.toml` — authoritative root declaration
+- `TERMINOLOGY.toml` — semantic authority
+- `AGENTS.toml` — agent constraints
+- `FORMAT_BOUNDARY_CONTRACT.toml` — format enforcement
+- `ARCHITECTURE.toml` — system structure
+
+---
+
+## Important Boundary Notice
+
+This document:
+
+- Does **not** participate in governance ingestion
+- Does **not** define validator behavior
+- Does **not** override or amend the Constitution
+- Does **not** grant authority of any kind
+
+If this Markdown file conflicts with any TOML governance document,
+the TOML document **always wins**.
+
+---
+
+For enforcement, validation, and audit behavior, see the TOML
+counterpart:
+
+directive_core/docs/GOVERNANCE_ROOT.toml
 
 
-
-## Governance Root Declaration
-
-- `directive_core/` is the single authoritative governance root for this repository.
-- Governance resolution MUST source exclusively from `directive_core/docs`.
-- Governance-like artifacts outside `directive_core/docs` are non-authoritative and SHALL trigger validation failure.
-- `directive_core/docs` inputs take precedence over any other references.
-- This is EXPLICITLY declared NON-AUTHORITATIVE.
-- This is NOT the sswg_constitution.
-- Validators SHALL IGNORE it for ingestion order
