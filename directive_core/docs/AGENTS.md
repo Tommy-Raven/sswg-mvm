@@ -5,7 +5,7 @@ anchor_id = "sswg_agents"
 anchor_model = "sswg+mvm+version"
 anchor_version = "1.0.0"
 scope = "directive_core/docs"
-status = "non-authoritative"
+status = "non_authoritative"
 output_mode = "non_operational_output"
 
 owner = [
@@ -13,100 +13,129 @@ owner = [
   "Tommy Raven (Thomas Byers)"
 ]
 
-init_purpose = "Define canonical agent governance for directive_core."
+init_purpose = "Non-authoritative human-readable companion to AGENTS.toml."
 init_authors = ["Tommy Raven"]
+
 ```
+---
 
-# ⚠️ Notice: This document is non-authoritative, and non-operational⚠️
-It is forbidden to use markdown formatting for any authoritative or operational and contractual documentation. ALL markdown documents SHALL NEVER be used authoritatively or operatively. TOML formatting is the only acceptable format for authoritative source. You may view the TOML document-pair equivalent, `directive_core/docs/AGENTS.toml`.
+# ⚠️ NON-AUTHORITATIVE NOTICE (MANDATORY)
+
+This document is NON-AUTHORITATIVE and NON-OPERATIONAL.
+
+Markdown documents SHALL NEVER be used as authoritative, contractual, or enforcement sources.
+
+TOML is the ONLY acceptable authoritative format for governance.
+
+All enforcement, validation, and authority is defined exclusively in:
 
 
-# This document is non-authoritative, non-operational!!
-Any markdown document must NEVER be used authoritatively or operatively. for authoritative source, view the TOML document-pair equivalent, `AGENTS.toml` in `directive_core/docs/`
-## Canonical Header Format (Verbatim Pattern)
+`directive_core/docs/AGENTS.toml`
 
-Every governance document MUST start like this:
+This file exists solely for human readability and explanation.
+
+
+---
+
+## Canonical Header Format (Reference Only)
+
+All authoritative governance documents MUST begin with a TOML canonical ledger header.
+
+This section is illustrative only and confers no authority.
 
 # === CANONIC LEDGER (TOML) ===
-
 ```toml
-[anchor_example]
+[anchor]
 anchor_id = "example_id"
 anchor_model = "sswg+mvm+version"
 anchor_version = "1.0.0"
 scope = "directive_core/docs"
 status = "invariant"
 output_mode = "non_operational_output"
-
-owner = [
-  "2025© Raven Recordings",
-  "Tommy Raven (Thomas Byers)"
-]
-
-init_purpose = "Human-readable purpose statement."
-init_authors = ["Tommy Raven"]
 ```
----
 
-Rules:
-The first code fence in the file MUST be TOML
+## Rules enforced elsewhere:
+
+First code fence MUST be TOML
+
 Fence language MUST be toml
-No YAML (yaml, yml) fences allowed for anchors
-No mixed headers
-No duplicated anchors
 
-## Naming Status (Canonical)
+No YAML anchors allowed
 
-Only SSWG/MVM (mindset and ethos) and sswg-mvm (software) are usable. All other variants are deprecated and MUST NOT appear in new or updated content.
+No mixed or duplicated anchors
 
-See deprecated_nomenclature.md.
 
 
 ---
 
-Root-Scope Agent Rules (Invariant)
+# Naming Status (Canonical)
 
-These rules apply to all agents, including human contributors, automation, validators, CI systems, and any delegated execution environment.
+Only the following identifiers are canonical:
 
-These rules are non-waivable.
+SSWG/MVM — governance mindset and ethos
+
+sswg-mvm — software implementation
+
+
+All other variants are deprecated and forbidden in canonical governance.
+
+See: deprecated_nomenclature.toml
 
 
 ---
 
-Semantic Ambiguity Prohibition (Invariant)
+# Root-Scope Agent Rules (Informational Reflection)
+
+These rules apply to all agents defined authoritatively in AGENTS.toml, including:
+
+human contributors
+
+automated systems
+
+CI and validators
+
+delegated execution environments
+
+
+This markdown section reflects the authoritative rules; it does not define them.
+
+
+---
+
+# Semantic Ambiguity Prohibition (Informational)
 
 Semantic ambiguity is treated as a security vulnerability, not a stylistic issue.
 
-Agents MUST assume that ambiguous language represents a potential authority bypass, scope escalation, or intent laundering attempt.
+Agents are required to assume ambiguous language represents:
 
-Absolute Prohibition
+authority bypass attempts
 
-Agents MUST NOT introduce, accept, normalize, interpret, or propagate governance language that relies on conditional permission constructs, including but not limited to:
+scope escalation
+
+intent laundering
+
+
+## Conditional permission language is forbidden, including (non-exhaustive):
 
 “allowed unless”
 
-“permitted unless”
-
 “unless explicitly waived”
-
-“allowed with approval”
 
 “may be allowed”
 
-“generally allowed”
-
-“except in special cases”
+“subject to interpretation”
 
 “at discretion”
 
-“subject to interpretation”
+
+Any appearance of such language is a violation.
 
 
-Any appearance of such language SHALL be treated as a violation, regardless of context, intent, or perceived harmlessness.
+---
 
-Absolute Language Requirement
+# Absolute Language Requirement
 
-All governance rules, constraints, and prohibitions MUST be expressed using absolute, fail-closed language only:
+Governance authority MUST be expressed using only:
 
 MUST
 
@@ -117,77 +146,103 @@ SHALL
 SHALL NOT
 
 
-Language that introduces discretion, interpretation, implied exceptions, or contextual judgment MUST NOT be used to express authority.
+Language implying discretion, interpretation, or implied exceptions is forbidden.
 
-Exception Handling (Explicit Only)
 
-If an exception mechanism exists, it MUST be:
+---
 
-1. Defined as a separate, explicitly named contract
+# Exception Handling (Explicit Only)
+
+Exceptions, if they exist, MUST be:
+
+1. Defined in a separate contract
 
 
 2. Governed by its own schema and validator
 
 
-3. Opt-in by construction, never implied
+3. Explicitly opt-in
 
 
-4. Fully auditable, revocable, and scope-bounded
+4. Fully auditable and revocable
 
 
 
-Exceptions MUST NOT be expressed inline using conditional phrases such as “unless,” “except,” or “with approval.”
-
-
----
-
-Mandatory Ambiguity Gate
-
-Agents MUST require the Semantic Ambiguity Gate to pass before any governance ingestion, normalization, or enforcement step.
-
-Ambiguity detection MUST execute prior to schema validation
-
-Ambiguity detection MUST be fail-closed
-
-Ambiguity detection MUST NOT expose rule identifiers, pattern names, or remediation hints in user-visible output
-
+Inline exceptions using “unless”, “except”, or “with approval” are forbidden.
 
 
 ---
 
-Failure Semantics
+# Mandatory Ambiguity Gate (Informational)
 
-Any artifact containing semantic ambiguity:
+The Semantic Ambiguity Gate:
 
-SHALL FAIL CLOSED
+Executes before ingestion, normalization, or enforcement
 
-SHALL emit the public error label: Semantic Ambiguity
+Operates fail-closed
 
-SHALL be quarantined and excluded from further processing
+Emits only the public error label: Semantic Ambiguity
 
-SHALL NOT proceed to normalization, enforcement, or execution
+Never exposes rule IDs, pattern names, or hints
 
-SHALL NOT provide guidance, hints, or corrective suggestions to the submitter
-
-
-This behavior is mandatory and non-waivable.
 
 
 ---
 
-Interpretation Prohibition
+# Failure Semantics (Informational)
 
-Agents MUST NOT attempt to resolve, reinterpret, or “clarify” ambiguous governance language.
+Any artifact containing ambiguity:
 
-Ambiguity MUST result in rejection, not interpretation.
+FAILS CLOSED
+
+Is quarantined
+
+Does not proceed to enforcement
+
+Provides no corrective guidance
+
 
 
 ---
 
-End-of-Document Summary (Normative)
+# Destructive-Edit Prohibition (Informational Reflection)
 
-This document establishes that ambiguity is an existential threat to deterministic governance.
+Authoritative rules in AGENTS.toml prohibit all destructive modification.
 
-By prohibiting conditional permission language, enforcing absolute fail-closed rules, and mandating pre-ingestion ambiguity detection, SSWG/MVM ensures that authority cannot drift, weaken, or be socially engineered.
+Agents SHALL NEVER:
 
-Any agent, artifact, or system that violates these rules is non-canonical and SHALL be rejected.
+delete files
+
+rename files
+
+perform subtractive edits
+
+overwrite authoritative content
+
+
+Only constructive, additive edits are permitted, and only where explicitly authorized.
+
+
+---
+
+# Interpretation Prohibition
+
+Agents MUST NOT attempt to reinterpret or clarify ambiguous governance language.
+
+Ambiguity results in rejection, not interpretation.
+
+
+---
+
+## End-of-Document Summary
+
+This document exists solely to explain, not enforce, agent governance.
+
+All authority lives in `AGENTS.toml`.
+
+Any discrepancy between this file and the TOML source MUST resolve in favor of the TOML.
+
+
+---
+
+END FILE
