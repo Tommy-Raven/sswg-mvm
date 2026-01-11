@@ -1,13 +1,13 @@
 # ================================================================
-# GOVERNANCE_ROOT — GOVERNANCE ROOT DECLARATION (AUTHORITATIVE)
+# GOVERNANCE_ROOT — AUTHORITATIVE ROOT DECLARATION
 # ================================================================
 
 [anchor]
 anchor_id = "sswg_governance_root"
-anchor_model = "sswg+mvm"
-anchor_version = "1.2.0"
+anchor_model = "sswg+mvm+version"
+anchor_version = "1.0.0"
 scope = "directive_core/docs"
-status = "deprecated"
+status = "invariant"
 output_mode = "non_operational_output"
 
 owner = [
@@ -15,14 +15,34 @@ owner = [
   "Tommy Raven (Thomas Byers)"
 ]
 
-init_purpose = "Ratify directive_core as the authoritative governance root. This is explicitly declared non-authoritative. This not the constitution. Validators ignore it for ingestion order."
+init_purpose = "Declare directive_core/docs as the exclusive authoritative governance root for the repository."
 init_authors = ["Tommy Raven"]
 
+# ------------------------------------------------
+# Governance Root Declaration (Authoritative)
+# ------------------------------------------------
+
 [governance_root]
-authoritative_root = "directive_core/"
+
+# Absolute authority location
+authoritative_root = "directive_core/docs"
+
+# Resolution rules
 governance_resolution_source = "directive_core/docs"
 outside_docs_authoritative = false
+
+# Precedence semantics
 docs_precedence = true
-explicitly_non_authoritative = true
-not_constitution = true
-validators_ignore_ingestion_order = true
+
+# Explicit constraints
+markdown_authoritative = false
+yaml_authoritative = false
+toml_authoritative = true
+
+# Ingestion behavior
+included_in_ingestion_order = false
+constitution_overrides = true
+
+# Safety flags
+implicit_authority_forbidden = true
+fallback_resolution_forbidden = true
