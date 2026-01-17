@@ -1,3 +1,4 @@
+
 # ⚠️ DEPRECATION NOTICE — Naming Variants Prohibited
 
 The terms listed below are **deprecated** and **must not** appear in new or

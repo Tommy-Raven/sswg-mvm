@@ -1,7 +1,24 @@
+# Canonic Ledger
+```toml
+anchor:
+  anchor_id: "sswg_governance_root"
+  anchor_model: "sswg+mvm"
+  anchor_version: "1.0.0"
+  scope: "directive_core/docs"
+  owner:
+    - "2025© Raven Recordings"
+    - "Tommy Raven (Thomas Byers)"
+  status: "invariant"
+  output_mode: "non_operational_output"
+  init_purpose: "Ratify `directive_index.json as authoritative and directive_core/docs/ as the centralized authoritative governance root. This is explicitly declared authoritative. This not `SSWG_CONSTITUTION.toml`. Validators MUST ignore the markdown-paired mirror for ingestion order."
+  init_authors:
+    - "Tommy Raven"
+```
+
 {
   "$schema": "schemas/directive_index.schema.json",
   "schema_version": "1.0.0",
-  "canonical_path": "directive_core",
+  "canonical_path": "~/directive_core/directive_index.toml",
   "definitions": [
     {
       "directive_id": "sswg_governance_root",
