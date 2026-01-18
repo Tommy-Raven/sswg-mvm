@@ -5,7 +5,7 @@
 [anchor]
 anchor_id = "sswg_constitution"
 anchor_model = "sswg+mvm+version"
-anchor_version = "1.0.0"
+anchor_version = "1.0.1"
 scope = "directive_core/docs"
 status = "invariant"
 output_mode = "non_operational_output"
@@ -15,203 +15,241 @@ owner = [
   "Tommy Raven (Thomas Byers)"
 ]
 
-init_purpose = "Define the canonical SSWG constitution for governance."
+init_purpose = "Define the canonical SSWG constitution for governance, precedence, enforcement, and fail-closed validation."
 init_authors = ["Tommy Raven"]
 
 # ------------------------------------------------------------
-# SECTION 0 — EXECUTIVE SUMMARY
+# SECTION 0 — OPERATIONAL CONTROL PLANE (NORMATIVE)
 # ------------------------------------------------------------
 
-[executive_summary]
+[control_plane]
+operational_control_plane = "directive_core"
+authoritative_root = "directive_core/docs"
+authoritative_format = "toml"
 
-statement = """
-This Constitution is the highest-order normative authority of the SSWG/MVM
-governance system. It defines the foundational principles, authority boundaries,
-and enforcement guarantees that govern all directive definitions, schemas,
-validators, and governance documentation within directive_core/.
-
-All other governance artifacts derive their authority from this Constitution and
-are subordinate to it. Where ambiguity, conflict, or omission exists elsewhere,
-this document SHALL control.
-
-Effective at anchor_version 1.0.0, governance is machine-enforced, fail-closed,
-and auditable by design. All prior materials are preserved solely for historical
-context and confer no authority.
-"""
+# Constitution is the *only* natively-authoritative artifact. Any other governance
+# artifact's authority is strictly *delegated* by registry entries below.
+constitution_is_exclusive_root_authority = true
 
 # ------------------------------------------------------------
-# SECTION 1 — PURPOSE AND AUTHORITY
+# SECTION 1 — AUTHORITY AND PRECEDENCE (NORMATIVE)
 # ------------------------------------------------------------
 
 [authority]
 
-supreme = true
-overridable = false
-
-precedence_rules = [
-  "constitution_over_all_documents",
-  "constitution_over_code_and_tools",
-  "constitution_over_runtime_behavior",
-  "constitution_over_contributor_intent"
+supreme_document = "SSWG_CONSTITUTION.toml"
+precedence_order = [
+  "SSWG_CONSTITUTION.toml",
+  "INGESTION_SEQUENCE_REGISTRY",
+  "REGISTERED_GOVERNANCE_ARTIFACTS",
+  "NON_AUTHORITATIVE_REFERENCE_ARTIFACTS"
 ]
 
-source_of_legitimacy = [
-  "explicit_constitutional_declaration",
-  "deterministic_ingestion_order",
-  "validator_enforced_compliance"
-]
+# ------------------------------------------------------------
+# SECTION 2 — CANONICAL GOVERNANCE REGISTRY (NORMATIVE)
+# ------------------------------------------------------------
 
+[governance_registry]
+
+# Only artifacts listed here are validated at fail-start.
+# Files outside this registry are non-authoritative reference material.
+registry_is_authority_boundary = true
+fail_start_validate_only_registered = true
+
+# Artifact class rules
+authoritative_extensions = [".toml"]
+reference_extensions = [".md", ".json", ".txt", ".yaml", ".yml"]
+non_toml_artifacts_are_never_authoritative = true
+
+# Reject *implicit* authority based on location/name alone.
 implicit_authority_forbidden = true
 
 # ------------------------------------------------------------
-# SECTION 2 — SCOPE OF GOVERNANCE
+# SECTION 3 — CONSTITUTIONAL INGESTION SEQUENCE (NORMATIVE)
 # ------------------------------------------------------------
 
-[scope]
+[ingestion_sequence]
 
-governed_domains = [
-  "directive_definitions",
-  "directive_schemas",
-  "governance_documentation",
-  "validation_and_enforcement_logic",
-  "audit_artifacts_and_evidence_bundles"
-]
+sequence_id = "SSWG_CANONIC_9_PHASES"
+sequence_version = "1.0.0"
 
-excluded_domains = [
-  "application_logic",
-  "business_logic",
-  "runtime_execution_outside_directive_core",
-  "non_governance_experiments"
-]
+# 001–009 are the canonical constitutional ingestion phases.
+# These IDs are the stable, audit-visible interface for ingestion.
+
+[[ingestion_sequence.phase]]
+phase_id = "001"
+doc_id = "TERMINOLOGY"
+file = "TERMINOLOGY.toml"
+required = true
+
+[[ingestion_sequence.phase]]
+phase_id = "002"
+doc_id = "AGENTS"
+file = "AGENTS.toml"
+required = true
+
+[[ingestion_sequence.phase]]
+phase_id = "003"
+doc_id = "SSWG_CONSTITUTION"
+file = "SSWG_CONSTITUTION.toml"
+required = true
+
+[[ingestion_sequence.phase]]
+phase_id = "004"
+doc_id = "SECURITY_INVARIANTS"
+file = "SECURITY_INVARIANTS.toml"
+required = true
+
+[[ingestion_sequence.phase]]
+phase_id = "005"
+doc_id = "FORMAT_BOUNDARY_CONTRACT"
+file = "FORMAT_BOUNDARY_CONTRACT.toml"
+required = true
+
+[[ingestion_sequence.phase]]
+phase_id = "006"
+doc_id = "ARCHITECTURE"
+file = "ARCHITECTURE.toml"
+required = true
+
+[[ingestion_sequence.phase]]
+phase_id = "007"
+doc_id = "FORMAL_GUARANTEES"
+file = "FORMAL_GUARANTEES.toml"
+required = true
+
+[[ingestion_sequence.phase]]
+phase_id = "008"
+doc_id = "REFERENCES"
+file = "REFERENCES.toml"
+required = true
+
+[[ingestion_sequence.phase]]
+phase_id = "009"
+doc_id = "DEPRECATED_NOMENCLATURE"
+file = "deprecated_nomenclature.toml"
+required = true
 
 # ------------------------------------------------------------
-# SECTION 3 — CANONICAL GOVERNANCE MODEL
+# SECTION 4 — REGISTERED GOVERNANCE ARTIFACTS (NORMATIVE)
+# ------------------------------------------------------------
+
+# Each registered artifact declares its path (relative to authoritative_root),
+# its authority class, and its validation requirements.
+
+[[governance_registry.artifact]]
+artifact_id = "TERMINOLOGY"
+path = "TERMINOLOGY.toml"
+authority = "derived"
+validation = "toml_parse_required"
+
+[[governance_registry.artifact]]
+artifact_id = "AGENTS"
+path = "AGENTS.toml"
+authority = "derived"
+validation = "toml_parse_required"
+
+[[governance_registry.artifact]]
+artifact_id = "SECURITY_INVARIANTS"
+path = "SECURITY_INVARIANTS.toml"
+authority = "derived"
+validation = "toml_parse_required"
+
+[[governance_registry.artifact]]
+artifact_id = "FORMAT_BOUNDARY_CONTRACT"
+path = "FORMAT_BOUNDARY_CONTRACT.toml"
+authority = "derived"
+validation = "toml_parse_required"
+
+[[governance_registry.artifact]]
+artifact_id = "ARCHITECTURE"
+path = "ARCHITECTURE.toml"
+authority = "derived"
+validation = "toml_parse_required"
+
+[[governance_registry.artifact]]
+artifact_id = "FORMAL_GUARANTEES"
+path = "FORMAL_GUARANTEES.toml"
+authority = "derived"
+validation = "toml_parse_required"
+
+[[governance_registry.artifact]]
+artifact_id = "REFERENCES"
+path = "REFERENCES.toml"
+authority = "derived"
+validation = "toml_parse_required"
+
+[[governance_registry.artifact]]
+artifact_id = "DEPRECATED_NOMENCLATURE"
+path = "deprecated_nomenclature.toml"
+authority = "derived"
+validation = "toml_parse_required"
+
+# The Constitution self-registers, but remains the *only* root authority.
+[[governance_registry.artifact]]
+artifact_id = "SSWG_CONSTITUTION"
+path = "SSWG_CONSTITUTION.toml"
+authority = "root"
+validation = "toml_parse_required"
+
+# ------------------------------------------------------------
+# SECTION 5 — VALIDATION POLICY (NORMATIVE)
+# ------------------------------------------------------------
+
+[validation]
+fail_closed = true
+
+# Fail-start rules apply only to registered artifacts.
+fail_start_on_unparseable_registered_toml = true
+fail_start_on_missing_registered_artifact = true
+
+# Merge-conflict markers are *always* forbidden in registered artifacts.
+forbid_merge_conflict_markers = true
+
+# ------------------------------------------------------------
+# SECTION 6 — CANONICAL MODEL CONSTRAINTS (NORMATIVE)
 # ------------------------------------------------------------
 
 [canonical_model]
-
 required_anchor_model = "sswg+mvm+version"
-required_anchor_version = "1.0.0"
-
-header_format = "toml_only"
-yaml_authority_forbidden = true
-mixed_headers_forbidden = true
-
-baseline_meaning = [
-  "first_enforced_governance_baseline",
-  "completion_of_phase_2",
-  "transition_from_intent_to_enforcement"
-]
+required_anchor_version_min = "1.0.0"
+required_output_mode = "non_operational_output"
 
 # ------------------------------------------------------------
-# SECTION 4 — GOVERNANCE INGESTION ORDER
+# SECTION 7 — NON-TOML REFERENCE RULES (NORMATIVE)
 # ------------------------------------------------------------
 
-[ingestion_order]
+[reference_policy]
+markdown_mirrors_allowed = true
+markdown_mirrors_authoritative = false
+json_definitions_allowed = true
+json_definitions_authoritative = false
 
-order = [
-  "TERMINOLOGY",
-  "AGENTS",
-  "SSWG_CONSTITUTION",
-  "SECURITY_INVARIANTS",
-  "FORMAT_BOUNDARY_CONTRACT",
-  "ARCHITECTURE",
-  "FORMAL_GUARANTEES",
-  "REFERENCES",
-  "DEPRECATED_NOMENCLATURE"
-]
-
-order_enforced = true
-missing_document_is_fatal = true
-out_of_order_is_fatal = true
-
-precedence_rules = [
-  "terminology_is_binding",
-  "constitution_overrides_all",
-  "later_documents_may_refine_not_contradict"
-]
+# Non-TOML artifacts may be used for:
+# - migration reference
+# - human-readable overlays
+# - structural intent
+# But they may never override or amend registered TOML governance.
 
 # ------------------------------------------------------------
-# SECTION 5 — SEMANTIC AMBIGUITY GATE (MANDATORY)
-# ------------------------------------------------------------
-
-[semantic_ambiguity_gate]
-
-enabled = true
-position = "pre_ingestion"
-fail_closed = true
-
-executes_before = [
-  "ingestion_order_validation",
-  "anchor_validation",
-  "constitution_precedence",
-  "schema_validation"
-]
-
-on_detection = [
-  "hard_fail",
-  "emit_error_label",
-  "quarantine_artifact",
-  "exile_from_ingestion"
-]
-
-public_error_label = "Semantic Ambiguity"
-
-user_visible_diagnostics = "generic_only"
-rule_identifiers_exposed = false
-pattern_names_exposed = false
-
-remediation_process = [
-  "reject_immediately",
-  "explicit_reauthoring",
-  "terminology_refinement",
-  "semantic_model_retraining",
-  "full_reingestion"
-]
-
-interpretation_forbidden = true
-discretionary_bypass_forbidden = true
-
-# ------------------------------------------------------------
-# SECTION 6 — NAMING STATUS (CANONICAL)
-# ------------------------------------------------------------
-
-[naming]
-
-canonical_identifiers = [
-  "SSWG/MVM",
-  "sswg-mvm"
-]
-
-non_canonical_identifiers_forbidden = true
-deprecated_identifiers_location = "DEPRECATED_NOMENCLATURE"
-
-# ------------------------------------------------------------
-# SECTION 7 — EVOLUTION AND CHANGE CONTROL
+# SECTION 8 — EVOLUTION RULES (NORMATIVE)
 # ------------------------------------------------------------
 
 [evolution]
-
 versioned_changes_only = true
-traceability_required = true
-silent_modification_forbidden = true
-retroactive_reinterpretation_forbidden = true
+change_log_required = true
+
+[[evolution.change_log]]
+change_id = "2026-01-17.constitution.registry"
+summary = "Introduce explicit governance registry, numbered 001–009 ingestion sequence, and control_plane binding to directive_core."
+impact = "Shifts fail-start validation boundary to registered TOML artifacts; non-TOML are reference-only."
 
 # ------------------------------------------------------------
-# SECTION 8 — END-OF-DOCUMENT SUMMARY (NORMATIVE)
+# SECTION 9 — END-OF-DOCUMENT SUMMARY (NORMATIVE)
 # ------------------------------------------------------------
 
 [summary]
-
-statement = """
-This Constitution establishes the absolute authority, scope, and enforcement
-guarantees of the SSWG/MVM governance system. It defines a single canonical
-baseline, mandates deterministic ingestion and precedence, and requires
-machine-enforced, fail-closed compliance.
-
-Any artifact violating this Constitution is non-canonical and SHALL be rejected.
-"""
-
+statement = "This Constitution establishes supreme authority for SSWG governance. It declares directive_core as the operational control plane, enforces TOML-only authority, and gates all subordinate governance through an explicit registry and 001–009 ingestion sequence."
 summary_required_in_future_constitutional_docs = true
 
 # ============================================================
