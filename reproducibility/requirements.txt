@@ -25,7 +25,7 @@ referencing==0.33.0
 rpds-py==0.18.1
 markdown-it-py==3.0.0
 mdurl==0.1.2
-pygments==2.18.0
+pygments==2.20.0
 gitdb==4.0.11
 smmap==5.0.1
 click==8.1.7
