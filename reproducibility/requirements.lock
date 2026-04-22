@@ -58,7 +58,7 @@ markdown-it-py==3.0.0 \
 mdurl==0.1.2 \
     --hash=sha256:<GENERATED-HASH>
 
-pygments==2.18.0 \
+pygments==2.20.0 \
     --hash=sha256:<GENERATED-HASH>
 
 gitdb==4.0.11 \
